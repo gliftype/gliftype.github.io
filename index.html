@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gliftype — Open Source Type Foundry</title>
-    <!-- opentype.js untuk membaca file font .ttf (.woff2 tidak didukung native oleh opentype.js) -->
+    <!-- opentype.js untuk membaca file font .ttf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
     <style>
         /* Deklarasi Custom Font Variable untuk Teks Utama Website */
@@ -249,7 +249,7 @@
 
         .control-group span {
             font-variant-numeric: tabular-nums;
-            min-width: 42px;
+            min-width: 52px; /* Ditingkatkan sedikit agar muat angka hingga 180px */
             text-align: right;
             font-size: 0.8rem;
             color: var(--text-color);
@@ -282,23 +282,43 @@
             transform: scale(1.3);
         }
 
-        /* Editable Preview Text Area (Support Running Text / Marquee) */
+        /* Wrapper Container untuk Running Text yang Mulus */
+        .preview-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        /* Animasi Marquee CSS yang Sangat Mulus (Hardware Accelerated) */
         .font-preview {
             width: 100%;
-            min-height: 120px;
             background: transparent;
             border: none;
             outline: none;
             resize: vertical;
             color: var(--text-color);
-            padding: 10px 0;
             white-space: nowrap;
-            overflow-x: hidden;
+            overflow: visible;
+            display: inline-block;
+            animation: smoothMarquee 25s linear infinite;
         }
 
+        .preview-wrapper:hover .font-preview {
+            animation-play-state: paused;
+        }
+
+        @keyframes smoothMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Ketika user mulai mengetik/fokus, ubah menjadi textarea interaktif biasa */
         .font-preview.user-typing {
-            white-space: pre-wrap;
-            overflow-x: auto;
+            animation: none !important;
+            white-space: pre-wrap !important;
+            overflow-x: auto !important;
+            transform: none !important;
         }
 
         /* Detail Page Styling */
@@ -543,7 +563,8 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'grafem-preview-main', 'fontSize', 'val-grafem-s')">
+                            <!-- Diubah min 24, max 180, nilai awal default 52 -->
+                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'grafem-preview-main', 'fontSize', 'val-grafem-s')">
                             <span id="val-grafem-s">52px</span>
                         </div>
                         <div class="control-group">
@@ -553,7 +574,9 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="grafem-preview-main" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
+                <div class="preview-wrapper">
+                    <input type="text" id="grafem-preview-main" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                </div>
             </div>
 
             <!-- Font 2: GLF Fonem -->
@@ -568,7 +591,7 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'fonem-preview-main', 'fontSize', 'val-fonem-s')">
+                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'fonem-preview-main', 'fontSize', 'val-fonem-s')">
                             <span id="val-fonem-s">52px</span>
                         </div>
                         <div class="control-group">
@@ -578,7 +601,9 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="fonem-preview-main" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
+                <div class="preview-wrapper">
+                    <input type="text" id="fonem-preview-main" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                </div>
             </div>
 
             <!-- Font 3: GLF Cikutra -->
@@ -593,7 +618,7 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'cikutra-preview-main', 'fontSize', 'val-cikutra-s')">
+                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'cikutra-preview-main', 'fontSize', 'val-cikutra-s')">
                             <span id="val-cikutra-s">52px</span>
                         </div>
                         <div class="control-group">
@@ -603,7 +628,9 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="cikutra-preview-main" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
+                <div class="preview-wrapper">
+                    <input type="text" id="cikutra-preview-main" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                </div>
             </div>
         </section>
 
@@ -623,7 +650,7 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'grafem-preview-detail', 'fontSize', 'val-grafem-s-det')">
+                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'grafem-preview-detail', 'fontSize', 'val-grafem-s-det')">
                             <span id="val-grafem-s-det">52px</span>
                         </div>
                         <div class="control-group">
@@ -633,7 +660,9 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="grafem-preview-detail" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
+                <div class="preview-wrapper">
+                    <input type="text" id="grafem-preview-detail" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                </div>
             </div>
 
             <div class="detail-block">
@@ -684,7 +713,7 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'fonem-preview-detail', 'fontSize', 'val-fonem-s-det')">
+                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'fonem-preview-detail', 'fontSize', 'val-fonem-s-det')">
                             <span id="val-fonem-s-det">52px</span>
                         </div>
                         <div class="control-group">
@@ -694,7 +723,9 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="fonem-preview-detail" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
+                <div class="preview-wrapper">
+                    <input type="text" id="fonem-preview-detail" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                </div>
             </div>
 
             <div class="detail-block">
@@ -745,7 +776,7 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'cikutra-preview-detail', 'fontSize', 'val-cikutra-s-det')">
+                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'cikutra-preview-detail', 'fontSize', 'val-cikutra-s-det')">
                             <span id="val-cikutra-s-det">52px</span>
                         </div>
                         <div class="control-group">
@@ -755,7 +786,9 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="cikutra-preview-detail" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
+                <div class="preview-wrapper">
+                    <input type="text" id="cikutra-preview-detail" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                </div>
             </div>
 
             <div class="detail-block">
@@ -836,48 +869,24 @@
             "Quick zephyrs blow, vexing daft Jim."
         ];
 
-        // Menyimpan status interval running text tiap textarea
-        const runningIntervals = {};
-
-        // Inisialisasi Running Text pada textarea
+        // Inisialisasi Running Text Mulus
         function initRunningTexts() {
-            const textareas = document.querySelectorAll('.font-preview');
-            textareas.forEach((textarea, index) => {
-                if (textarea.dataset.userEdited === "true") return; // Jangan jalankan jika sudah diedit user
+            const inputs = document.querySelectorAll('.font-preview');
+            inputs.forEach((input, index) => {
+                if (input.dataset.userEdited === "true") return;
 
                 let pangramIndex = index % pangrams.length;
-                let text = pangrams[pangramIndex] + "   •   ";
-                let pos = 0;
-
-                textarea.value = text;
-
-                // Animasi bergeser (running text)
-                if (runningIntervals[textarea.id]) {
-                    clearInterval(runningIntervals[textarea.id]);
-                }
-
-                runningIntervals[textarea.id] = setInterval(() => {
-                    if (document.activeElement === textarea || textarea.dataset.userEdited === "true") return;
-                    pos++;
-                    if (pos > text.length) {
-                        pos = 0;
-                    }
-                    textarea.value = text.substring(pos) + text.substring(0, pos);
-                }, 150);
+                let baseText = pangrams[pangramIndex];
+                input.value = baseText + "   •   " + baseText + "   •   ";
             });
         }
 
-        // Fungsi saat textarea diklik/difokuskan: Hentikan running text agar user bisa mengetik
-        function stopRunningText(textarea) {
-            textarea.dataset.userEdited = "true";
-            if (runningIntervals[textarea.id]) {
-                clearInterval(runningIntervals[textarea.id]);
-            }
-            textarea.classList.add('user-typing');
-            // Jika isi masih berupa running pangram, kosongkan atau biarkan siap diketik
-            if (textarea.value.includes("•")) {
-                textarea.value = "";
-            }
+        // Fungsi saat input diklik/difokuskan
+        function stopRunningText(input) {
+            input.dataset.userEdited = "true";
+            input.removeAttribute('readonly');
+            input.classList.add('user-typing');
+            input.value = "";
         }
 
         // Data objek font & glyph yang diparsing
@@ -1058,7 +1067,6 @@
                 switchPage(hash);
             }
 
-            // Jalankan running text
             initRunningTexts();
         });
 
