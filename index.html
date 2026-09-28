@@ -7,7 +7,6 @@
     <!-- opentype.js untuk membaca file font .ttf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
     <style>
-        /* Deklarasi Custom Font Variable untuk Teks Utama Website */
         @font-face {
             font-family: 'GLF Grafem';
             src: url('fonts/GLF-Grafem-VF.woff2') format('woff2-variations');
@@ -67,7 +66,6 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Header Style */
         header {
             position: fixed;
             top: 0;
@@ -125,7 +123,6 @@
             color: var(--text-color);
         }
 
-        /* Tombol Ikon Theme Toggle */
         .theme-toggle-btn {
             background: none;
             border: none;
@@ -157,7 +154,6 @@
         [data-theme="dark"] .icon-moon { display: block; }
         [data-theme="dark"] .icon-sun { display: none; }
 
-        /* Main Content Layout */
         main {
             margin-top: 100px;
             flex: 1;
@@ -189,7 +185,6 @@
             margin-bottom: 30px;
         }
 
-        /* Clean Font List Item */
         .font-item-clean {
             padding: 40px 0;
             border-bottom: 1px solid var(--border-color);
@@ -221,7 +216,7 @@
             color: var(--gray-color);
         }
 
-        /* Minimalist Controls Bar */
+        /* Controls bar styling */
         .controls-bar-minimal {
             display: flex;
             gap: 20px;
@@ -249,7 +244,7 @@
 
         .control-group span {
             font-variant-numeric: tabular-nums;
-            min-width: 52px; /* Ditingkatkan sedikit agar muat angka hingga 180px */
+            min-width: 52px;
             text-align: right;
             font-size: 0.8rem;
             color: var(--text-color);
@@ -282,46 +277,67 @@
             transform: scale(1.3);
         }
 
-        /* Wrapper Container untuk Running Text yang Mulus */
         .preview-wrapper {
             width: 100%;
             overflow: hidden;
             position: relative;
             padding: 10px 0;
-        }
-
-        /* Animasi Marquee CSS yang Sangat Mulus (Hardware Accelerated) */
-        .font-preview {
-            width: 100%;
-            background: transparent;
-            border: none;
-            outline: none;
-            resize: vertical;
-            color: var(--text-color);
             white-space: nowrap;
-            overflow: visible;
-            display: inline-block;
-            animation: smoothMarquee 25s linear infinite;
         }
 
-        .preview-wrapper:hover .font-preview {
+        .marquee-track {
+            display: inline-flex;
+            gap: 60px;
+            white-space: nowrap;
+            will-change: transform;
+            animation: seamlessMarquee 45s linear infinite;
+        }
+
+        .preview-wrapper:hover .marquee-track {
             animation-play-state: paused;
         }
 
-        @keyframes smoothMarquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        @keyframes seamlessMarquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
-        /* Ketika user mulai mengetik/fokus, ubah menjadi textarea interaktif biasa */
-        .font-preview.user-typing {
+        .marquee-text-node {
+            display: inline-block;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-color);
+            white-space: nowrap;
+            flex-shrink: 0;
+            user-select: text;
+        }
+
+        /* User typing state */
+        .preview-wrapper.user-typing-mode .marquee-track {
             animation: none !important;
+            transform: none !important;
+            display: block !important;
+            width: 100%;
+        }
+
+        .preview-wrapper.user-typing-mode .marquee-text-node.clone-node {
+            display: none !important;
+        }
+
+        .preview-wrapper.user-typing-mode textarea,
+        .preview-wrapper.user-typing-mode input {
             white-space: pre-wrap !important;
             overflow-x: auto !important;
-            transform: none !important;
+            width: 100% !important;
+            resize: vertical !important;
         }
 
-        /* Detail Page Styling */
+        /* Detail page layout & components */
         .back-link {
             display: inline-block;
             margin-bottom: 20px;
@@ -369,7 +385,6 @@
             font-weight: 600;
         }
 
-        /* Style Glyphs Table & Viewer Dinamis */
         .glyph-search-bar {
             margin-bottom: 20px;
             display: flex;
@@ -426,7 +441,6 @@
             fill: var(--text-color);
         }
 
-        /* Download Section */
         .download-section {
             margin-top: 50px;
             padding-top: 30px;
@@ -450,7 +464,6 @@
             opacity: 0.8;
         }
 
-        /* Footer Style */
         .footer-divider {
             width: 100%;
             max-width: 1400px;
@@ -492,7 +505,6 @@
             color: var(--text-color);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .header-container, .footer-divider, footer {
                 padding-left: 20px;
@@ -517,7 +529,6 @@
 </head>
 <body>
 
-    <!-- Header -->
     <header id="site-header">
         <div class="header-container">
             <a href="#typefaces" class="logotype" onclick="switchPage('typefaces', event)">Gliftype</a>
@@ -547,7 +558,6 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
         <!-- Page Typefaces -->
         <section id="typefaces" class="page-section active">
@@ -563,7 +573,6 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <!-- Diubah min 24, max 180, nilai awal default 52 -->
                             <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'grafem-preview-main', 'fontSize', 'val-grafem-s')">
                             <span id="val-grafem-s">52px</span>
                         </div>
@@ -574,8 +583,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="preview-wrapper">
-                    <input type="text" id="grafem-preview-main" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                <div class="preview-wrapper" id="wrap-grafem-main">
+                    <div class="marquee-track">
+                        <input type="text" id="grafem-preview-main" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-main')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones. It is seen as living proof that communities can organize themselves without state authority, where street walls serve as visual propaganda and underground hubs act as safe havens to challenge state control and top-down development.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones. It is seen as living proof that communities can organize themselves without state authority, where street walls serve as visual propaganda and underground hubs act as safe havens to challenge state control and top-down development.">
+                    </div>
                 </div>
             </div>
 
@@ -601,8 +613,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="preview-wrapper">
-                    <input type="text" id="fonem-preview-main" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                <div class="preview-wrapper" id="wrap-fonem-main">
+                    <div class="marquee-track">
+                        <input type="text" id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-main')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment. Kebumen is valued as a space for practicing food sovereignty and horizontal cooperation, where communities naturally organize themselves to protect the ecology from top-down industrialization and mining threats without relying on state authority.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment. Kebumen is valued as a space for practicing food sovereignty and horizontal cooperation, where communities naturally organize themselves to protect the ecology from top-down industrialization and mining threats without relying on state authority.">
+                    </div>
                 </div>
             </div>
 
@@ -628,8 +643,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="preview-wrapper">
-                    <input type="text" id="cikutra-preview-main" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                <div class="preview-wrapper" id="wrap-cikutra-main">
+                    <div class="marquee-track">
+                        <input type="text" id="cikutra-preview-main" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-main')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival. To the city's radical collectives, the capital is a dystopian hyper-monitored hub where corporate greed fuels aggressive gentrification and forced evictions of the working class. However, within the cracks of this concrete metropolis, anarchists view Jakarta as a thriving network of underground resistance—where street-level solidarity, squatter networks, and localized mutual aid constantly sabotage the state's illusion of control.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival. To the city's radical collectives, the capital is a dystopian hyper-monitored hub where corporate greed fuels aggressive gentrification and forced evictions of the working class. However, within the cracks of this concrete metropolis, anarchists view Jakarta as a thriving network of underground resistance—where street-level solidarity, squatter networks, and localized mutual aid constantly sabotage the state's illusion of control.">
+                    </div>
                 </div>
             </div>
         </section>
@@ -660,8 +678,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="preview-wrapper">
-                    <input type="text" id="grafem-preview-detail" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                <div class="preview-wrapper" id="wrap-grafem-det">
+                    <div class="marquee-track">
+                        <input type="text" id="grafem-preview-detail" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-det')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.">
+                    </div>
                 </div>
             </div>
 
@@ -723,8 +744,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="preview-wrapper">
-                    <input type="text" id="fonem-preview-detail" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                <div class="preview-wrapper" id="wrap-fonem-det">
+                    <div class="marquee-track">
+                        <input type="text" id="fonem-preview-detail" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-det')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.">
+                    </div>
                 </div>
             </div>
 
@@ -786,8 +810,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="preview-wrapper">
-                    <input type="text" id="cikutra-preview-detail" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)" readonly>
+                <div class="preview-wrapper" id="wrap-cikutra-det">
+                    <div class="marquee-track">
+                        <input type="text" id="cikutra-preview-detail" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-det')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.">
+                    </div>
                 </div>
             </div>
 
@@ -858,35 +885,35 @@
     </footer>
 
     <script>
-        // Kumpulan Pangram Bahasa Inggris Berbeda untuk Running Text
-        const pangrams = [
-            "The quick brown fox jumps over the lazy dog.",
-            "Pack my box with five dozen liquor jugs.",
-            "Sphinx of black quartz, judge my vow.",
-            "The five boxing wizards jump quickly.",
-            "Waltz, bad nymph, for quick jigs vex.",
-            "Glib jocks quiz nymph to vex dwarf.",
-            "Quick zephyrs blow, vexing daft Jim."
-        ];
+        
+        // Menyesuaikan lebar input teks agar sesuai dengan panjang string agar tidak terpotong saat animasi
+        function adjustInputWidths() {
+            const inputs = document.querySelectorAll('.marquee-text-node');
+            inputs.forEach(input => {
+                const tempSpan = document.createElement('span');
+                tempSpan.style.visibility = 'hidden';
+                tempSpan.style.position = 'absolute';
+                tempSpan.style.whiteSpace = 'nowrap';
+                tempSpan.style.font = window.getComputedStyle(input).font;
+                tempSpan.textContent = input.value || input.placeholder;
+                document.body.appendChild(tempSpan);
+                const textWidth = Math.ceil(tempSpan.getBoundingClientRect().width) + 80;
+                document.body.removeChild(tempSpan);
 
-        // Inisialisasi Running Text Mulus
-        function initRunningTexts() {
-            const inputs = document.querySelectorAll('.font-preview');
-            inputs.forEach((input, index) => {
-                if (input.dataset.userEdited === "true") return;
-
-                let pangramIndex = index % pangrams.length;
-                let baseText = pangrams[pangramIndex];
-                input.value = baseText + "   •   " + baseText + "   •   ";
+                input.style.width = textWidth + 'px';
+                const clone = input.parentElement.querySelector('.clone-node');
+                if (clone) {
+                    clone.style.width = textWidth + 'px';
+                }
             });
         }
 
-        // Fungsi saat input diklik/difokuskan
-        function stopRunningText(input) {
-            input.dataset.userEdited = "true";
+        // Fungsi saat input diklik/difokuskan untuk berhenti bergerak & bisa diedit
+        function stopRunningText(input, wrapperId) {
+            const wrapper = document.getElementById(wrapperId);
+            wrapper.classList.add('user-typing-mode');
             input.removeAttribute('readonly');
-            input.classList.add('user-typing');
-            input.value = "";
+            input.style.width = '100%';
         }
 
         // Data objek font & glyph yang diparsing
@@ -922,6 +949,7 @@
                     lnk.classList.add('active');
                 }
             });
+            setTimeout(adjustInputWidths, 50);
         }
 
         // Ambil dan parsing file font .ttf menggunakan opentype.js
@@ -978,10 +1006,7 @@
             const height = ascender - descender;
             const viewBox = `0 ${-ascender} ${unitsPerEm} ${height}`;
 
-            let targetWeight = 300;
-            if (key === 'grafem' || key === 'fonem') {
-                targetWeight = 400;
-            }
+            let targetWeight = 400;
 
             let html = `<div class="glyph-table">`;
             glyphsArray.forEach((item) => {
@@ -1030,16 +1055,22 @@
             const span = document.getElementById(spanId);
             const val = slider.value;
 
+            const clone = target.parentElement.querySelector('.clone-node');
+
             if (property === 'fontWeight') {
                 target.style.fontWeight = val;
+                if (clone) clone.style.fontWeight = val;
                 span.textContent = val;
             } else if (property === 'fontSize') {
                 target.style.fontSize = val + 'px';
+                if (clone) clone.style.fontSize = val + 'px';
                 span.textContent = val + 'px';
             } else if (property === 'lineHeight') {
                 target.style.lineHeight = val;
+                if (clone) clone.style.lineHeight = val;
                 span.textContent = val;
             }
+            setTimeout(adjustInputWidths, 10);
         }
 
         // Toggle Theme (Light / Dark Mode)
@@ -1055,7 +1086,7 @@
             }
         }
 
-        // Inisialisasi Halaman & Running Text
+        // Inisialisasi Halaman
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
@@ -1067,7 +1098,11 @@
                 switchPage(hash);
             }
 
-            initRunningTexts();
+            adjustInputWidths();
+        });
+
+        window.addEventListener('resize', () => {
+            adjustInputWidths();
         });
 
         // Efek border header saat halaman di-scroll
