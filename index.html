@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gliftype — Open Source Type Foundry</title>
-    <!-- opentype.js untuk membaca file font asli (.woff2 / .ttf / .otf) -->
+    <!-- opentype.js untuk membaca file font .ttf (.woff2 tidak didukung native oleh opentype.js) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
     <style>
-        /* Deklarasi Custom Font Variable */
+        /* Deklarasi Custom Font Variable untuk Teks Utama Website */
         @font-face {
             font-family: 'GLF Grafem';
             src: url('fonts/GLF-Grafem-VF.woff2') format('woff2-variations');
@@ -366,18 +366,6 @@
             border-color: var(--gray-color);
         }
 
-        .glyph-category {
-            margin-bottom: 24px;
-        }
-
-        .glyph-category-title {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--gray-color);
-            margin-bottom: 8px;
-        }
-
         .glyph-table {
             display: flex;
             flex-wrap: wrap;
@@ -399,18 +387,13 @@
             user-select: none;
             cursor: pointer;
             transition: background 0.15s ease;
-            position: relative;
         }
 
         .glyph-cell:hover {
             background: var(--light-gray);
         }
 
-        .glyph-cell canvas {
-            display: block;
-        }
-
-        /* Download Button */
+        /* Download Section */
         .download-section {
             margin-top: 50px;
             padding-top: 30px;
@@ -656,7 +639,7 @@
                 </div>
             </div>
 
-            <!-- GLF Grafem Glyphs (Otomatis dimuat lewat opentype.js) -->
+            <!-- GLF Grafem Glyphs (Dimuat dari file .ttf via opentype.js) -->
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
                 <div class="glyph-search-bar">
@@ -829,11 +812,11 @@
     </footer>
 
     <script>
-        // Data penyimpan objek font & glyph yang diparsing
+        // Data objek font & glyph yang diparsing (menggunakan file .ttf khusus untuk opentype.js)
         const loadedFontsData = {
-            'grafem': { url: 'fonts/GLF-Grafem-VF.woff2', fontObj: null, glyphs: [] },
-            'fonem': { url: 'fonts/GLF-Fonem-VF.woff2', fontObj: null, glyphs: [] },
-            'cikutra': { url: 'fonts/GLF-Cikutra-VF.woff2', fontObj: null, glyphs: [] }
+            'grafem': { url: 'fonts/GLF-Grafem-VF.ttf', fontObj: null, glyphs: [] },
+            'fonem': { url: 'fonts/GLF-Fonem-VF.ttf', fontObj: null, glyphs: [] },
+            'cikutra': { url: 'fonts/GLF-Cikutra-VF.ttf', fontObj: null, glyphs: [] }
         };
 
         // Fungsi Navigasi Halaman
@@ -858,7 +841,6 @@
                 }
             }
 
-            // Aktifkan tautan navbar jika sesuai
             document.querySelectorAll('nav a').forEach(lnk => {
                 if (lnk.getAttribute('href') === '#' + pageId) {
                     lnk.classList.add('active');
@@ -866,14 +848,14 @@
             });
         }
 
-        // Ambil dan parsing file font asli menggunakan opentype.js
+        // Ambil dan parsing file font .ttf menggunakan opentype.js
         function fetchAndParseFont(key) {
             const fontData = loadedFontsData[key];
             const container = document.getElementById(`glyphs-container-${key}`);
 
             fetch(fontData.url)
                 .then(res => {
-                    if (!res.ok) throw new Error("File font tidak ditemukan di path " + fontData.url);
+                    if (!res.ok) throw new Error("File font .ttf tidak ditemukan di path " + fontData.url);
                     return res.arrayBuffer();
                 })
                 .then(buffer => {
@@ -883,7 +865,7 @@
                     const list = [];
                     for (let i = 0; i < font.numGlyphs; i++) {
                         const glyph = font.glyphs.get(i);
-                        // Abaikan glyph kosong total (kecuali indeks 0 .notdef jika diperlukan)
+                        // Abaikan glyph kosong total (kecuali indeks 0 .notdef)
                         if (i > 0 && (!glyph.path || glyph.path.commands.length === 0) && glyph.unicode === undefined) {
                             continue;
                         }
@@ -902,7 +884,7 @@
                     renderGlyphsGrid(key, list);
                 })
                 .catch(err => {
-                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font asli: ${err.message}. Pastikan file .woff2 tersedia di folder /fonts/ di GitHub Pages Anda.</div>`;
+                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font .ttf: ${err.message}. Pastikan file .ttf sudah di-upload ke folder /fonts/.</div>`;
                 });
         }
 
@@ -915,8 +897,7 @@
             }
 
             let html = `<div class="glyph-table">`;
-            glyphsArray.forEach((item, idx) => {
-                // Render menggunakan karakter langsung jika ada, jika tidak kosongkan sel
+            glyphsArray.forEach((item) => {
                 let displayChar = item.char ? item.char : '';
                 html += `<div class="glyph-cell" title="${item.name} (${item.unicodeStr})">${displayChar}</div>`;
             });
@@ -974,7 +955,7 @@
             }
         }
 
-        // Inisialisasi Tema dari LocalStorage atau Hash URL saat halaman dimuat
+        // Inisialisasi Tema & Hash URL saat halaman dimuat
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
