@@ -98,13 +98,21 @@
         }
 
         .logotype img {
-            height: 24px;
+            height: 32px; /* Ukuran logo sedikit diperbesar dari 24px */
             width: auto;
             transition: var(--transition);
         }
 
-        /* Jika Anda ingin logo SVG otomatis menyesuaikan warna (invert) saat Dark Mode, aktifkan baris di bawah ini */
-        /* [data-theme="dark"] .logotype img { filter: invert(1); } */
+        /* Otomatis mengubah logo putih menjadi hitam di Light Mode, dan tetap putih di Dark Mode */
+        /* Jika file SVG Anda aslinya berwarna putih, filter di bawah membuat SVG hitam saat Light Mode */
+        .logotype img {
+            filter: brightness(0); /* Membuat logo jadi hitam di Light Mode */
+        }
+        
+        /* Saat Dark Mode, kembalikan atau ubah logo menjadi putih */
+        [data-theme="dark"] .logotype img {
+            filter: brightness(0) invert(1); /* Membuat logo jadi putih bersih di Dark Mode */
+        }
 
         .nav-right {
             display: flex;
