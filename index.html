@@ -375,22 +375,28 @@
         }
 
         .glyph-cell {
-            width: 48px;
-            height: 48px;
+            width: 64px;
+            height: 64px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1.15rem;
             border-right: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
             user-select: none;
             cursor: pointer;
             transition: background 0.15s ease;
+            padding: 8px;
         }
 
         .glyph-cell:hover {
             background: var(--light-gray);
+        }
+
+        .glyph-cell svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--text-color);
         }
 
         /* Download Section */
@@ -639,7 +645,7 @@
                 </div>
             </div>
 
-            <!-- GLF Grafem Glyphs (Dimuat dari file .ttf via opentype.js) -->
+            <!-- GLF Grafem Glyphs (Dirender via opentype.js SVG Vector) -->
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
                 <div class="glyph-search-bar">
@@ -805,9 +811,9 @@
     <footer>
         <div>&copy; 2026 Gliftype Foundry. All rights reserved.</div>
         <div class="footer-links">
-            <a href="#typefaces" onclick="switchPage('typefaces', event)">Typefaces</a>
-            <a href="#license" onclick="switchPage('license', event)">License</a>
-            <a href="#about" onclick="switchPage('about', event)">About</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="mailto:contact@gliftype.com">Email</a>
         </div>
     </footer>
 
@@ -888,7 +894,7 @@
                 });
         }
 
-        // Render grid glyph ke HTML
+        // Render grid glyph ke HTML menggunakan SVG Vektor dari opentype.js
         function renderGlyphsGrid(key, glyphsArray) {
             const container = document.getElementById(`glyphs-container-${key}`);
             if (glyphsArray.length === 0) {
@@ -898,8 +904,21 @@
 
             let html = `<div class="glyph-table">`;
             glyphsArray.forEach((item) => {
-                let displayChar = item.char ? item.char : '';
-                html += `<div class="glyph-cell" title="${item.name} (${item.unicodeStr})">${displayChar}</div>`;
+                let pathData = '';
+                try {
+                    const path = item.glyphObj.getPath(0, 0, 32);
+                    pathData = path.toPathData(2);
+                } catch (e) {
+                    pathData = '';
+                }
+
+                html += `
+                    <div class="glyph-cell" title="${item.name} (${item.unicodeStr})">
+                        <svg viewBox="0 -10 40 40">
+                            <path d="${pathData}"></path>
+                        </svg>
+                    </div>
+                `;
             });
             html += `</div>`;
             container.innerHTML = html;
