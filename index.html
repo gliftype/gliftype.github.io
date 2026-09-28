@@ -110,22 +110,53 @@
             gap: 32px;
         }
 
-        nav a, .theme-toggle-btn {
+        nav a {
             text-decoration: none;
             color: var(--gray-color);
             font-size: 0.95rem;
             font-weight: 500;
             transition: var(--transition);
             cursor: pointer;
-            background: none;
-            border: none;
-            font-family: inherit;
-            padding: 0;
         }
 
-        nav a:hover, nav a.active, .theme-toggle-btn:hover {
+        nav a:hover, nav a.active {
             color: var(--text-color);
         }
+
+        /* Tombol Ikon Theme Toggle */
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            transition: var(--transition);
+        }
+
+        .theme-toggle-btn:hover {
+            color: var(--text-color);
+        }
+
+        .theme-toggle-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Sembunyikan ikon bulan secara default (saat light mode, tampil matahari) */
+        .icon-moon { display: none; }
+        .icon-sun { display: block; }
+
+        /* Saat dark mode, tampil bulan, sembunyikan matahari */
+        [data-theme="dark"] .icon-moon { display: block; }
+        [data-theme="dark"] .icon-sun { display: none; }
 
         /* Main Content Layout */
         main {
@@ -419,7 +450,25 @@
                     <a href="#license" class="nav-link" onclick="switchPage('license', event)">License</a>
                     <a href="#about" class="nav-link" onclick="switchPage('about', event)">About</a>
                 </nav>
-                <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()">Dark</button>
+                <!-- Tombol Ikon Dark/Light Mode -->
+                <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+                    <!-- Ikon Matahari (Light Mode) -->
+                    <svg class="icon-sun" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Ikon Bulan (Dark Mode) -->
+                    <svg class="icon-moon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
             </div>
         </div>
     </header>
@@ -703,28 +752,20 @@
         // Fungsi Toggle Dark / Light Mode
         function toggleTheme() {
             const html = document.documentElement;
-            const btn = document.getElementById('theme-toggle');
             if (html.getAttribute('data-theme') === 'dark') {
                 html.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'light');
-                btn.textContent = 'Dark';
             } else {
                 html.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
-                btn.textContent = 'Light';
             }
         }
 
         // Inisialisasi tema dan teks random saat halaman dimuat
         window.addEventListener('DOMContentLoaded', () => {
-            // Cek tersimpan dari localStorage
             const savedTheme = localStorage.getItem('theme');
-            const btn = document.getElementById('theme-toggle');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                btn.textContent = 'Light';
-            } else {
-                btn.textContent = 'Dark';
             }
 
             const randomText = getRandomPangram();
