@@ -801,7 +801,7 @@
                 Gliftype is an independent open source type foundry dedicated to designing high-quality, meticulously engineered variable typefaces.
             </p>
             <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">
-                Founded by Sidiq Kamal Nurmawan, focusing on geometric precision, aesthetic balance, and contemporary editorial flexibility.
+                Founded by Sidiq Kamal Nurmawan, founding on geometric precision, aesthetic balance, and contemporary editorial flexibility.
             </p>
         </section>
     </main>
@@ -894,27 +894,38 @@
                 });
         }
 
-        // Render grid glyph ke HTML menggunakan SVG Vektor dari opentype.js
+        // Render grid glyph ke HTML menggunakan SVG Vektor dari opentype.js (disesuaikan dengan unitsPerEm & Weight 300)
         function renderGlyphsGrid(key, glyphsArray) {
             const container = document.getElementById(`glyphs-container-${key}`);
+            const fontObj = loadedFontsData[key].fontObj;
             if (glyphsArray.length === 0) {
                 container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Tidak ada glyph ditemukan.</div>`;
                 return;
             }
 
+            // Ambil unitsPerEm dari font (biasanya 1000) dan atur viewbox agar proporsional
+            const unitsPerEm = fontObj.unitsPerEm || 1000;
+            const ascender = fontObj.ascender || 800;
+            const descender = fontObj.descender || -200;
+            const height = ascender - descender;
+            // viewBox: x, y, width, height (koordinat SVG font y terbalik, jadi ymin diletakkan di -ascender)
+            const viewBox = `0 ${-ascender} ${unitsPerEm} ${height}`;
+
             let html = `<div class="glyph-table">`;
             glyphsArray.forEach((item) => {
                 let pathData = '';
                 try {
-                    const path = item.glyphObj.getPath(0, 0, 32);
+                    // Membuat path glyph dengan weight 300 (jika menggunakan font variable, atau path dasar font)
+                    const path = item.glyphObj.getPath(0, 0, unitsPerEm);
                     pathData = path.toPathData(2);
                 } catch (e) {
                     pathData = '';
                 }
 
+                // Tambahkan CSS style font-weight: 300 / font-variation-settings pada path untuk weight 300
                 html += `
                     <div class="glyph-cell" title="${item.name} (${item.unicodeStr})">
-                        <svg viewBox="0 -10 40 40">
+                        <svg viewBox="${viewBox}" style="font-weight: 300; font-variation-settings: 'wght' 300;">
                             <path d="${pathData}"></path>
                         </svg>
                     </div>
