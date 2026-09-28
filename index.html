@@ -29,20 +29,26 @@
             min-height: 100vh;
         }
 
-        /* Header Style */
+        /* Header Style - Dibuat sama lebarnya dengan main & footer */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 24px 40px;
             background-color: var(--bg-color);
             z-index: 1000;
             border-bottom: 1px solid transparent;
             transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 40px;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
         }
 
         header.scrolled {
@@ -190,7 +196,7 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            header, .footer-divider, footer {
+            .header-container, .footer-divider, footer {
                 padding-left: 20px;
                 padding-right: 20px;
             }
@@ -212,12 +218,14 @@
 
     <!-- Header -->
     <header id="site-header">
-        <a href="#typefaces" class="logotype" onclick="switchPage('typefaces', event)">Gliftype</a>
-        <nav>
-            <a href="#typefaces" class="nav-link active" onclick="switchPage('typefaces', event)">Typefaces</a>
-            <a href="#license" class="nav-link" onclick="switchPage('license', event)">License</a>
-            <a href="#about" class="nav-link" onclick="switchPage('about', event)">About</a>
-        </nav>
+        <div class="header-container">
+            <a href="#typefaces" class="logotype" onclick="switchPage('typefaces', event)">Gliftype</a>
+            <nav>
+                <a href="#typefaces" class="nav-link active" onclick="switchPage('typefaces', event)">Typefaces</a>
+                <a href="#license" class="nav-link" onclick="switchPage('license', event)">License</a>
+                <a href="#about" class="nav-link" onclick="switchPage('about', event)">About</a>
+            </nav>
+        </div>
     </header>
 
     <!-- Main Content -->
