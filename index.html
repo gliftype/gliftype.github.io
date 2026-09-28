@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gliftype — Open Source Type Foundry</title>
+    <!-- opentype.js untuk membaca file font asli (.woff2 / .ttf / .otf) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
     <style>
         /* Deklarasi Custom Font Variable */
         @font-face {
@@ -323,8 +325,6 @@
             gap: 20px;
             background: var(--bg-color);
             padding: 24px 0;
-            border-radius: 0;
-            border: none;
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -342,7 +342,30 @@
             font-weight: 600;
         }
 
-        /* Style Glyphs Table */
+        /* Style Glyphs Table & Viewer Dinamis */
+        .glyph-search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .glyph-search-input {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            background: var(--light-gray);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 4px;
+            outline: none;
+            width: 280px;
+            transition: var(--transition);
+        }
+
+        .glyph-search-input:focus {
+            border-color: var(--gray-color);
+        }
+
         .glyph-category {
             margin-bottom: 24px;
         }
@@ -367,17 +390,24 @@
             width: 48px;
             height: 48px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             border-right: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
             user-select: none;
+            cursor: pointer;
             transition: background 0.15s ease;
+            position: relative;
         }
 
         .glyph-cell:hover {
             background: var(--light-gray);
+        }
+
+        .glyph-cell canvas {
+            display: block;
         }
 
         /* Download Button */
@@ -404,7 +434,7 @@
             opacity: 0.8;
         }
 
-        /* Divider & Footer Style */
+        /* Footer Style */
         .footer-divider {
             width: 100%;
             max-width: 1400px;
@@ -527,7 +557,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="grafem-preview-main" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="grafem-preview-main" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">Grafem is a robust Neo-Grotesque sans-serif typeface.</textarea>
             </div>
 
             <!-- Font 2: GLF Fonem -->
@@ -552,7 +582,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="fonem-preview-main" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="fonem-preview-main" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">Fonem is a versatile modern sans-serif type family.</textarea>
             </div>
 
             <!-- Font 3: GLF Cikutra -->
@@ -577,7 +607,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="cikutra-preview-main" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="cikutra-preview-main" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">Cikutra features a unique architectural character design.</textarea>
             </div>
         </section>
 
@@ -607,7 +637,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="grafem-preview-detail" class="font-preview pangram-target" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="grafem-preview-detail" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">The quick brown fox jumps over the lazy dog.</textarea>
             </div>
 
             <div class="detail-block">
@@ -626,16 +656,14 @@
                 </div>
             </div>
 
-            <!-- GLF Grafem Glyphs -->
+            <!-- GLF Grafem Glyphs (Otomatis dimuat lewat opentype.js) -->
             <div class="detail-block">
-                <h3>Glyphs</h3>
-                <div class="glyph-category">
-                    <div class="glyph-category-title">Basic Latin</div>
-                    <div class="glyph-table" style="font-family: 'GLF Grafem', sans-serif;">
-                        <div class="glyph-cell">!</div><div class="glyph-cell">"</div><div class="glyph-cell">#</div><div class="glyph-cell">$</div><div class="glyph-cell">%</div><div class="glyph-cell">&amp;</div><div class="glyph-cell">'</div><div class="glyph-cell">(</div><div class="glyph-cell">)</div><div class="glyph-cell">*</div><div class="glyph-cell">+</div><div class="glyph-cell">,</div><div class="glyph-cell">-</div><div class="glyph-cell">.</div><div class="glyph-cell">/</div><div class="glyph-cell">0</div><div class="glyph-cell">1</div><div class="glyph-cell">2</div><div class="glyph-cell">3</div><div class="glyph-cell">4</div><div class="glyph-cell">5</div><div class="glyph-cell">6</div><div class="glyph-cell">7</div><div class="glyph-cell">8</div><div class="glyph-cell">9</div><div class="glyph-cell">:</div><div class="glyph-cell">;</div><div class="glyph-cell">&lt;</div><div class="glyph-cell">=</div><div class="glyph-cell">&gt;</div><div class="glyph-cell">?</div><div class="glyph-cell">@</div>
-                        <div class="glyph-cell">A</div><div class="glyph-cell">B</div><div class="glyph-cell">C</div><div class="glyph-cell">D</div><div class="glyph-cell">E</div><div class="glyph-cell">F</div><div class="glyph-cell">G</div><div class="glyph-cell">H</div><div class="glyph-cell">I</div><div class="glyph-cell">J</div><div class="glyph-cell">K</div><div class="glyph-cell">L</div><div class="glyph-cell">M</div><div class="glyph-cell">N</div><div class="glyph-cell">O</div><div class="glyph-cell">P</div><div class="glyph-cell">Q</div><div class="glyph-cell">R</div><div class="glyph-cell">S</div><div class="glyph-cell">T</div><div class="glyph-cell">U</div><div class="glyph-cell">V</div><div class="glyph-cell">W</div><div class="glyph-cell">X</div><div class="glyph-cell">Y</div><div class="glyph-cell">Z</div><div class="glyph-cell">[</div><div class="glyph-cell">\</div><div class="glyph-cell">]</div><div class="glyph-cell">^</div><div class="glyph-cell">_</div><div class="glyph-cell">`</div>
-                        <div class="glyph-cell">a</div><div class="glyph-cell">b</div><div class="glyph-cell">c</div><div class="glyph-cell">d</div><div class="glyph-cell">e</div><div class="glyph-cell">f</div><div class="glyph-cell">g</div><div class="glyph-cell">h</div><div class="glyph-cell">i</div><div class="glyph-cell">j</div><div class="glyph-cell">k</div><div class="glyph-cell">l</div><div class="glyph-cell">m</div><div class="glyph-cell">n</div><div class="glyph-cell">o</div><div class="glyph-cell">p</div><div class="glyph-cell">q</div><div class="glyph-cell">r</div><div class="glyph-cell">s</div><div class="glyph-cell">t</div><div class="glyph-cell">u</div><div class="glyph-cell">v</div><div class="glyph-cell">w</div><div class="glyph-cell">x</div><div class="glyph-cell">y</div><div class="glyph-cell">z</div><div class="glyph-cell">{</div><div class="glyph-cell">|</div><div class="glyph-cell">}</div><div class="glyph-cell">~</div>
-                    </div>
+                <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-grafem" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('grafem')">
+                </div>
+                <div id="glyphs-container-grafem">
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
                 </div>
             </div>
 
@@ -670,7 +698,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="fonem-preview-detail" class="font-preview pangram-target" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="fonem-preview-detail" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">The quick brown fox jumps over the lazy dog.</textarea>
             </div>
 
             <div class="detail-block">
@@ -691,14 +719,12 @@
 
             <!-- GLF Fonem Glyphs -->
             <div class="detail-block">
-                <h3>Glyphs</h3>
-                <div class="glyph-category">
-                    <div class="glyph-category-title">Basic Latin</div>
-                    <div class="glyph-table" style="font-family: 'GLF Fonem', sans-serif;">
-                        <div class="glyph-cell">!</div><div class="glyph-cell">"</div><div class="glyph-cell">#</div><div class="glyph-cell">$</div><div class="glyph-cell">%</div><div class="glyph-cell">&amp;</div><div class="glyph-cell">'</div><div class="glyph-cell">(</div><div class="glyph-cell">)</div><div class="glyph-cell">*</div><div class="glyph-cell">+</div><div class="glyph-cell">,</div><div class="glyph-cell">-</div><div class="glyph-cell">.</div><div class="glyph-cell">/</div><div class="glyph-cell">0</div><div class="glyph-cell">1</div><div class="glyph-cell">2</div><div class="glyph-cell">3</div><div class="glyph-cell">4</div><div class="glyph-cell">5</div><div class="glyph-cell">6</div><div class="glyph-cell">7</div><div class="glyph-cell">8</div><div class="glyph-cell">9</div><div class="glyph-cell">:</div><div class="glyph-cell">;</div><div class="glyph-cell">&lt;</div><div class="glyph-cell">=</div><div class="glyph-cell">&gt;</div><div class="glyph-cell">?</div><div class="glyph-cell">@</div>
-                        <div class="glyph-cell">A</div><div class="glyph-cell">B</div><div class="glyph-cell">C</div><div class="glyph-cell">D</div><div class="glyph-cell">E</div><div class="glyph-cell">F</div><div class="glyph-cell">G</div><div class="glyph-cell">H</div><div class="glyph-cell">I</div><div class="glyph-cell">J</div><div class="glyph-cell">K</div><div class="glyph-cell">L</div><div class="glyph-cell">M</div><div class="glyph-cell">N</div><div class="glyph-cell">O</div><div class="glyph-cell">P</div><div class="glyph-cell">Q</div><div class="glyph-cell">R</div><div class="glyph-cell">S</div><div class="glyph-cell">T</div><div class="glyph-cell">U</div><div class="glyph-cell">V</div><div class="glyph-cell">W</div><div class="glyph-cell">X</div><div class="glyph-cell">Y</div><div class="glyph-cell">Z</div><div class="glyph-cell">[</div><div class="glyph-cell">\</div><div class="glyph-cell">]</div><div class="glyph-cell">^</div><div class="glyph-cell">_</div><div class="glyph-cell">`</div>
-                        <div class="glyph-cell">a</div><div class="glyph-cell">b</div><div class="glyph-cell">c</div><div class="glyph-cell">d</div><div class="glyph-cell">e</div><div class="glyph-cell">f</div><div class="glyph-cell">g</div><div class="glyph-cell">h</div><div class="glyph-cell">i</div><div class="glyph-cell">j</div><div class="glyph-cell">k</div><div class="glyph-cell">l</div><div class="glyph-cell">m</div><div class="glyph-cell">n</div><div class="glyph-cell">o</div><div class="glyph-cell">p</div><div class="glyph-cell">q</div><div class="glyph-cell">r</div><div class="glyph-cell">s</div><div class="glyph-cell">t</div><div class="glyph-cell">u</div><div class="glyph-cell">v</div><div class="glyph-cell">w</div><div class="glyph-cell">x</div><div class="glyph-cell">y</div><div class="glyph-cell">z</div><div class="glyph-cell">{</div><div class="glyph-cell">|</div><div class="glyph-cell">}</div><div class="glyph-cell">~</div>
-                    </div>
+                <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-fonem" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('fonem')">
+                </div>
+                <div id="glyphs-container-fonem">
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
                 </div>
             </div>
 
@@ -733,12 +759,12 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="cikutra-preview-detail" class="font-preview pangram-target" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="cikutra-preview-detail" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">The quick brown fox jumps over the lazy dog.</textarea>
             </div>
 
             <div class="detail-block">
                 <h3>About</h3>
-                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">Cikutra is an expressive display type family available as a variable font with a retro-funky style.</p>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">Cikutra features a unique architectural character design.</p>
             </div>
 
             <div class="detail-block">
@@ -748,20 +774,18 @@
                     <div class="spec-item"><label>Released</label><span>Agustus 2026</span></div>
                     <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
                     <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
-                    <div class="spec-item"><label>Support</label><span>Basic Latin Only</span></div>
+                    <div class="spec-item"><label>Support</label><span>Latin, Latin-1</span></div>
                 </div>
             </div>
 
             <!-- GLF Cikutra Glyphs -->
             <div class="detail-block">
-                <h3>Glyphs</h3>
-                <div class="glyph-category">
-                    <div class="glyph-category-title">Basic Latin</div>
-                    <div class="glyph-table" style="font-family: 'GLF Cikutra', sans-serif;">
-                        <div class="glyph-cell">!</div><div class="glyph-cell">"</div><div class="glyph-cell">#</div><div class="glyph-cell">$</div><div class="glyph-cell">%</div><div class="glyph-cell">&amp;</div><div class="glyph-cell">'</div><div class="glyph-cell">(</div><div class="glyph-cell">)</div><div class="glyph-cell">*</div><div class="glyph-cell">+</div><div class="glyph-cell">,</div><div class="glyph-cell">-</div><div class="glyph-cell">.</div><div class="glyph-cell">/</div><div class="glyph-cell">0</div><div class="glyph-cell">1</div><div class="glyph-cell">2</div><div class="glyph-cell">3</div><div class="glyph-cell">4</div><div class="glyph-cell">5</div><div class="glyph-cell">6</div><div class="glyph-cell">7</div><div class="glyph-cell">8</div><div class="glyph-cell">9</div><div class="glyph-cell">:</div><div class="glyph-cell">;</div><div class="glyph-cell">&lt;</div><div class="glyph-cell">=</div><div class="glyph-cell">&gt;</div><div class="glyph-cell">?</div><div class="glyph-cell">@</div>
-                        <div class="glyph-cell">A</div><div class="glyph-cell">B</div><div class="glyph-cell">C</div><div class="glyph-cell">D</div><div class="glyph-cell">E</div><div class="glyph-cell">F</div><div class="glyph-cell">G</div><div class="glyph-cell">H</div><div class="glyph-cell">I</div><div class="glyph-cell">J</div><div class="glyph-cell">K</div><div class="glyph-cell">L</div><div class="glyph-cell">M</div><div class="glyph-cell">N</div><div class="glyph-cell">O</div><div class="glyph-cell">P</div><div class="glyph-cell">Q</div><div class="glyph-cell">R</div><div class="glyph-cell">S</div><div class="glyph-cell">T</div><div class="glyph-cell">U</div><div class="glyph-cell">V</div><div class="glyph-cell">W</div><div class="glyph-cell">X</div><div class="glyph-cell">Y</div><div class="glyph-cell">Z</div><div class="glyph-cell">[</div><div class="glyph-cell">\</div><div class="glyph-cell">]</div><div class="glyph-cell">^</div><div class="glyph-cell">_</div><div class="glyph-cell">`</div>
-                        <div class="glyph-cell">a</div><div class="glyph-cell">b</div><div class="glyph-cell">c</div><div class="glyph-cell">d</div><div class="glyph-cell">e</div><div class="glyph-cell">f</div><div class="glyph-cell">g</div><div class="glyph-cell">h</div><div class="glyph-cell">i</div><div class="glyph-cell">j</div><div class="glyph-cell">k</div><div class="glyph-cell">l</div><div class="glyph-cell">m</div><div class="glyph-cell">n</div><div class="glyph-cell">o</div><div class="glyph-cell">p</div><div class="glyph-cell">q</div><div class="glyph-cell">r</div><div class="glyph-cell">s</div><div class="glyph-cell">t</div><div class="glyph-cell">u</div><div class="glyph-cell">v</div><div class="glyph-cell">w</div><div class="glyph-cell">x</div><div class="glyph-cell">y</div><div class="glyph-cell">z</div><div class="glyph-cell">{</div><div class="glyph-cell">|</div><div class="glyph-cell">}</div><div class="glyph-cell">~</div>
-                    </div>
+                <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-cikutra" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('cikutra')">
+                </div>
+                <div id="glyphs-container-cikutra">
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
                 </div>
             </div>
 
@@ -770,116 +794,200 @@
             </div>
         </section>
 
-        <!-- Page License -->
+        <!-- Halaman License -->
         <section id="license" class="page-section">
             <h1>License</h1>
-            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.1rem;">Semua font di Gliftype didistribusikan di bawah lisensi open source <strong>SIL Open Font License 1.1</strong>.</p>
+            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem; margin-bottom: 20px;">
+                All typefaces released by Gliftype are open source and licensed under the <strong>SIL Open Font License (OFL)</strong>.
+            </p>
+            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">
+                You can use them freely in your commercial and non-commercial projects, print, web, or applications.
+            </p>
         </section>
 
-        <!-- Page About -->
+        <!-- Halaman About -->
         <section id="about" class="page-section">
             <h1>About</h1>
-            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.1rem;">Gliftype adalah foundry independen yang dikelola oleh Sidiq Kamal Nurmawan.</p>
+            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem; margin-bottom: 20px;">
+                Gliftype is an independent open source type foundry dedicated to designing high-quality, meticulously engineered variable typefaces.
+            </p>
+            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">
+                Founded by Sidiq Kamal Nurmawan, focusing on geometric precision, aesthetic balance, and contemporary editorial flexibility.
+            </p>
         </section>
     </main>
 
-    <!-- Divider & Footer -->
-    <div class="footer-divider">
-        <hr>
-    </div>
+    <!-- Footer Divider & Footer -->
+    <div class="footer-divider"><hr></div>
     <footer>
-        <p>&copy; 2026 Gliftype. All rights reserved.</p>
+        <div>&copy; 2026 Gliftype Foundry. All rights reserved.</div>
         <div class="footer-links">
-            <a href="https://github.com/gliftype/" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.instagram.com/gliftype/" target="_blank" rel="noopener">Instagram</a>
-            <a href="mailto:typeglif@gmail.com">Email</a>
+            <a href="#typefaces" onclick="switchPage('typefaces', event)">Typefaces</a>
+            <a href="#license" onclick="switchPage('license', event)">License</a>
+            <a href="#about" onclick="switchPage('about', event)">About</a>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        const pangrams = [
-            "The quick brown fox jumps over the lazy dog.",
-            "Sphinx of black quartz, judge my vow.",
-            "Waltz, bad nymph, for quick jigs vex.",
-            "Pack my box with five dozen liquor jugs.",
-            "The five boxing wizards jump quickly.",
-            "Jd. Saling silang galaksi tipografi modern.",
-            "Cepat menyambar kilat di atas bukit cikutra.",
-            "Gliftype menghadirkan estetika visual tanpa batas."
-        ];
+        // Data penyimpan objek font & glyph yang diparsing
+        const loadedFontsData = {
+            'grafem': { url: 'fonts/GLF-Grafem-VF.woff2', fontObj: null, glyphs: [] },
+            'fonem': { url: 'fonts/GLF-Fonem-VF.woff2', fontObj: null, glyphs: [] },
+            'cikutra': { url: 'fonts/GLF-Cikutra-VF.woff2', fontObj: null, glyphs: [] }
+        };
 
-        function getRandomPangram() {
-            return pangrams[Math.floor(Math.random() * pangrams.length)];
+        // Fungsi Navigasi Halaman
+        function switchPage(pageId, event) {
+            if (event) event.preventDefault();
+            
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('nav a').forEach(lnk => lnk.classList.remove('active'));
+            
+            const targetSection = document.getElementById(pageId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.location.hash = pageId;
+
+                // Jika halaman detail font dibuka, muat glyph menggunakan opentype.js jika belum dimuat
+                if (['font-grafem', 'font-fonem', 'font-cikutra'].includes(pageId)) {
+                    const key = pageId.replace('font-', '');
+                    if (!loadedFontsData[key].fontObj) {
+                        fetchAndParseFont(key);
+                    }
+                }
+            }
+
+            // Aktifkan tautan navbar jika sesuai
+            document.querySelectorAll('nav a').forEach(lnk => {
+                if (lnk.getAttribute('href') === '#' + pageId) {
+                    lnk.classList.add('active');
+                }
+            });
         }
 
-        function toggleTheme() {
-            const html = document.documentElement;
-            if (html.getAttribute('data-theme') === 'dark') {
-                html.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
+        // Ambil dan parsing file font asli menggunakan opentype.js
+        function fetchAndParseFont(key) {
+            const fontData = loadedFontsData[key];
+            const container = document.getElementById(`glyphs-container-${key}`);
+
+            fetch(fontData.url)
+                .then(res => {
+                    if (!res.ok) throw new Error("File font tidak ditemukan di path " + fontData.url);
+                    return res.arrayBuffer();
+                })
+                .then(buffer => {
+                    const font = opentype.parse(buffer);
+                    fontData.fontObj = font;
+                    
+                    const list = [];
+                    for (let i = 0; i < font.numGlyphs; i++) {
+                        const glyph = font.glyphs.get(i);
+                        // Abaikan glyph kosong total (kecuali indeks 0 .notdef jika diperlukan)
+                        if (i > 0 && (!glyph.path || glyph.path.commands.length === 0) && glyph.unicode === undefined) {
+                            continue;
+                        }
+                        let unicodeStr = glyph.unicode ? 'U+' + glyph.unicode.toString(16).toUpperCase().padStart(4, '0') : '';
+                        let char = glyph.unicode ? String.fromCharCode(glyph.unicode) : '';
+                        
+                        list.push({
+                            index: i,
+                            name: glyph.name || `glyph_${i}`,
+                            unicodeStr: unicodeStr,
+                            char: char,
+                            glyphObj: glyph
+                        });
+                    }
+                    fontData.glyphs = list;
+                    renderGlyphsGrid(key, list);
+                })
+                .catch(err => {
+                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font asli: ${err.message}. Pastikan file .woff2 tersedia di folder /fonts/ di GitHub Pages Anda.</div>`;
+                });
+        }
+
+        // Render grid glyph ke HTML
+        function renderGlyphsGrid(key, glyphsArray) {
+            const container = document.getElementById(`glyphs-container-${key}`);
+            if (glyphsArray.length === 0) {
+                container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Tidak ada glyph ditemukan.</div>`;
+                return;
+            }
+
+            let html = `<div class="glyph-table">`;
+            glyphsArray.forEach((item, idx) => {
+                // Render menggunakan karakter langsung jika ada, jika tidak kosongkan sel
+                let displayChar = item.char ? item.char : '';
+                html += `<div class="glyph-cell" title="${item.name} (${item.unicodeStr})">${displayChar}</div>`;
+            });
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        // Fitur Pencarian Glyph Real-time
+        function filterGlyphs(key) {
+            const query = document.getElementById(`search-${key}`).value.toLowerCase().trim();
+            const fontData = loadedFontsData[key];
+            if (!fontData.fontObj) return;
+
+            if (!query) {
+                renderGlyphsGrid(key, fontData.glyphs);
+                return;
+            }
+
+            const filtered = fontData.glyphs.filter(item => 
+                item.name.toLowerCase().includes(query) ||
+                item.unicodeStr.toLowerCase().includes(query) ||
+                item.char.toLowerCase() === query
+            );
+            renderGlyphsGrid(key, filtered);
+        }
+
+        // Live update slider font preview
+        function updateFont(slider, targetId, property, spanId) {
+            const target = document.getElementById(targetId);
+            const span = document.getElementById(spanId);
+            const val = slider.value;
+
+            if (property === 'fontWeight') {
+                target.style.fontWeight = val;
+                span.textContent = val;
+            } else if (property === 'fontSize') {
+                target.style.fontSize = val + 'px';
+                span.textContent = val + 'px';
+            } else if (property === 'lineHeight') {
+                target.style.lineHeight = val;
+                span.textContent = val;
             }
         }
 
+        // Toggle Theme (Light / Dark Mode)
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            if (newTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Inisialisasi Tema dari LocalStorage atau Hash URL saat halaman dimuat
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
 
-            const randomText = getRandomPangram();
-            document.getElementById('grafem-preview-main').value = randomText;
-            document.getElementById('fonem-preview-main').value = getRandomPangram();
-            document.getElementById('cikutra-preview-main').value = getRandomPangram();
-
-            document.querySelectorAll('.pangram-target').forEach(el => {
-                el.value = randomText;
-            });
-
-            const hash = window.location.hash.substring(1);
+            const hash = window.location.hash.replace('#', '');
             if (hash && document.getElementById(hash)) {
-                document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                document.getElementById(hash).classList.add('active');
-                
-                const activeLink = document.querySelector(`nav a[href="#${hash}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                } else if (hash.startsWith('font-')) {
-                    const typefacesNav = document.querySelector(`nav a[href="#typefaces"]`);
-                    if (typefacesNav) typefacesNav.classList.add('active');
-                }
+                switchPage(hash);
             }
         });
 
-        function switchPage(pageId, event) {
-            event.preventDefault();
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            const targetSection = document.getElementById(pageId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-            
-            const activeLink = document.querySelector(`nav a[href="#${pageId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            } else if (pageId.startsWith('font-')) {
-                const typefacesNav = document.querySelector(`nav a[href="#typefaces"]`);
-                if (typefacesNav) typefacesNav.classList.add('active');
-            }
-
-            history.pushState(null, null, `#${pageId}`);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
+        // Efek border header saat halaman di-scroll
         window.addEventListener('scroll', () => {
             const header = document.getElementById('site-header');
             if (window.scrollY > 20) {
@@ -888,23 +996,6 @@
                 header.classList.remove('scrolled');
             }
         });
-
-        function updateFont(slider, targetId, property, spanId) {
-            const target = document.getElementById(targetId);
-            const span = document.getElementById(spanId);
-            const val = slider.value;
-            
-            if (property === 'fontWeight') {
-                target.style.fontWeight = val;
-                if (span) span.textContent = val; // Angka polos tanpa satuan
-            } else if (property === 'fontSize') {
-                target.style.fontSize = val + 'px';
-                if (span) span.textContent = val + 'px'; // Dilengkapi dengan 'px'
-            } else if (property === 'lineHeight') {
-                target.style.lineHeight = val;
-                if (span) span.textContent = val;
-            }
-        }
     </script>
 </body>
 </html>
