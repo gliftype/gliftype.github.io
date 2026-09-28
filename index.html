@@ -290,7 +290,8 @@
             gap: 60px;
             white-space: nowrap;
             will-change: transform;
-            animation: seamlessMarquee 45s linear infinite;
+            /* Diperpanjang menjadi 150s agar pergerakan jauh lebih tenang/tidak terlalu ngebut */
+            animation: seamlessMarquee 150s linear infinite;
         }
 
         .preview-wrapper:hover .marquee-track {
@@ -885,7 +886,6 @@
     </footer>
 
     <script>
-        
         // Menyesuaikan lebar input teks agar sesuai dengan panjang string agar tidak terpotong saat animasi
         function adjustInputWidths() {
             const inputs = document.querySelectorAll('.marquee-text-node');
