@@ -282,7 +282,7 @@
             transform: scale(1.3);
         }
 
-        /* Editable Preview Text Area */
+        /* Editable Preview Text Area (Support Running Text / Marquee) */
         .font-preview {
             width: 100%;
             min-height: 120px;
@@ -292,6 +292,13 @@
             resize: vertical;
             color: var(--text-color);
             padding: 10px 0;
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+
+        .font-preview.user-typing {
+            white-space: pre-wrap;
+            overflow-x: auto;
         }
 
         /* Detail Page Styling */
@@ -342,7 +349,7 @@
             font-weight: 600;
         }
 
-        /* Style Glyphs Table & Viewer Dinamis (Diperkecil ukurannya agar lebih rapi) */
+        /* Style Glyphs Table & Viewer Dinamis */
         .glyph-search-bar {
             margin-bottom: 20px;
             display: flex;
@@ -546,7 +553,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="grafem-preview-main" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">Grafem is a robust Neo-Grotesque sans-serif typeface.</textarea>
+                <textarea id="grafem-preview-main" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
             </div>
 
             <!-- Font 2: GLF Fonem -->
@@ -571,7 +578,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="fonem-preview-main" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">Fonem is a versatile modern sans-serif type family.</textarea>
+                <textarea id="fonem-preview-main" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
             </div>
 
             <!-- Font 3: GLF Cikutra -->
@@ -596,7 +603,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="cikutra-preview-main" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">Cikutra features a unique architectural character design.</textarea>
+                <textarea id="cikutra-preview-main" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
             </div>
         </section>
 
@@ -626,7 +633,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="grafem-preview-detail" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">The quick brown fox jumps over the lazy dog.</textarea>
+                <textarea id="grafem-preview-detail" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
             </div>
 
             <div class="detail-block">
@@ -645,7 +652,7 @@
                 </div>
             </div>
 
-            <!-- GLF Grafem Glyphs (Dirender via opentype.js SVG Vector) -->
+            <!-- GLF Grafem Glyphs -->
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
                 <div class="glyph-search-bar">
@@ -687,7 +694,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="fonem-preview-detail" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">The quick brown fox jumps over the lazy dog.</textarea>
+                <textarea id="fonem-preview-detail" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
             </div>
 
             <div class="detail-block">
@@ -748,7 +755,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="cikutra-preview-detail" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;">The quick brown fox jumps over the lazy dog.</textarea>
+                <textarea id="cikutra-preview-detail" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this)"></textarea>
             </div>
 
             <div class="detail-block">
@@ -818,7 +825,62 @@
     </footer>
 
     <script>
-        // Data objek font & glyph yang diparsing (menggunakan file .ttf khusus untuk opentype.js)
+        // Kumpulan Pangram Bahasa Inggris Berbeda untuk Running Text
+        const pangrams = [
+            "The quick brown fox jumps over the lazy dog.",
+            "Pack my box with five dozen liquor jugs.",
+            "Sphinx of black quartz, judge my vow.",
+            "The five boxing wizards jump quickly.",
+            "Waltz, bad nymph, for quick jigs vex.",
+            "Glib jocks quiz nymph to vex dwarf.",
+            "Quick zephyrs blow, vexing daft Jim."
+        ];
+
+        // Menyimpan status interval running text tiap textarea
+        const runningIntervals = {};
+
+        // Inisialisasi Running Text pada textarea
+        function initRunningTexts() {
+            const textareas = document.querySelectorAll('.font-preview');
+            textareas.forEach((textarea, index) => {
+                if (textarea.dataset.userEdited === "true") return; // Jangan jalankan jika sudah diedit user
+
+                let pangramIndex = index % pangrams.length;
+                let text = pangrams[pangramIndex] + "   •   ";
+                let pos = 0;
+
+                textarea.value = text;
+
+                // Animasi bergeser (running text)
+                if (runningIntervals[textarea.id]) {
+                    clearInterval(runningIntervals[textarea.id]);
+                }
+
+                runningIntervals[textarea.id] = setInterval(() => {
+                    if (document.activeElement === textarea || textarea.dataset.userEdited === "true") return;
+                    pos++;
+                    if (pos > text.length) {
+                        pos = 0;
+                    }
+                    textarea.value = text.substring(pos) + text.substring(0, pos);
+                }, 150);
+            });
+        }
+
+        // Fungsi saat textarea diklik/difokuskan: Hentikan running text agar user bisa mengetik
+        function stopRunningText(textarea) {
+            textarea.dataset.userEdited = "true";
+            if (runningIntervals[textarea.id]) {
+                clearInterval(runningIntervals[textarea.id]);
+            }
+            textarea.classList.add('user-typing');
+            // Jika isi masih berupa running pangram, kosongkan atau biarkan siap diketik
+            if (textarea.value.includes("•")) {
+                textarea.value = "";
+            }
+        }
+
+        // Data objek font & glyph yang diparsing
         const loadedFontsData = {
             'grafem': { url: 'fonts/GLF-Grafem-VF.ttf', fontObj: null, glyphs: [] },
             'fonem': { url: 'fonts/GLF-Fonem-VF.ttf', fontObj: null, glyphs: [] },
@@ -838,7 +900,6 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 window.location.hash = pageId;
 
-                // Jika halaman detail font dibuka, muat glyph menggunakan opentype.js jika belum dimuat
                 if (['font-grafem', 'font-fonem', 'font-cikutra'].includes(pageId)) {
                     const key = pageId.replace('font-', '');
                     if (!loadedFontsData[key].fontObj) {
@@ -871,7 +932,6 @@
                     const list = [];
                     for (let i = 0; i < font.numGlyphs; i++) {
                         const glyph = font.glyphs.get(i);
-                        // Abaikan glyph kosong total (kecuali indeks 0 .notdef)
                         if (i > 0 && (!glyph.path || glyph.path.commands.length === 0) && glyph.unicode === undefined) {
                             continue;
                         }
@@ -890,11 +950,11 @@
                     renderGlyphsGrid(key, list);
                 })
                 .catch(err => {
-                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font .ttf: ${err.message}. Pastikan file .ttf sudah di-upload ke folder /fonts/.</div>`;
+                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font .ttf: ${err.message}.</div>`;
                 });
         }
 
-        // Render grid glyph ke HTML (Grafem & Fonem weight 400, Cikutra weight 300)
+        // Render grid glyph ke HTML
         function renderGlyphsGrid(key, glyphsArray) {
             const container = document.getElementById(`glyphs-container-${key}`);
             const fontObj = loadedFontsData[key].fontObj;
@@ -909,7 +969,6 @@
             const height = ascender - descender;
             const viewBox = `0 ${-ascender} ${unitsPerEm} ${height}`;
 
-            // Tentukan weight sesuai permintaan (Grafem & Fonem = 400, Cikutra = 300)
             let targetWeight = 300;
             if (key === 'grafem' || key === 'fonem') {
                 targetWeight = 400;
@@ -987,7 +1046,7 @@
             }
         }
 
-        // Inisialisasi Tema & Hash URL saat halaman dimuat
+        // Inisialisasi Halaman & Running Text
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
@@ -998,6 +1057,9 @@
             if (hash && document.getElementById(hash)) {
                 switchPage(hash);
             }
+
+            // Jalankan running text
+            initRunningTexts();
         });
 
         // Efek border header saat halaman di-scroll
