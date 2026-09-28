@@ -98,20 +98,14 @@
         }
 
         .logotype img {
-            height: 32px; /* Ukuran logo sedikit diperbesar dari 24px */
+            height: 32px;
             width: auto;
             transition: var(--transition);
-        }
-
-        /* Otomatis mengubah logo putih menjadi hitam di Light Mode, dan tetap putih di Dark Mode */
-        /* Jika file SVG Anda aslinya berwarna putih, filter di bawah membuat SVG hitam saat Light Mode */
-        .logotype img {
-            filter: brightness(0); /* Membuat logo jadi hitam di Light Mode */
+            filter: brightness(0); /* Hitam di Light Mode */
         }
         
-        /* Saat Dark Mode, kembalikan atau ubah logo menjadi putih */
         [data-theme="dark"] .logotype img {
-            filter: brightness(0) invert(1); /* Membuat logo jadi putih bersih di Dark Mode */
+            filter: brightness(0) invert(1); /* Putih di Dark Mode */
         }
 
         .nav-right {
@@ -259,7 +253,7 @@
 
         .control-group span {
             font-variant-numeric: tabular-nums;
-            min-width: 52px;
+            min-width: 60px;
             text-align: right;
             font-size: 0.8rem;
             color: var(--text-color);
@@ -653,8 +647,8 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'grafem-preview-main', 'fontSize', 'val-grafem-s')">
-                            <span id="val-grafem-s">52px</span>
+                            <input type="range" min="24" max="260" value="180" step="2" oninput="updateFont(this, 'grafem-preview-main', 'fontSize', 'val-grafem-s')">
+                            <span id="val-grafem-s">180px</span>
                         </div>
                         <div class="control-group">
                             <label>Height</label>
@@ -665,8 +659,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-grafem-main">
                     <div class="marquee-track">
-                        <input type="text" id="grafem-preview-main" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-main')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones. It is seen as living proof that communities can organize themselves without state authority, where street walls serve as visual propaganda and underground hubs act as safe havens to challenge state control and top-down development.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones. It is seen as living proof that communities can organize themselves without state authority, where street walls serve as visual propaganda and underground hubs act as safe havens to challenge state control and top-down development.">
+                        <input type="text" id="grafem-preview-main" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-main')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones. It is seen as living proof that communities can organize themselves without state authority, where street walls serve as visual propaganda and underground hubs act as safe havens to challenge state control and top-down development.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones. It is seen as living proof that communities can organize themselves without state authority, where street walls serve as visual propaganda and underground hubs act as safe havens to challenge state control and top-down development.">
                     </div>
                 </div>
             </div>
@@ -683,8 +677,8 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'fonem-preview-main', 'fontSize', 'val-fonem-s')">
-                            <span id="val-fonem-s">52px</span>
+                            <input type="range" min="24" max="260" value="180" step="2" oninput="updateFont(this, 'fonem-preview-main', 'fontSize', 'val-fonem-s')">
+                            <span id="val-fonem-s">180px</span>
                         </div>
                         <div class="control-group">
                             <label>Height</label>
@@ -695,8 +689,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-fonem-main">
                     <div class="marquee-track">
-                        <input type="text" id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-main')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment. Kebumen is valued as a space for practicing food sovereignty and horizontal cooperation, where communities naturally organize themselves to protect the ecology from top-down industrialization and mining threats without relying on state authority.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment. Kebumen is valued as a space for practicing food sovereignty and horizontal cooperation, where communities naturally organize themselves to protect the ecology from top-down industrialization and mining threats without relying on state authority.">
+                        <input type="text" id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-main')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment. Kebumen is valued as a space for practicing food sovereignty and horizontal cooperation, where communities naturally organize themselves to protect the ecology from top-down industrialization and mining threats without relying on state authority.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment. Kebumen is valued as a space for practicing food sovereignty and horizontal cooperation, where communities naturally organize themselves to protect the ecology from top-down industrialization and mining threats without relying on state authority.">
                     </div>
                 </div>
             </div>
@@ -713,8 +707,8 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'cikutra-preview-main', 'fontSize', 'val-cikutra-s')">
-                            <span id="val-cikutra-s">52px</span>
+                            <input type="range" min="24" max="260" value="180" step="2" oninput="updateFont(this, 'cikutra-preview-main', 'fontSize', 'val-cikutra-s')">
+                            <span id="val-cikutra-s">180px</span>
                         </div>
                         <div class="control-group">
                             <label>Height</label>
@@ -725,8 +719,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-cikutra-main">
                     <div class="marquee-track">
-                        <input type="text" id="cikutra-preview-main" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-main')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival. To the city's radical collectives, the capital is a dystopian hyper-monitored hub where corporate greed fuels aggressive gentrification and forced evictions of the working class. However, within the cracks of this concrete metropolis, anarchists view Jakarta as a thriving network of underground resistance—where street-level solidarity, squatter networks, and localized mutual aid constantly sabotage the state's illusion of control.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival. To the city's radical collectives, the capital is a dystopian hyper-monitored hub where corporate greed fuels aggressive gentrification and forced evictions of the working class. However, within the cracks of this concrete metropolis, anarchists view Jakarta as a thriving network of underground resistance—where street-level solidarity, squatter networks, and localized mutual aid constantly sabotage the state's illusion of control.">
+                        <input type="text" id="cikutra-preview-main" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-main')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival. To the city's radical collectives, the capital is a dystopian hyper-monitored hub where corporate greed fuels aggressive gentrification and forced evictions of the working class. However, within the cracks of this concrete metropolis, anarchists view Jakarta as a thriving network of underground resistance—where street-level solidarity, squatter networks, and localized mutual aid constantly sabotage the state's illusion of control.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival. To the city's radical collectives, the capital is a dystopian hyper-monitored hub where corporate greed fuels aggressive gentrification and forced evictions of the working class. However, within the cracks of this concrete metropolis, anarchists view Jakarta as a thriving network of underground resistance—where street-level solidarity, squatter networks, and localized mutual aid constantly sabotage the state's illusion of control.">
                     </div>
                 </div>
             </div>
@@ -748,8 +742,8 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'grafem-preview-detail', 'fontSize', 'val-grafem-s-det')">
-                            <span id="val-grafem-s-det">52px</span>
+                            <input type="range" min="24" max="260" value="180" step="2" oninput="updateFont(this, 'grafem-preview-detail', 'fontSize', 'val-grafem-s-det')">
+                            <span id="val-grafem-s-det">180px</span>
                         </div>
                         <div class="control-group">
                             <label>Height</label>
@@ -760,8 +754,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-grafem-det">
                     <div class="marquee-track">
-                        <input type="text" id="grafem-preview-detail" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-det')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.">
+                        <input type="text" id="grafem-preview-detail" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-det')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.">
                     </div>
                 </div>
             </div>
@@ -814,8 +808,8 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'fonem-preview-detail', 'fontSize', 'val-fonem-s-det')">
-                            <span id="val-fonem-s-det">52px</span>
+                            <input type="range" min="24" max="260" value="180" step="2" oninput="updateFont(this, 'fonem-preview-detail', 'fontSize', 'val-fonem-s-det')">
+                            <span id="val-fonem-s-det">180px</span>
                         </div>
                         <div class="control-group">
                             <label>Height</label>
@@ -826,8 +820,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-fonem-det">
                     <div class="marquee-track">
-                        <input type="text" id="fonem-preview-detail" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-det')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.">
+                        <input type="text" id="fonem-preview-detail" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-det')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.">
                     </div>
                 </div>
             </div>
@@ -880,8 +874,8 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="180" value="52" step="2" oninput="updateFont(this, 'cikutra-preview-detail', 'fontSize', 'val-cikutra-s-det')">
-                            <span id="val-cikutra-s-det">52px</span>
+                            <input type="range" min="24" max="260" value="180" step="2" oninput="updateFont(this, 'cikutra-preview-detail', 'fontSize', 'val-cikutra-s-det')">
+                            <span id="val-cikutra-s-det">180px</span>
                         </div>
                         <div class="control-group">
                             <label>Height</label>
@@ -892,8 +886,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-cikutra-det">
                     <div class="marquee-track">
-                        <input type="text" id="cikutra-preview-detail" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-det')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.">
+                        <input type="text" id="cikutra-preview-detail" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-det')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.">
                     </div>
                 </div>
             </div>
