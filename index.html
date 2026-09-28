@@ -309,14 +309,16 @@
             font-weight: 600;
         }
 
+        /* Mengubah kotak spesifikasi jadi putih bersih dengan border minimalis */
         .specs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
-            background: var(--light-gray);
-            padding: 24px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            padding: 24px 0;
+            border-radius: 0;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .spec-item label {
@@ -333,17 +335,42 @@
             font-weight: 600;
         }
 
-        /* Glyphs Grid Box */
-        .glyphs-box {
+        /* Style Glyphs Table ala Foundry Profesional */
+        .glyph-category {
+            margin-bottom: 24px;
+        }
+
+        .glyph-category-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray-color);
+            margin-bottom: 8px;
+        }
+
+        .glyph-table {
+            display: flex;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border-color);
+            border-left: 1px solid var(--border-color);
+            background: var(--bg-color);
+        }
+
+        .glyph-cell {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            user-select: none;
+            transition: background 0.15s ease;
+        }
+
+        .glyph-cell:hover {
             background: var(--light-gray);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 24px;
-            font-size: 1.8rem;
-            letter-spacing: 12px;
-            line-height: 2.2;
-            word-break: break-all;
-            margin-top: 16px;
         }
 
         /* Download Button */
@@ -566,7 +593,7 @@
 
             <div class="detail-block">
                 <h3>About</h3>
-                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">GLF Grafem adalah font variabel open source yang dirancang dengan struktur geometris yang presisi, memberikan kesan modern, bersih, dan sangat optimal untuk tajuk maupun teks editorial berukuran besar.</p>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">Grafem is a robust and highly versatile Neo-Grotesque sans-serif, engineered for both striking visual impact and functional clarity. Rooted in the principles of mid-century industrial typography, it seamlessly balances mechanical precision with contemporary design sensibilities. The letterforms are built on a solid, geometric foundation characterized by low-contrast strokes, which grants the typeface a strong, almost monolinear presence. The horizontal terminals (the straight cuts at the ends of the strokes) provide a clean, disciplined, and no-nonsense aesthetic.</p>
             </div>
 
             <div class="detail-block">
@@ -582,8 +609,14 @@
 
             <div class="detail-block">
                 <h3>Glyphs</h3>
-                <div class="glyphs-box" style="font-family: 'GLF Grafem', sans-serif;">
-                    ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789.,!?:;@#$%&*()
+                <!-- Tabel Grid Glyphs ala Foundry Profesional -->
+                <div class="glyph-category">
+                    <div class="glyph-category-title">Basic Latin</div>
+                    <div class="glyph-table" style="font-family: 'GLF Grafem', sans-serif;">
+                        <div class="glyph-cell">!</div><div class="glyph-cell">"</div><div class="glyph-cell">#</div><div class="glyph-cell">$</div><div class="glyph-cell">%</div><div class="glyph-cell">&amp;</div><div class="glyph-cell">'</div><div class="glyph-cell">(</div><div class="glyph-cell">)</div><div class="glyph-cell">*</div><div class="glyph-cell">+</div><div class="glyph-cell">,</div><div class="glyph-cell">-</div><div class="glyph-cell">.</div><div class="glyph-cell">/</div><div class="glyph-cell">0</div><div class="glyph-cell">1</div><div class="glyph-cell">2</div><div class="glyph-cell">3</div><div class="glyph-cell">4</div><div class="glyph-cell">5</div><div class="glyph-cell">6</div><div class="glyph-cell">7</div><div class="glyph-cell">8</div><div class="glyph-cell">9</div><div class="glyph-cell">:</div><div class="glyph-cell">;</div><div class="glyph-cell">&lt;</div><div class="glyph-cell">=</div><div class="glyph-cell">&gt;</div><div class="glyph-cell">?</div><div class="glyph-cell">@</div>
+                        <div class="glyph-cell">A</div><div class="glyph-cell">B</div><div class="glyph-cell">C</div><div class="glyph-cell">D</div><div class="glyph-cell">E</div><div class="glyph-cell">F</div><div class="glyph-cell">G</div><div class="glyph-cell">H</div><div class="glyph-cell">I</div><div class="glyph-cell">J</div><div class="glyph-cell">K</div><div class="glyph-cell">L</div><div class="glyph-cell">M</div><div class="glyph-cell">N</div><div class="glyph-cell">O</div><div class="glyph-cell">P</div><div class="glyph-cell">Q</div><div class="glyph-cell">R</div><div class="glyph-cell">S</div><div class="glyph-cell">T</div><div class="glyph-cell">U</div><div class="glyph-cell">V</div><div class="glyph-cell">W</div><div class="glyph-cell">X</div><div class="glyph-cell">Y</div><div class="glyph-cell">Z</div><div class="glyph-cell">[</div><div class="glyph-cell">\</div><div class="glyph-cell">]</div><div class="glyph-cell">^</div><div class="glyph-cell">_</div><div class="glyph-cell">`</div>
+                        <div class="glyph-cell">a</div><div class="glyph-cell">b</div><div class="glyph-cell">c</div><div class="glyph-cell">d</div><div class="glyph-cell">e</div><div class="glyph-cell">f</div><div class="glyph-cell">g</div><div class="glyph-cell">h</div><div class="glyph-cell">i</div><div class="glyph-cell">j</div><div class="glyph-cell">k</div><div class="glyph-cell">l</div><div class="glyph-cell">m</div><div class="glyph-cell">n</div><div class="glyph-cell">o</div><div class="glyph-cell">p</div><div class="glyph-cell">q</div><div class="glyph-cell">r</div><div class="glyph-cell">s</div><div class="glyph-cell">t</div><div class="glyph-cell">u</div><div class="glyph-cell">v</div><div class="glyph-cell">w</div><div class="glyph-cell">x</div><div class="glyph-cell">y</div><div class="glyph-cell">z</div><div class="glyph-cell">{</div><div class="glyph-cell">|</div><div class="glyph-cell">}</div><div class="glyph-cell">~</div>
+                    </div>
                 </div>
             </div>
 
@@ -620,7 +653,7 @@
 
             <div class="detail-block">
                 <h3>About</h3>
-                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">GLF Fonem menawarkan keseimbangan harmonis antara bentuk huruf yang artistik dan keterbacaan tingkat tinggi untuk berbagai platform digital.</p>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">Fonem is a versatile modern sans-serif type family ranging from delicate Thin to impactful Black weights, featuring clean geometric shapes with sharp, distinctive terminals. Its lighter weights offer an elegant, refined aesthetic for body text and subtle details, while the bolder weights deliver a strong, confident presence perfect for high-impact headlines, branding, and display design.</p>
             </div>
 
             <div class="detail-block">
@@ -636,8 +669,13 @@
 
             <div class="detail-block">
                 <h3>Glyphs</h3>
-                <div class="glyphs-box" style="font-family: 'GLF Fonem', sans-serif;">
-                    ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789.,!?:;@#$%&*()
+                <div class="glyph-category">
+                    <div class="glyph-category-title">Basic Latin</div>
+                    <div class="glyph-table" style="font-family: 'GLF Fonem', sans-serif;">
+                        <div class="glyph-cell">!</div><div class="glyph-cell">"</div><div class="glyph-cell">#</div><div class="glyph-cell">$</div><div class="glyph-cell">%</div><div class="glyph-cell">&amp;</div><div class="glyph-cell">'</div><div class="glyph-cell">(</div><div class="glyph-cell">)</div><div class="glyph-cell">*</div><div class="glyph-cell">+</div><div class="glyph-cell">,</div><div class="glyph-cell">-</div><div class="glyph-cell">.</div><div class="glyph-cell">/</div><div class="glyph-cell">0</div><div class="glyph-cell">1</div><div class="glyph-cell">2</div><div class="glyph-cell">3</div><div class="glyph-cell">4</div><div class="glyph-cell">5</div><div class="glyph-cell">6</div><div class="glyph-cell">7</div><div class="glyph-cell">8</div><div class="glyph-cell">9</div><div class="glyph-cell">:</div><div class="glyph-cell">;</div><div class="glyph-cell">&lt;</div><div class="glyph-cell">=</div><div class="glyph-cell">&gt;</div><div class="glyph-cell">?</div><div class="glyph-cell">@</div>
+                        <div class="glyph-cell">A</div><div class="glyph-cell">B</div><div class="glyph-cell">C</div><div class="glyph-cell">D</div><div class="glyph-cell">E</div><div class="glyph-cell">F</div><div class="glyph-cell">G</div><div class="glyph-cell">H</div><div class="glyph-cell">I</div><div class="glyph-cell">J</div><div class="glyph-cell">K</div><div class="glyph-cell">L</div><div class="glyph-cell">M</div><div class="glyph-cell">N</div><div class="glyph-cell">O</div><div class="glyph-cell">P</div><div class="glyph-cell">Q</div><div class="glyph-cell">R</div><div class="glyph-cell">S</div><div class="glyph-cell">T</div><div class="glyph-cell">U</div><div class="glyph-cell">V</div><div class="glyph-cell">W</div><div class="glyph-cell">X</div><div class="glyph-cell">Y</div><div class="glyph-cell">Z</div><div class="glyph-cell">[</div><div class="glyph-cell">\</div><div class="glyph-cell">]</div><div class="glyph-cell">^</div><div class="glyph-cell">_</div><div class="glyph-cell">`</div>
+                        <div class="glyph-cell">a</div><div class="glyph-cell">b</div><div class="glyph-cell">c</div><div class="glyph-cell">d</div><div class="glyph-cell">e</div><div class="glyph-cell">f</div><div class="glyph-cell">g</div><div class="glyph-cell">h</div><div class="glyph-cell">i</div><div class="glyph-cell">j</div><div class="glyph-cell">k</div><div class="glyph-cell">l</div><div class="glyph-cell">m</div><div class="glyph-cell">n</div><div class="glyph-cell">o</div><div class="glyph-cell">p</div><div class="glyph-cell">q</div><div class="glyph-cell">r</div><div class="glyph-cell">s</div><div class="glyph-cell">t</div><div class="glyph-cell">u</div><div class="glyph-cell">v</div><div class="glyph-cell">w</div><div class="glyph-cell">x</div><div class="glyph-cell">y</div><div class="glyph-cell">z</div><div class="glyph-cell">{</div><div class="glyph-cell">|</div><div class="glyph-cell">}</div><div class="glyph-cell">~</div>
+                    </div>
                 </div>
             </div>
 
@@ -674,7 +712,7 @@
 
             <div class="detail-block">
                 <h3>About</h3>
-                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">GLF Cikutra dirancang khusus dengan gaya karakter yang unik dan berkarakter kuat, memberikan sentuhan distingtif pada desain kreatif Anda.</p>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">Cikutra is a expressive display type family available as a variable font from Thin to Black, featuring a retro-funky style with distinct personality. Its design pairs structured geometry with sharp inner ink traps and dynamic curved stems. Offering complete weight flexibility, the lighter styles deliver sleek, refined elegance, while the heavier weights provide a bold, experimental presence perfect for eye-catching display headlines, music artwork, event posters, and standout branding identities.</p>
             </div>
 
             <div class="detail-block">
@@ -690,8 +728,13 @@
 
             <div class="detail-block">
                 <h3>Glyphs</h3>
-                <div class="glyphs-box" style="font-family: 'GLF Cikutra', sans-serif;">
-                    ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789.,!?:;@#$%&*()
+                <div class="glyph-category">
+                    <div class="glyph-category-title">Basic Latin</div>
+                    <div class="glyph-table" style="font-family: 'GLF Cikutra', sans-serif;">
+                        <div class="glyph-cell">!</div><div class="glyph-cell">"</div><div class="glyph-cell">#</div><div class="glyph-cell">$</div><div class="glyph-cell">%</div><div class="glyph-cell">&amp;</div><div class="glyph-cell">'</div><div class="glyph-cell">(</div><div class="glyph-cell">)</div><div class="glyph-cell">*</div><div class="glyph-cell">+</div><div class="glyph-cell">,</div><div class="glyph-cell">-</div><div class="glyph-cell">.</div><div class="glyph-cell">/</div><div class="glyph-cell">0</div><div class="glyph-cell">1</div><div class="glyph-cell">2</div><div class="glyph-cell">3</div><div class="glyph-cell">4</div><div class="glyph-cell">5</div><div class="glyph-cell">6</div><div class="glyph-cell">7</div><div class="glyph-cell">8</div><div class="glyph-cell">9</div><div class="glyph-cell">:</div><div class="glyph-cell">;</div><div class="glyph-cell">&lt;</div><div class="glyph-cell">=</div><div class="glyph-cell">&gt;</div><div class="glyph-cell">?</div><div class="glyph-cell">@</div>
+                        <div class="glyph-cell">A</div><div class="glyph-cell">B</div><div class="glyph-cell">C</div><div class="glyph-cell">D</div><div class="glyph-cell">E</div><div class="glyph-cell">F</div><div class="glyph-cell">G</div><div class="glyph-cell">H</div><div class="glyph-cell">I</div><div class="glyph-cell">J</div><div class="glyph-cell">K</div><div class="glyph-cell">L</div><div class="glyph-cell">M</div><div class="glyph-cell">N</div><div class="glyph-cell">O</div><div class="glyph-cell">P</div><div class="glyph-cell">Q</div><div class="glyph-cell">R</div><div class="glyph-cell">S</div><div class="glyph-cell">T</div><div class="glyph-cell">U</div><div class="glyph-cell">V</div><div class="glyph-cell">W</div><div class="glyph-cell">X</div><div class="glyph-cell">Y</div><div class="glyph-cell">Z</div><div class="glyph-cell">[</div><div class="glyph-cell">\</div><div class="glyph-cell">]</div><div class="glyph-cell">^</div><div class="glyph-cell">_</div><div class="glyph-cell">`</div>
+                        <div class="glyph-cell">a</div><div class="glyph-cell">b</div><div class="glyph-cell">c</div><div class="glyph-cell">d</div><div class="glyph-cell">e</div><div class="glyph-cell">f</div><div class="glyph-cell">g</div><div class="glyph-cell">h</div><div class="glyph-cell">i</div><div class="glyph-cell">j</div><div class="glyph-cell">k</div><div class="glyph-cell">l</div><div class="glyph-cell">m</div><div class="glyph-cell">n</div><div class="glyph-cell">o</div><div class="glyph-cell">p</div><div class="glyph-cell">q</div><div class="glyph-cell">r</div><div class="glyph-cell">s</div><div class="glyph-cell">t</div><div class="glyph-cell">u</div><div class="glyph-cell">v</div><div class="glyph-cell">w</div><div class="glyph-cell">x</div><div class="glyph-cell">y</div><div class="glyph-cell">z</div><div class="glyph-cell">{</div><div class="glyph-cell">|</div><div class="glyph-cell">}</div><div class="glyph-cell">~</div>
+                    </div>
                 </div>
             </div>
 
