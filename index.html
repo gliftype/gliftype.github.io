@@ -342,7 +342,7 @@
             font-weight: 600;
         }
 
-        /* Style Glyphs Table & Viewer Dinamis */
+        /* Style Glyphs Table & Viewer Dinamis (Diperkecil ukurannya agar lebih rapi) */
         .glyph-search-bar {
             margin-bottom: 20px;
             display: flex;
@@ -375,8 +375,8 @@
         }
 
         .glyph-cell {
-            width: 64px;
-            height: 64px;
+            width: 48px;
+            height: 48px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -386,7 +386,7 @@
             user-select: none;
             cursor: pointer;
             transition: background 0.15s ease;
-            padding: 8px;
+            padding: 6px;
         }
 
         .glyph-cell:hover {
@@ -801,7 +801,7 @@
                 Gliftype is an independent open source type foundry dedicated to designing high-quality, meticulously engineered variable typefaces.
             </p>
             <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">
-                Founded by Sidiq Kamal Nurmawan, founding on geometric precision, aesthetic balance, and contemporary editorial flexibility.
+                Founded by Sidiq Kamal Nurmawan, focusing on geometric precision, aesthetic balance, and contemporary editorial flexibility.
             </p>
         </section>
     </main>
@@ -894,7 +894,7 @@
                 });
         }
 
-        // Render grid glyph ke HTML menggunakan SVG Vektor dari opentype.js (disesuaikan dengan unitsPerEm & Weight 300)
+        // Render grid glyph ke HTML (Grafem & Fonem weight 400, Cikutra weight 300)
         function renderGlyphsGrid(key, glyphsArray) {
             const container = document.getElementById(`glyphs-container-${key}`);
             const fontObj = loadedFontsData[key].fontObj;
@@ -903,29 +903,31 @@
                 return;
             }
 
-            // Ambil unitsPerEm dari font (biasanya 1000) dan atur viewbox agar proporsional
             const unitsPerEm = fontObj.unitsPerEm || 1000;
             const ascender = fontObj.ascender || 800;
             const descender = fontObj.descender || -200;
             const height = ascender - descender;
-            // viewBox: x, y, width, height (koordinat SVG font y terbalik, jadi ymin diletakkan di -ascender)
             const viewBox = `0 ${-ascender} ${unitsPerEm} ${height}`;
+
+            // Tentukan weight sesuai permintaan (Grafem & Fonem = 400, Cikutra = 300)
+            let targetWeight = 300;
+            if (key === 'grafem' || key === 'fonem') {
+                targetWeight = 400;
+            }
 
             let html = `<div class="glyph-table">`;
             glyphsArray.forEach((item) => {
                 let pathData = '';
                 try {
-                    // Membuat path glyph dengan weight 300 (jika menggunakan font variable, atau path dasar font)
                     const path = item.glyphObj.getPath(0, 0, unitsPerEm);
                     pathData = path.toPathData(2);
                 } catch (e) {
                     pathData = '';
                 }
 
-                // Tambahkan CSS style font-weight: 300 / font-variation-settings pada path untuk weight 300
                 html += `
                     <div class="glyph-cell" title="${item.name} (${item.unicodeStr})">
-                        <svg viewBox="${viewBox}" style="font-weight: 300; font-variation-settings: 'wght' 300;">
+                        <svg viewBox="${viewBox}" style="font-weight: ${targetWeight}; font-variation-settings: 'wght' ${targetWeight};">
                             <path d="${pathData}"></path>
                         </svg>
                     </div>
