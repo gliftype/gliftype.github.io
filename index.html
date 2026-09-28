@@ -92,12 +92,19 @@
         }
 
         .logotype {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            color: var(--text-color);
         }
+
+        .logotype img {
+            height: 24px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        /* Jika Anda ingin logo SVG otomatis menyesuaikan warna (invert) saat Dark Mode, aktifkan baris di bawah ini */
+        /* [data-theme="dark"] .logotype img { filter: invert(1); } */
 
         .nav-right {
             display: flex;
@@ -594,7 +601,9 @@
 
     <header id="site-header">
         <div class="header-container">
-            <a href="#typefaces" class="logotype" onclick="switchPage('typefaces', event)">Gliftype</a>
+            <a href="#typefaces" class="logotype" onclick="switchPage('typefaces', event)">
+                <img src="images/logo.svg" alt="Gliftype Logo">
+            </a>
             <div class="nav-right">
                 <nav>
                     <a href="#typefaces" class="nav-link active" onclick="switchPage('typefaces', event)">Typefaces</a>
