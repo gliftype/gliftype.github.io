@@ -3,14 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Font Open-Source & Blog</title>
+    <title>Portofolio Multi-Font Open-Source</title>
     <style>
-        /* 1. MENGHUBUNGKAN FONT ANDA */
+        /* 1. DEKLARASI KETIGA FONT VARIABLE ANDA */
         @font-face {
-            font-family: 'FontSaya';
-            /* Sesuaikan nama file font Anda di bawah ini */
-            src: url('fonts/font-saya.woff2') format('woff2'),
-                 url('fonts/font-saya.ttf') format('truetype');
+            font-family: 'GLF Grafem';
+            src: url('fonts/GLF-Grafem-VF.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'GLF Fonem';
+            src: url('fonts/GLF-Fonem-VF.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'GLF Cikutra';
+            src: url('fonts/GLF-Cikutra-FV.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
             font-display: swap;
         }
 
@@ -40,23 +56,52 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        /* 3. DESAIN LIVE PREVIEW FONT */
-        .preview-box {
-            font-family: 'FontSaya', sans-serif;
-            font-size: 36px;
-            width: 100%;
-            border: 1px solid #ccc;
-            padding: 15px;
+        /* 3. DESAIN PANEL KONTROL */
+        .control-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            background: #f1f1f1;
+            padding: 20px;
             border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .control-group label {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .control-group input, .control-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             box-sizing: border-box;
-            margin-top: 10px;
-            min-height: 100px;
         }
 
-        /* 4. DESAIN FORMULIR DOWNLOAD */
-        .form-group {
-            margin-top: 15px;
+        /* 4. DESAIN KOTAK LIVE PREVIEW FONT */
+        .preview-box {
+            font-family: 'GLF Grafem', sans-serif; /* Font bawaan saat pertama dimuat */
+            font-size: 36px;
+            font-weight: 400;
+            letter-spacing: 0px;
+            font-style: normal;
+            width: 100%;
+            border: 2px solid #0076ff;
+            padding: 20px;
+            border-radius: 6px;
+            box-sizing: border-box;
+            min-height: 150px;
+            outline: none;
+            background: #fff;
         }
+
+        /* 5. DESAIN FORMULIR DOWNLOAD VIA EMAIL */
+        .form-group { margin-top: 15px; }
         input[type="email"] {
             padding: 10px;
             width: 70%;
@@ -73,73 +118,109 @@
             cursor: pointer;
         }
         button:hover { background: #0056b3; }
-
-        /* 5. DESAIN BLOG Sederhana */
-        .post-preview {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-        }
-        .post-preview h3 { margin: 0 0 5px 0; }
-        .post-date { color: #888; font-size: 14px; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Studio Font Open-Source Saya</h1>
-        <p>Mendesain huruf yang bebas digunakan dan dikembangkan bersama.</p>
+        <h1>Studio Kumpulan Font Open-Source</h1>
+        <p>Eksplorasi dan unduh berbagai variasi font tipe terbuka secara bebas.</p>
     </header>
 
     <main>
-        <!-- SEKSI 1: PORTOFOLIO & LIVE PREVIEW FONT -->
+        <!-- SEKSI 1: PORTOFOLIO & LIVE PREVIEW MULTI-FONT -->
         <section id="font-portfolio">
-            <h2>Koleksi Font: "FontSaya" (OFL Licensed)</h2>
-            <p>Silakan ketik di kotak bawah ini untuk mencoba kecocokan font secara langsung:</p>
+            <h2>Uji Coba Font Interaktif</h2>
+            <p>Pilih jenis font dan sesuaikan slider untuk melihat fleksibilitas bentuk huruf:</p>
             
-            <!-- Pengunjung bisa langsung mengetik di dalam kotak ini -->
-            <div class="preview-box" contenteditable="true">
-                Ketik sesuatu di sini untuk mencoba font... ABCDEFGHIJKLM nopqrstuvwxyz 1234567890
+            <!-- PANEL KONTROL -->
+            <div class="control-panel">
+                <!-- DROPDOWN PILIHAN FONT -->
+                <div class="control-group">
+                    <label for="font-select">Pilih Keluarga Font (Font Family)</label>
+                    <select id="font-select">
+                        <option value="FontPertama">Font Pertama (Sans Serif)</option>
+                        <option value="FontKedua">Font Kedua (Serif)</option>
+                        <option value="FontKetiga">Font Ketiga (Display/Monospace)</option>
+                    </select>
+                </div>
+
+                <!-- Slider Ketebalan (Weight) -->
+                <div class="control-group">
+                    <label for="weight-slider">Ketebalan: <span id="weight-val">400</span></label>
+                    <input type="range" id="weight-slider" min="100" max="900" value="400">
+                </div>
+
+                <!-- Slider Ukuran Huruf (Size) -->
+                <div class="control-group">
+                    <label for="size-slider">Ukuran: <span id="size-val">36</span>px</label>
+                    <input type="range" id="size-slider" min="16" max="96" value="36">
+                </div>
+
+                <!-- Slider Spasi Huruf (Letter Spacing) -->
+                <div class="control-group">
+                    <label for="spacing-slider">Jarak Huruf: <span id="spacing-val">0</span>px</label>
+                    <input type="range" id="spacing-slider" min="-2" max="20" value="0" step="0.5">
+                </div>
+            </div>
+
+            <!-- KOTAK PREVIEW TEKS -->
+            <div id="preview-text" class="preview-box" contenteditable="true">
+                Ketik di sini untuk menguji... The quick brown fox jumps over the lazy dog. 1234567890
             </div>
         </section>
 
         <!-- SEKSI 2: FORMULIR DOWNLOAD VIA EMAIL -->
         <section id="download-font">
-            <h2>Unduh Font</h2>
-            <p>Masukkan email Anda di bawah ini. Tautan unduhan aman untuk file .TTF & .WOFF2 akan langsung dikirimkan ke kotak masuk Anda.</p>
+            <h2>Unduh Koleksi Lengkap</h2>
+            <p>Masukkan email Anda untuk menerima bundel berkas ketiga font di atas secara instan ke dalam kotak masuk.</p>
             
-            <!-- GANTI URL ACTION DENGAN URL FORMSPREE ANDA -->
             <form action="https://formspree.io" method="POST">
                 <div class="form-group">
                     <input type="email" name="email" required placeholder="nama@email.com">
-                    <button type="submit">Kirim Tautan Unduhan</button>
+                    <button type="submit">Dapatkan Akses Unduhan</button>
                 </div>
             </form>
-        </section>
-
-        <!-- SEKSI 3: BLOG STATIS SEDERHANA -->
-        <section id="blog">
-            <h2>Artikel & Catatan Rilis Blog</h2>
-            
-            <!-- Artikel 1 -->
-            <div class="post-preview">
-                <h3><a href="#">Catatan Rilis FontSaya Versi 1.0</a></h3>
-                <div class="post-date">Dipublikasikan pada: 28 September 2026</div>
-                <p>Hari ini resmi diluncurkan versi pertama dari font open-source ini dengan dukungan karakter Latin dasar...</p>
-            </div>
-
-            <!-- Artikel 2 -->
-            <div class="post-preview">
-                <h3><a href="#">Mengapa Saya Memilih Lisensi SIL OFL?</a></h3>
-                <div class="post-date">Dipublikasikan pada: 15 September 2026</div>
-                <p>Membahas pentingnya ekosistem terbuka dalam dunia desain huruf (typography) dan bagaimana Anda bisa ikut berkontribusi...</p>
-            </div>
         </section>
     </main>
 
     <footer>
-        <p style="text-align: center; color: #888;">&copy; 2026 Nama Anda. Didukung oleh GitHub Pages & SIL Open Font License.</p>
+        <p style="text-align: center; color: #888;">&copy; 2026 Nama Anda. Dilisensikan di bawah SIL Open Font License.</p>
     </footer>
 
+    <!-- JAVASCRIPT LOGIK PENGATUR MULTI-FONT & CONTROL PANEL -->
+    <script>
+        const previewText = document.getElementById('preview-text');
+        const fontSelect = document.getElementById('font-select');
+        const weightSlider = document.getElementById('weight-slider');
+        const weightVal = document.getElementById('weight-val');
+        const sizeSlider = document.getElementById('size-slider');
+        const sizeVal = document.getElementById('size-val');
+        const spacingSlider = document.getElementById('spacing-slider');
+        const spacingVal = document.getElementById('spacing-val');
+
+        // Mengubah Font Saat Dropdown Dipilih
+        fontSelect.addEventListener('change', (e) => {
+            previewText.style.fontFamily = `'${e.target.value}', sans-serif`;
+        });
+
+        // Mengubah Ketebalan
+        weightSlider.addEventListener('input', (e) => {
+            previewText.style.fontWeight = e.target.value;
+            weightVal.textContent = e.target.value;
+        });
+
+        // Mengubah Ukuran
+        sizeSlider.addEventListener('input', (e) => {
+            previewText.style.fontSize = e.target.value + 'px';
+            sizeVal.textContent = e.target.value;
+        });
+
+        // Mengubah Jarak Spasi Huruf
+        spacingSlider.addEventListener('input', (e) => {
+            previewText.style.letterSpacing = e.target.value + 'px';
+            spacingVal.textContent = e.target.value;
+        });
+    </script>
 </body>
 </html>
