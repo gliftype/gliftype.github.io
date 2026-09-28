@@ -146,11 +146,25 @@
             margin-bottom: 8px;
         }
 
-        /* Footer Style */
-        footer {
-            padding: 40px;
-            text-align: left;
+        /* Divider & Footer Style */
+        .footer-divider {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-divider hr {
+            border: none;
             border-top: 1px solid #eaeaea;
+            width: 100%;
+        }
+
+        footer {
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-size: 0.9rem;
             color: var(--gray-color);
             max-width: 1400px;
@@ -158,15 +172,37 @@
             margin: 0 auto;
         }
 
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--gray-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-color);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
-            header {
-                padding: 20px;
+            header, .footer-divider, footer {
+                padding-left: 20px;
+                padding-right: 20px;
             }
             main {
                 padding: 20px;
             }
             nav {
+                gap: 16px;
+            }
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
                 gap: 16px;
             }
         }
@@ -218,9 +254,17 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Divider & Footer -->
+    <div class="footer-divider">
+        <hr>
+    </div>
     <footer>
         <p>&copy; 2026 Gliftype. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://github.com/gliftype/" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.instagram.com/gliftype/" target="_blank" rel="noopener">Instagram</a>
+            <a href="mailto:typeglif@gmail.com">Email</a>
+        </div>
     </footer>
 
     <!-- JavaScript untuk Single Page Navigation (SPA) -->
