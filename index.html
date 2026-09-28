@@ -101,11 +101,11 @@
             height: 32px;
             width: auto;
             transition: var(--transition);
-            filter: brightness(0); /* Hitam di Light Mode */
+            filter: brightness(0);
         }
         
         [data-theme="dark"] .logotype img {
-            filter: brightness(0) invert(1); /* Putih di Dark Mode */
+            filter: brightness(0) invert(1);
         }
 
         .nav-right {
@@ -299,7 +299,8 @@
             gap: 60px;
             white-space: nowrap;
             will-change: transform;
-            animation: seamlessMarquee 150s linear infinite;
+            /* Kecepatan diperlambat menjadi 250s */
+            animation: seamlessMarquee 250s linear infinite;
         }
 
         .preview-wrapper:hover .marquee-track {
