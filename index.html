@@ -10,21 +10,21 @@
             font-family: 'GLF Grafem';
             src: url('fonts/GLF-Grafem-VF.woff2') format('woff2-variations');
             font-weight: 100 900;
-            font-style: normal;
+            font-style: oblique 0deg 12deg;
         }
 
         @font-face {
             font-family: 'GLF Fonem';
             src: url('fonts/GLF-Fonem-VF.woff2') format('woff2-variations');
             font-weight: 100 900;
-            font-style: normal;
+            font-style: oblique 0deg 12deg;
         }
 
         @font-face {
             font-family: 'GLF Cikutra';
             src: url('fonts/GLF-Cikutra-VF.woff2') format('woff2-variations');
             font-weight: 100 900;
-            font-style: normal;
+            font-style: oblique 0deg 12deg;
         }
 
         /* Default (Light Mode) */
@@ -150,11 +150,8 @@
             stroke-linejoin: round;
         }
 
-        /* Sembunyikan ikon bulan secara default (saat light mode, tampil matahari) */
         .icon-moon { display: none; }
         .icon-sun { display: block; }
-
-        /* Saat dark mode, tampil bulan, sembunyikan matahari */
         [data-theme="dark"] .icon-moon { display: block; }
         [data-theme="dark"] .icon-sun { display: none; }
 
@@ -225,7 +222,7 @@
         /* Minimalist Controls Bar */
         .controls-bar-minimal {
             display: flex;
-            gap: 24px;
+            gap: 20px;
             align-items: center;
             flex-wrap: wrap;
             background: transparent;
@@ -256,7 +253,7 @@
             border-radius: 2px;
             outline: none;
             cursor: pointer;
-            width: 90px;
+            width: 70px;
             transition: background 0.3s ease;
         }
 
@@ -450,9 +447,7 @@
                     <a href="#license" class="nav-link" onclick="switchPage('license', event)">License</a>
                     <a href="#about" class="nav-link" onclick="switchPage('about', event)">About</a>
                 </nav>
-                <!-- Tombol Ikon Dark/Light Mode -->
                 <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
-                    <!-- Ikon Matahari (Light Mode) -->
                     <svg class="icon-sun" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -464,7 +459,6 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                    <!-- Ikon Bulan (Dark Mode) -->
                     <svg class="icon-moon" viewBox="0 0 24 24">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
@@ -487,6 +481,10 @@
                             <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'grafem-preview-main', 'fontWeight')">
                         </div>
                         <div class="control-group">
+                            <label>Italic</label>
+                            <input type="range" min="0" max="12" value="0" step="1" oninput="updateFont(this, 'grafem-preview-main', 'fontStyle')">
+                        </div>
+                        <div class="control-group">
                             <label>Size</label>
                             <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'grafem-preview-main', 'fontSize')">
                         </div>
@@ -496,7 +494,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="grafem-preview-main" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="grafem-preview-main" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-style: oblique 0deg; font-size: 52px; line-height: 1.2;"></textarea>
             </div>
 
             <!-- Font 2: GLF Fonem -->
@@ -509,6 +507,10 @@
                             <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'fonem-preview-main', 'fontWeight')">
                         </div>
                         <div class="control-group">
+                            <label>Italic</label>
+                            <input type="range" min="0" max="12" value="0" step="1" oninput="updateFont(this, 'fonem-preview-main', 'fontStyle')">
+                        </div>
+                        <div class="control-group">
                             <label>Size</label>
                             <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'fonem-preview-main', 'fontSize')">
                         </div>
@@ -518,7 +520,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="fonem-preview-main" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="fonem-preview-main" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-style: oblique 0deg; font-size: 52px; line-height: 1.2;"></textarea>
             </div>
 
             <!-- Font 3: GLF Cikutra -->
@@ -531,6 +533,10 @@
                             <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'cikutra-preview-main', 'fontWeight')">
                         </div>
                         <div class="control-group">
+                            <label>Italic</label>
+                            <input type="range" min="0" max="12" value="0" step="1" oninput="updateFont(this, 'cikutra-preview-main', 'fontStyle')">
+                        </div>
+                        <div class="control-group">
                             <label>Size</label>
                             <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'cikutra-preview-main', 'fontSize')">
                         </div>
@@ -540,7 +546,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="cikutra-preview-main" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="cikutra-preview-main" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-style: oblique 0deg; font-size: 52px; line-height: 1.2;"></textarea>
             </div>
         </section>
 
@@ -558,6 +564,10 @@
                             <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'grafem-preview-detail', 'fontWeight')">
                         </div>
                         <div class="control-group">
+                            <label>Italic</label>
+                            <input type="range" min="0" max="12" value="0" step="1" oninput="updateFont(this, 'grafem-preview-detail', 'fontStyle')">
+                        </div>
+                        <div class="control-group">
                             <label>Size</label>
                             <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'grafem-preview-detail', 'fontSize')">
                         </div>
@@ -567,7 +577,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="grafem-preview-detail" class="font-preview pangram-target" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="grafem-preview-detail" class="font-preview pangram-target" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-style: oblique 0deg; font-size: 52px; line-height: 1.2;"></textarea>
             </div>
 
             <div class="detail-block">
@@ -612,6 +622,10 @@
                             <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'fonem-preview-detail', 'fontWeight')">
                         </div>
                         <div class="control-group">
+                            <label>Italic</label>
+                            <input type="range" min="0" max="12" value="0" step="1" oninput="updateFont(this, 'fonem-preview-detail', 'fontStyle')">
+                        </div>
+                        <div class="control-group">
                             <label>Size</label>
                             <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'fonem-preview-detail', 'fontSize')">
                         </div>
@@ -621,7 +635,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="fonem-preview-detail" class="font-preview pangram-target" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="fonem-preview-detail" class="font-preview pangram-target" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-style: oblique 0deg; font-size: 52px; line-height: 1.2;"></textarea>
             </div>
 
             <div class="detail-block">
@@ -666,6 +680,10 @@
                             <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'cikutra-preview-detail', 'fontWeight')">
                         </div>
                         <div class="control-group">
+                            <label>Italic</label>
+                            <input type="range" min="0" max="12" value="0" step="1" oninput="updateFont(this, 'cikutra-preview-detail', 'fontStyle')">
+                        </div>
+                        <div class="control-group">
                             <label>Size</label>
                             <input type="range" min="24" max="96" value="52" step="2" oninput="updateFont(this, 'cikutra-preview-detail', 'fontSize')">
                         </div>
@@ -675,7 +693,7 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="cikutra-preview-detail" class="font-preview pangram-target" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 52px; line-height: 1.2;"></textarea>
+                <textarea id="cikutra-preview-detail" class="font-preview pangram-target" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-style: oblique 0deg; font-size: 52px; line-height: 1.2;"></textarea>
             </div>
 
             <div class="detail-block">
@@ -799,7 +817,7 @@
         function switchPage(pageId, event) {
             event.preventDefault();
             document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
+                section.classList.remove('action') || section.classList.remove('active');
             });
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
@@ -835,6 +853,8 @@
             const val = slider.value;
             if (property === 'fontWeight') {
                 target.style.fontWeight = val;
+            } else if (property === 'fontStyle') {
+                target.style.fontStyle = `oblique ${val}deg`;
             } else if (property === 'fontSize') {
                 target.style.fontSize = val + 'px';
             } else if (property === 'lineHeight') {
