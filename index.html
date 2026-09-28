@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Font Open-Source & Blog</title>
+    <style>
+        /* 1. MENGHUBUNGKAN FONT ANDA */
+        @font-face {
+            font-family: 'FontSaya';
+            /* Sesuaikan nama file font Anda di bawah ini */
+            src: url('fonts/font-saya.woff2') format('woff2'),
+                 url('fonts/font-saya.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        /* 2. DESAIN BASE / TAMPILAN */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: #f9f9f9;
+        }
+        header, main, footer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            border-bottom: 2px solid #eee;
+            text-align: center;
+        }
+        section {
+            margin: 40px 0;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* 3. DESAIN LIVE PREVIEW FONT */
+        .preview-box {
+            font-family: 'FontSaya', sans-serif;
+            font-size: 36px;
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 6px;
+            box-sizing: border-box;
+            margin-top: 10px;
+            min-height: 100px;
+        }
+
+        /* 4. DESAIN FORMULIR DOWNLOAD */
+        .form-group {
+            margin-top: 15px;
+        }
+        input[type="email"] {
+            padding: 10px;
+            width: 70%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #0076ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover { background: #0056b3; }
+
+        /* 5. DESAIN BLOG Sederhana */
+        .post-preview {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .post-preview h3 { margin: 0 0 5px 0; }
+        .post-date { color: #888; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Studio Font Open-Source Saya</h1>
+        <p>Mendesain huruf yang bebas digunakan dan dikembangkan bersama.</p>
+    </header>
+
+    <main>
+        <!-- SEKSI 1: PORTOFOLIO & LIVE PREVIEW FONT -->
+        <section id="font-portfolio">
+            <h2>Koleksi Font: "FontSaya" (OFL Licensed)</h2>
+            <p>Silakan ketik di kotak bawah ini untuk mencoba kecocokan font secara langsung:</p>
+            
+            <!-- Pengunjung bisa langsung mengetik di dalam kotak ini -->
+            <div class="preview-box" contenteditable="true">
+                Ketik sesuatu di sini untuk mencoba font... ABCDEFGHIJKLM nopqrstuvwxyz 1234567890
+            </div>
+        </section>
+
+        <!-- SEKSI 2: FORMULIR DOWNLOAD VIA EMAIL -->
+        <section id="download-font">
+            <h2>Unduh Font</h2>
+            <p>Masukkan email Anda di bawah ini. Tautan unduhan aman untuk file .TTF & .WOFF2 akan langsung dikirimkan ke kotak masuk Anda.</p>
+            
+            <!-- GANTI URL ACTION DENGAN URL FORMSPREE ANDA -->
+            <form action="https://formspree.io" method="POST">
+                <div class="form-group">
+                    <input type="email" name="email" required placeholder="nama@email.com">
+                    <button type="submit">Kirim Tautan Unduhan</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- SEKSI 3: BLOG STATIS SEDERHANA -->
+        <section id="blog">
+            <h2>Artikel & Catatan Rilis Blog</h2>
+            
+            <!-- Artikel 1 -->
+            <div class="post-preview">
+                <h3><a href="#">Catatan Rilis FontSaya Versi 1.0</a></h3>
+                <div class="post-date">Dipublikasikan pada: 28 September 2026</div>
+                <p>Hari ini resmi diluncurkan versi pertama dari font open-source ini dengan dukungan karakter Latin dasar...</p>
+            </div>
+
+            <!-- Artikel 2 -->
+            <div class="post-preview">
+                <h3><a href="#">Mengapa Saya Memilih Lisensi SIL OFL?</a></h3>
+                <div class="post-date">Dipublikasikan pada: 15 September 2026</div>
+                <p>Membahas pentingnya ekosistem terbuka dalam dunia desain huruf (typography) dan bagaimana Anda bisa ikut berkontribusi...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="text-align: center; color: #888;">&copy; 2026 Nama Anda. Didukung oleh GitHub Pages & SIL Open Font License.</p>
+    </footer>
+
+</body>
+</html>
