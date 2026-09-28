@@ -31,7 +31,7 @@
             --bg-color: #ffffff;
             --text-color: #111111;
             --gray-color: #767676;
-            --light-gray: #f7f7f7;
+            --light-gray: #f9f9f9;
             --border-color: #eaeaea;
             --transition: all 0.3s ease;
         }
@@ -133,27 +133,17 @@
             font-size: 2.5rem;
             font-weight: 700;
             letter-spacing: -0.03em;
-            margin-bottom: 12px;
+            margin-bottom: 30px;
         }
 
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--gray-color);
-            margin-bottom: 40px;
+        /* Clean Font List Item (Tanpa kotak abu-abu) */
+        .font-item-clean {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        /* Font Tester Layout */
-        .font-tester-container {
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
-        }
-
-        .font-block {
-            background: var(--light-gray);
-            border-radius: 6px;
-            padding: 32px;
-            border: 1px solid var(--border-color);
+        .font-item-clean:first-child {
+            padding-top: 0;
         }
 
         .font-header-info {
@@ -165,19 +155,27 @@
             gap: 16px;
         }
 
-        .font-title {
-            font-size: 1.25rem;
-            font-weight: 600;
+        .font-title-link {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: var(--transition);
+            cursor: pointer;
         }
 
-        /* Controls Bar (Slider/Button) */
+        .font-title-link:hover {
+            color: var(--gray-color);
+        }
+
+        /* Controls Bar */
         .controls-bar {
             display: flex;
             gap: 20px;
             align-items: center;
             flex-wrap: wrap;
             background: #ffffff;
-            padding: 12px 20px;
+            padding: 10px 16px;
             border-radius: 4px;
             border: 1px solid var(--border-color);
             font-size: 0.85rem;
@@ -208,9 +206,93 @@
             outline: none;
             resize: vertical;
             color: var(--text-color);
-            padding: 16px 0;
-            margin-top: 10px;
-            border-top: 1px dashed #dcdcdc;
+            padding: 10px 0;
+        }
+
+        /* Detail Page Styling */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--gray-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: var(--text-color);
+        }
+
+        .detail-block {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .detail-block h3 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            background: var(--light-gray);
+            padding: 24px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .spec-item label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--gray-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .spec-item span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Glyphs Grid Box */
+        .glyphs-box {
+            background: var(--light-gray);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            font-size: 1.8rem;
+            letter-spacing: 12px;
+            line-height: 2.2;
+            word-break: break-all;
+            margin-top: 16px;
+        }
+
+        /* Download Button */
+        .download-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .btn-download {
+            background-color: var(--text-color);
+            color: #ffffff;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .btn-download:hover {
+            background-color: var(--gray-color);
         }
 
         /* Divider & Footer Style */
@@ -291,92 +373,249 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Page Typefaces -->
+        <!-- Page Typefaces (List Utama) -->
         <section id="typefaces" class="page-section active">
             <h1>Typefaces</h1>
-            <p class="subtitle">Koleksi font open source variabel. Uji ketebalan dan ukuran secara langsung pada teks di bawah.</p>
             
-            <div class="font-tester-container">
-                
-                <!-- Font 1: GLF Grafem -->
-                <div class="font-block">
-                    <div class="font-header-info">
-                        <div class="font-title">GLF Grafem</div>
-                        <div class="controls-bar">
-                            <div class="control-group">
-                                <label>Weight:</label>
-                                <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'grafem-preview', 'fontWeight')">
-                            </div>
-                            <div class="control-group">
-                                <label>Size:</label>
-                                <input type="range" min="24" max="80" value="42" step="2" oninput="updateFont(this, 'grafem-preview', 'fontSize')">
-                            </div>
-                            <div class="control-group">
-                                <label>Height:</label>
-                                <input type="range" min="1.0" max="2.0" value="1.3" step="0.1" oninput="updateFont(this, 'grafem-preview', 'lineHeight')">
-                            </div>
+            <!-- Font 1: GLF Grafem -->
+            <div class="font-item-clean">
+                <div class="font-header-info">
+                    <a href="#font-grafem" class="font-title-link" onclick="switchPage('font-grafem', event)">GLF Grafem</a>
+                    <div class="controls-bar">
+                        <div class="control-group">
+                            <label>Weight:</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'grafem-preview-main', 'fontWeight')">
+                        </div>
+                        <div class="control-group">
+                            <label>Size:</label>
+                            <input type="range" min="24" max="96" value="56" step="2" oninput="updateFont(this, 'grafem-preview-main', 'fontSize')">
+                        </div>
+                        <div class="control-group">
+                            <label>Height:</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'grafem-preview-main', 'lineHeight')">
                         </div>
                     </div>
-                    <textarea id="grafem-preview" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 42px; line-height: 1.3;">The quick brown fox jumps over the lazy dog.ambigram</textarea>
                 </div>
+                <textarea id="grafem-preview-main" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 56px; line-height: 1.2;">The quick brown fox jumps over the lazy dog.</textarea>
+            </div>
 
-                <!-- Font 2: GLF Fonem -->
-                <div class="font-block">
-                    <div class="font-header-info">
-                        <div class="font-title">GLF Fonem</div>
-                        <div class="controls-bar">
-                            <div class="control-group">
-                                <label>Weight:</label>
-                                <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'fonem-preview', 'fontWeight')">
-                            </div>
-                            <div class="control-group">
-                                <label>Size:</label>
-                                <input type="range" min="24" max="80" value="42" step="2" oninput="updateFont(this, 'fonem-preview', 'fontSize')">
-                            </div>
-                            <div class="control-group">
-                                <label>Height:</label>
-                                <input type="range" min="1.0" max="2.0" value="1.3" step="0.1" oninput="updateFont(this, 'fonem-preview', 'lineHeight')">
-                            </div>
+            <!-- Font 2: GLF Fonem -->
+            <div class="font-item-clean">
+                <div class="font-header-info">
+                    <a href="#font-fonem" class="font-title-link" onclick="switchPage('font-fonem', event)">GLF Fonem</a>
+                    <div class="controls-bar">
+                        <div class="control-group">
+                            <label>Weight:</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'fonem-preview-main', 'fontWeight')">
+                        </div>
+                        <div class="control-group">
+                            <label>Size:</label>
+                            <input type="range" min="24" max="96" value="56" step="2" oninput="updateFont(this, 'fonem-preview-main', 'fontSize')">
+                        </div>
+                        <div class="control-group">
+                            <label>Height:</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'fonem-preview-main', 'lineHeight')">
                         </div>
                     </div>
-                    <textarea id="fonem-preview" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 42px; line-height: 1.3;">Sphinx of black quartz, judge my vow.</textarea>
                 </div>
+                <textarea id="fonem-preview-main" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 56px; line-height: 1.2;">Sphinx of black quartz, judge my vow.</textarea>
+            </div>
 
-                <!-- Font 3: GLF Cikutra -->
-                <div class="font-block">
-                    <div class="font-header-info">
-                        <div class="font-title">GLF Cikutra</div>
-                        <div class="controls-bar">
-                            <div class="control-group">
-                                <label>Weight:</label>
-                                <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'cikutra-preview', 'fontWeight')">
-                            </div>
-                            <div class="control-group">
-                                <label>Size:</label>
-                                <input type="range" min="24" max="80" value="42" step="2" oninput="updateFont(this, 'cikutra-preview', 'fontSize')">
-                            </div>
-                            <div class="control-group">
-                                <label>Height:</label>
-                                <input type="range" min="1.0" max="2.0" value="1.3" step="0.1" oninput="updateFont(this, 'cikutra-preview', 'lineHeight')">
-                            </div>
+            <!-- Font 3: GLF Cikutra -->
+            <div class="font-item-clean">
+                <div class="font-header-info">
+                    <a href="#font-cikutra" class="font-title-link" onclick="switchPage('font-cikutra', event)">GLF Cikutra</a>
+                    <div class="controls-bar">
+                        <div class="control-group">
+                            <label>Weight:</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'cikutra-preview-main', 'fontWeight')">
+                        </div>
+                        <div class="control-group">
+                            <label>Size:</label>
+                            <input type="range" min="24" max="96" value="56" step="2" oninput="updateFont(this, 'cikutra-preview-main', 'fontSize')">
+                        </div>
+                        <div class="control-group">
+                            <label>Height:</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'cikutra-preview-main', 'lineHeight')">
                         </div>
                     </div>
-                    <textarea id="cikutra-preview" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 42px; line-height: 1.3;">Waltz, bad nymph, for quick jigs vex.</textarea>
                 </div>
+                <textarea id="cikutra-preview-main" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 56px; line-height: 1.2;">Waltz, bad nymph, for quick jigs vex.</textarea>
+            </div>
+        </section>
 
+        <!-- Halaman Detail: GLF Grafem -->
+        <section id="font-grafem" class="page-section">
+            <a href="#typefaces" class="back-link" onclick="switchPage('typefaces', event)">&larr; Back to Typefaces</a>
+            <h1>GLF Grafem</h1>
+            
+            <div class="font-item-clean" style="padding-top: 0;">
+                <div class="font-header-info">
+                    <div style="font-weight: 600;">Interactive Preview</div>
+                    <div class="controls-bar">
+                        <div class="control-group">
+                            <label>Weight:</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'grafem-preview-detail', 'fontWeight')">
+                        </div>
+                        <div class="control-group">
+                            <label>Size:</label>
+                            <input type="range" min="24" max="96" value="56" step="2" oninput="updateFont(this, 'grafem-preview-detail', 'fontSize')">
+                        </div>
+                        <div class="control-group">
+                            <label>Height:</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'grafem-preview-detail', 'lineHeight')">
+                        </div>
+                    </div>
+                </div>
+                <textarea id="grafem-preview-detail" class="font-preview" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 56px; line-height: 1.2;">The quick brown fox jumps over the lazy dog.</textarea>
+            </div>
+
+            <div class="detail-block">
+                <h3>About</h3>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">GLF Grafem adalah font variabel open source yang dirancang dengan struktur geometris yang presisi, memberikan kesan modern, bersih, dan sangat optimal untuk tajuk maupun teks editorial berukuran besar.</p>
+            </div>
+
+            <div class="detail-block">
+                <h3>Details</h3>
+                <div class="specs-grid">
+                    <div class="spec-item"><label>Designed by</label><span>Sidiq Kamal Nurmawan</span></div>
+                    <div class="spec-item"><label>Released</label><span>Agustus 2026</span></div>
+                    <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
+                    <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
+                    <div class="spec-item"><label>Support</label><span>Latin</span></div>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>Glyphs</h3>
+                <div class="glyphs-box" style="font-family: 'GLF Grafem', sans-serif;">
+                    ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789.,!?:;@#$%&*()
+                </div>
+            </div>
+
+            <div class="download-section">
+                <a href="fonts/GLF-Grafem-VF.woff2" class="btn-download" download>Download GLF-Grafem-VF.woff2</a>
+            </div>
+        </section>
+
+        <!-- Halaman Detail: GLF Fonem -->
+        <section id="font-fonem" class="page-section">
+            <a href="#typefaces" class="back-link" onclick="switchPage('typefaces', event)">&larr; Back to Typefaces</a>
+            <h1>GLF Fonem</h1>
+            
+            <div class="font-item-clean" style="padding-top: 0;">
+                <div class="font-header-info">
+                    <div style="font-weight: 600;">Interactive Preview</div>
+                    <div class="controls-bar">
+                        <div class="control-group">
+                            <label>Weight:</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'fonem-preview-detail', 'fontWeight')">
+                        </div>
+                        <div class="control-group">
+                            <label>Size:</label>
+                            <input type="range" min="24" max="96" value="56" step="2" oninput="updateFont(this, 'fonem-preview-detail', 'fontSize')">
+                        </div>
+                        <div class="control-group">
+                            <label>Height:</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'fonem-preview-detail', 'lineHeight')">
+                        </div>
+                    </div>
+                </div>
+                <textarea id="fonem-preview-detail" class="font-preview" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 56px; line-height: 1.2;">Sphinx of black quartz, judge my vow.</textarea>
+            </div>
+
+            <div class="detail-block">
+                <h3>About</h3>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">GLF Fonem menawarkan keseimbangan harmonis antara bentuk huruf yang artistik dan keterbacaan tingkat tinggi untuk berbagai platform digital.</p>
+            </div>
+
+            <div class="detail-block">
+                <h3>Details</h3>
+                <div class="specs-grid">
+                    <div class="spec-item"><label>Designed by</label><span>Sidiq Kamal Nurmawan</span></div>
+                    <div class="spec-item"><label>Released</label><span>Agustus 2026</span></div>
+                    <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
+                    <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
+                    <div class="spec-item"><label>Support</label><span>Latin</span></div>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>Glyphs</h3>
+                <div class="glyphs-box" style="font-family: 'GLF Fonem', sans-serif;">
+                    ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789.,!?:;@#$%&*()
+                </div>
+            </div>
+
+            <div class="download-section">
+                <a href="fonts/GLF-Fonem-VF.woff2" class="btn-download" download>Download GLF-Fonem-VF.woff2</a>
+            </div>
+        </section>
+
+        <!-- Halaman Detail: GLF Cikutra -->
+        <section id="font-cikutra" class="page-section">
+            <a href="#typefaces" class="back-link" onclick="switchPage('typefaces', event)">&larr; Back to Typefaces</a>
+            <h1>GLF Cikutra</h1>
+            
+            <div class="font-item-clean" style="padding-top: 0;">
+                <div class="font-header-info">
+                    <div style="font-weight: 600;">Interactive Preview</div>
+                    <div class="controls-bar">
+                        <div class="control-group">
+                            <label>Weight:</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'cikutra-preview-detail', 'fontWeight')">
+                        </div>
+                        <div class="control-group">
+                            <label>Size:</label>
+                            <input type="range" min="24" max="96" value="56" step="2" oninput="updateFont(this, 'cikutra-preview-detail', 'fontSize')">
+                        </div>
+                        <div class="control-group">
+                            <label>Height:</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'cikutra-preview-detail', 'lineHeight')">
+                        </div>
+                    </div>
+                </div>
+                <textarea id="cikutra-preview-detail" class="font-preview" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 56px; line-height: 1.2;">Waltz, bad nymph, for quick jigs vex.</textarea>
+            </div>
+
+            <div class="detail-block">
+                <h3>About</h3>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">GLF Cikutra dirancang khusus dengan gaya karakter yang unik dan berkarakter kuat, memberikan sentuhan distingtif pada desain kreatif Anda.</p>
+            </div>
+
+            <div class="detail-block">
+                <h3>Details</h3>
+                <div class="specs-grid">
+                    <div class="spec-item"><label>Designed by</label><span>Sidiq Kamal Nurmawan</span></div>
+                    <div class="spec-item"><label>Released</label><span>Agustus 2026</span></div>
+                    <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
+                    <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
+                    <div class="spec-item"><label>Support</label><span>Latin</span></div>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>Glyphs</h3>
+                <div class="glyphs-box" style="font-family: 'GLF Cikutra', sans-serif;">
+                    ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789.,!?:;@#$%&*()
+                </div>
+            </div>
+
+            <div class="download-section">
+                <a href="fonts/GLF-Cikutra-VF.woff2" class="btn-download" download>Download GLF-Cikutra-VF.woff2</a>
             </div>
         </section>
 
         <!-- Page License -->
         <section id="license" class="page-section">
             <h1>License</h1>
-            <p class="subtitle">Semua font di Gliftype didistribusikan di bawah lisensi open source SIL Open Font License 1.1. Anda bebas menggunakannya untuk proyek pribadi maupun komersial.</p>
+            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.1rem;">Semua font di Gliftype didistribusikan di bawah lisensi open source <strong>SIL Open Font License 1.1</strong>. Anda bebas menggunakannya untuk keperluan pribadi maupun komersial, memodifikasi, serta mendistribusikannya kembali secara bebas.</p>
         </section>
 
         <!-- Page About -->
         <section id="about" class="page-section">
             <h1>About</h1>
-            <p class="subtitle">Gliftype adalah foundry independen yang berfokus pada pembuatan tipografi open source yang estetis dan fungsional.</p>
+            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.1rem;">Gliftype adalah foundry independen yang dikelola oleh Sidiq Kamal Nurmawan, berfokus pada pembuatan tipografi open source yang estetis, fungsional, dan dapat diakses oleh siapa saja.</p>
         </section>
     </main>
 
@@ -403,8 +642,20 @@
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
-            document.getElementById(pageId).classList.add('active');
-            event.currentTarget.classList.add('active');
+            const targetSection = document.getElementById(pageId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Highlight nav jika halamannya bagian dari nav utama
+            const activeNav = document.querySelector(`nav a[href="#${pageId}"]`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            } else if (pageId.startsWith('font-')) {
+                const typefacesNav = document.querySelector(`nav a[href="#typefaces"]`);
+                if (typefacesNav) typefacesNav.classList.add('active');
+            }
+
             history.pushState(null, null, `#${pageId}`);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -415,8 +666,14 @@
                 document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 document.getElementById(hash).classList.add('active');
+                
                 const activeLink = document.querySelector(`nav a[href="#${hash}"]`);
-                if (activeLink) activeLink.classList.add('active');
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                } else if (hash.startsWith('font-')) {
+                    const typefacesNav = document.querySelector(`nav a[href="#typefaces"]`);
+                    if (typefacesNav) typefacesNav.classList.add('active');
+                }
             }
         });
 
