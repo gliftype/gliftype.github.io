@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destructive Typography Lab</title>
+    <title>Single Letter Destruction Lab</title>
     <style>
         body {
             background-color: #0d0d0d;
@@ -14,195 +14,213 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: space-between;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
+        /* Input area untuk mengetik 1 huruf */
+        .input-area {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .input-area input {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 1.2rem;
+            border-radius: 6px;
+            text-align: center;
+            width: 60px;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .input-area input:focus {
+            border-color: #ff3333;
+        }
+
+        /* Workspace huruf tunggal */
         .workspace {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            margin: 40px 0;
+            margin: 20px 0;
         }
 
-        .text-container {
-            display: flex;
-            gap: 4px;
-            font-size: 5rem;
+        .single-letter {
+            font-size: 14rem;
             font-weight: 900;
             text-transform: uppercase;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .letter-wrapper {
-            display: inline-block;
             position: relative;
-            transition: transform 0.1s ease;
+            display: inline-block;
+            user-select: none;
+            transition: transform 0.05s ease;
         }
 
+        /* Panel kontrol destruktif tanpa kotak pembatas abu-abu */
         .controls-panel {
             width: 100%;
-            max-width: 900px;
+            max-width: 700px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            padding-bottom: 40px;
+            padding-bottom: 20px;
         }
 
-        .letter-control-group {
-            background: rgba(25, 25, 25, 0.6);
-            border-radius: 8px;
-            padding: 15px;
-            backdrop-filter: blur(5px);
-        }
-
-        .letter-control-group h3 {
-            margin-top: 0;
-            margin-bottom: 12px;
-            color: #ff3333;
-            font-size: 1.2rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .control-item {
-            margin-bottom: 10px;
+            background: transparent;
         }
 
         .control-item label {
             display: flex;
             justify-content: space-between;
             font-size: 0.85rem;
-            margin-bottom: 4px;
-            color: #ccc;
+            margin-bottom: 5px;
+            color: #aaa;
+            letter-spacing: 0.5px;
         }
 
         .control-item input[type="range"] {
             width: 100%;
             accent-color: #ff3333;
             cursor: pointer;
+            background: #222;
         }
     </style>
 </head>
 <body>
 
+    <!-- Input untuk mengetik satu huruf -->
+    <div class="input-area">
+        <input type="text" id="letterInput" maxlength="1" value="A">
+    </div>
+
+    <!-- Area tampilan huruf tunggal yang destruktif -->
     <div class="workspace">
-        <div class="text-container" id="textContainer">
-            <!-- Huruf akan digenerate secara dinamis oleh JavaScript -->
+        <div class="single-letter" id="targetLetter">A</div>
+    </div>
+
+    <!-- Panel Slider Pengendali Destruktif (Bahasa Inggris & Tanpa Kotak Pembatas) -->
+    <div class="controls-panel">
+        <div class="control-group">
+            <div class="control-item">
+                <label><span>Melt (Vertical Pull)</span><span id="val_melt">0</span></label>
+                <input type="range" id="rangeMelt" min="0" max="100" value="0">
+            </div>
+            <div class="control-item">
+                <label><span>Glitch Intensity</span><span id="val_glitch">0</span></label>
+                <input type="range" id="rangeGlitch" min="0" max="50" value="0">
+            </div>
+            <div class="control-item">
+                <label><span>Stretch Vertical</span><span id="val_stretch">1.0</span></label>
+                <input type="range" id="rangeStretch" min="1" max="4" step="0.1" value="1">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="control-item">
+                <label><span>Rotation Chaos</span><span id="val_rotate">0°</span></label>
+                <input type="range" id="rangeRotate" min="-180" max="180" value="0">
+            </div>
+            <div class="control-item">
+                <label><span>Scatter / Disperse</span><span id="val_scatter">0</span></label>
+                <input type="range" id="rangeScatter" min="0" max="100" value="0">
+            </div>
+            <div class="control-item">
+                <label><span>Liquify Shear / Skew</span><span id="val_skew">0°</span></label>
+                <input type="range" id="rangeSkew" min="-60" max="60" value="0">
+            </div>
         </div>
     </div>
 
-    <div class="controls-panel" id="controlsPanel">
-        <!-- Panel kontrol per huruf akan digenerate di sini -->
-    </div>
-
     <script>
-        const word = "DECAY";
-        const textContainer = document.getElementById('textContainer');
-        const controlsPanel = document.getElementById('controlsPanel');
+        const letterInput = document.getElementById('letterInput');
+        const targetLetter = document.getElementById('targetLetter');
 
-        // Struktur data untuk menyimpan nilai efek tiap huruf
-        const letterStates = {};
+        // Slider Elements
+        const rangeMelt = document.getElementById('rangeMelt');
+        const rangeGlitch = document.getElementById('rangeGlitch');
+        const rangeStretch = document.getElementById('rangeStretch');
+        const rangeRotate = document.getElementById('rangeRotate');
+        const rangeScatter = document.getElementById('rangeScatter');
+        const rangeSkew = document.getElementById('rangeSkew');
 
-        // Inisialisasi elemen huruf dan kontrol slider
-        word.split('').forEach((char, index) => {
-            const letterKey = `letter_${index}`;
-            letterStates[letterKey] = {
-                melt: 0,
-                glitch: 0,
-                stretch: 1,
-                rotate: 0,
-                scatter: 0
-            };
+        // Value Label Elements
+        const valMelt = document.getElementById('val_melt');
+        const valGlitch = document.getElementById('val_glitch');
+        const valStretch = document.getElementById('val_stretch');
+        const valRotate = document.getElementById('val_rotate');
+        const valScatter = document.getElementById('val_scatter');
+        const valSkew = document.getElementById('val_skew');
 
-            // 1. Buat elemen huruf di layar
-            const span = document.createElement('span');
-            span.className = 'letter-wrapper';
-            span.textContent = char === ' ' ? '\u00A0' : char;
-            span.id = `view_${letterKey}`;
-            textContainer.appendChild(span);
-
-            // 2. Buat panel kontrol untuk huruf ini (tanpa kotak pembatas abu-abu solid/clean style)
-            const group = document.createElement('div');
-            group.className = 'letter-control-group';
-            group.innerHTML = `
-                <h3>Letter: '${char}'</h3>
-                <div class="control-item">
-                    <label><span>Melt</span><span id="val_melt_${index}">0</span></label>
-                    <input type="range" min="0" max="100" value="0" data-letter="${letterKey}" data-effect="melt">
-                </div>
-                <div class="control-item">
-                    <label><span>Glitch</span><span id="val_glitch_${index}">0</span></label>
-                    <input type="range" min="0" max="50" value="0" data-letter="${letterKey}" data-effect="glitch">
-                </div>
-                <div class="control-item">
-                    <label><span>Stretch Y</span><span id="val_stretch_${index}">1.0</span></label>
-                    <input type="range" min="1" max="3" step="0.1" value="1" data-letter="${letterKey}" data-effect="stretch">
-                </div>
-                <div class="control-item">
-                    <label><span>Rotate Chaos</span><span id="val_rotate_${index}">0°</span></label>
-                    <input type="range" min="-180" max="180" value="0" data-letter="${letterKey}" data-effect="rotate">
-                </div>
-                <div class="control-item">
-                    <label><span>Scatter</span><span id="val_scatter_${index}">0</span></label>
-                    <input type="range" min="0" max="80" value="0" data-letter="${letterKey}" data-effect="scatter">
-                </div>
-            `;
-            controlsPanel.appendChild(group);
-        });
-
-        // Event listener untuk semua slider
-        controlsPanel.addEventListener('input', (e) => {
-            if (e.target.type === 'range') {
-                const letterKey = e.target.dataset.letter;
-                const effect = e.target.dataset.effect;
-                const value = parseFloat(e.target.value);
-
-                letterStates[letterKey][effect] = value;
-
-                // Update label angka teks slider
-                const index = word.split('').findIndex((_, i) => `letter_${i}` === letterKey);
-                const valLabel = document.getElementById(`val_${effect}_${index}`);
-                if (valLabel) {
-                    valLabel.textContent = effect === 'rotate' ? value + '°' : (effect === 'stretch' ? value.toFixed(1) : value);
-                }
-
-                applyEffects(letterKey, index);
+        // Update huruf saat diketik
+        letterInput.addEventListener('input', (e) => {
+            const val = e.target.value.trim();
+            if (val.length > 0) {
+                targetLetter.textContent = val.charAt(0).toUpperCase();
+                e.target.value = val.charAt(0).toUpperCase();
+            } else {
+                targetLetter.textContent = 'A';
             }
         });
 
-        // Fungsi merender efek destruktif ke huruf terkait
-        function applyEffects(letterKey, index) {
-            const state = letterStates[letterKey];
-            const element = document.getElementById(`view_${letterKey}`);
+        // Fungsi utama kalkulasi efek destruktif
+        function updateDestruction() {
+            const melt = parseFloat(rangeMelt.value);
+            const glitch = parseFloat(rangeGlitch.value);
+            const stretch = parseFloat(rangeStretch.value);
+            const rotate = parseFloat(rangeRotate.value);
+            const scatter = parseFloat(rangeScatter.value);
+            const skew = parseFloat(rangeSkew.value);
 
-            // Kalkulasi efek destruktif
-            const meltY = state.melt * 2.5; 
-            const meltSkew = state.melt * 0.4;
-            const glitchX = (Math.random() - 0.5) * state.glitch;
-            const glitchY = (Math.random() - 0.5) * state.glitch;
-            const scatterX = (Math.sin(index * 99) * state.scatter);
-            const scatterY = (Math.cos(index * 33) * state.scatter);
+            // Update teks label angka slider
+            valMelt.textContent = melt;
+            valGlitch.textContent = glitch;
+            valStretch.textContent = stretch.toFixed(1);
+            valRotate.textContent = rotate + '°';
+            valScatter.textContent = scatter;
+            valSkew.textContent = skew + '°';
 
-            // Terapkan transformasi CSS yang menarik/meleleh nyata dan destruktif
-            element.style.transform = `
-                translate(${glitchX + scatterX}px, ${glitchY + scatterY + meltY}px) 
-                scaleY(${state.stretch + (state.melt / 30)}) 
-                skewX(${meltSkew}deg) 
-                rotate(${state.rotate}deg)
+            // Kalkulasi matematis efek destruktif nyata
+            const meltY = melt * 3.5; // Efek tertarik ke bawah secara ekstrem
+            const randomGlitchX = (Math.random() - 0.5) * glitch * 1.5;
+            const randomGlitchY = (Math.random() - 0.5) * glitch * 1.5;
+            const scatterX = (Math.sin(scatter * 5) * scatter * 1.2);
+            const scatterY = (Math.cos(scatter * 3) * scatter * 1.2);
+
+            // Terapkan transformasi CSS mutakhir pada huruf tunggal
+            targetLetter.style.transform = `
+                translate(${randomGlitchX + scatterX}px, ${randomGlitchY + scatterY + meltY}px)
+                scaleY(${stretch + (melt / 25)})
+                skew(${skew + (melt * 0.3)}deg, 0deg)
+                rotate(${rotate}deg)
             `;
-            
-            // Efek visual tambahan pada elemen saat meleleh/tertarik
-            if (state.melt > 0) {
-                element.style.filter = `blur(${state.melt / 25}px)`;
-                element.style.opacity = Math.max(0.3, 1 - (state.melt / 150));
+
+            // Efek visual tambahan (blur meleleh dan pemudaran/distorsi warna)
+            if (melt > 0 || glitch > 0) {
+                targetLetter.style.filter = `blur(${melt / 30}px) hue-rotate(${glitch * 3}deg)`;
             } else {
-                element.style.filter = 'none';
-                element.style.opacity = '1';
+                targetLetter.style.filter = 'none';
             }
         }
+
+        // Pasang event listener ke semua slider
+        [rangeMelt, rangeGlitch, rangeStretch, rangeRotate, rangeScatter, rangeSkew].forEach(slider => {
+            slider.addEventListener('input', updateDestruction);
+        });
     </script>
 </body>
 </html>
