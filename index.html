@@ -648,6 +648,7 @@
             <div class="nav-right">
                 <nav>
                     <a href="#typefaces" class="nav-link active" onclick="switchPage('typefaces', event)">Typefaces</a>
+                    <a href="#manifesto" class="nav-link" onclick="switchPage('manifesto', event)">Manifesto</a>
                     <a href="#license" class="nav-link" onclick="switchPage('license', event)">License</a>
                     <a href="#about" class="nav-link" onclick="switchPage('about', event)">About</a>
                 </nav>
@@ -820,6 +821,51 @@
                     <div class="marquee-track">
                         <input type="text" id="amara-preview-main" class="marquee-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-amara-main')" readonly value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.">
                         <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Halaman Manifesto (Fitur Eksperimental Destruktif) -->
+        <section id="manifesto" class="page-section">
+            <h1>Manifesto — Experimental Lab</h1>
+            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem; margin-bottom: 30px;">
+                Ruang eksperimen destruktif untuk merusak, mengacak, dan memanipulasi bentuk tipografi secara real-time. Geser kontrol di bawah untuk melihat efeknya pada font.
+            </p>
+
+            <div class="font-item-clean" style="padding-top: 0;">
+                <div class="font-header-info">
+                    <div style="font-weight: 600; font-size: 1.15rem;">Destructive Controls Lab</div>
+                </div>
+                
+                <!-- Panel Slider Kontrol Destruktif -->
+                <div class="controls-bar-minimal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; background: var(--light-gray); padding: 20px; border-radius: 6px; border: 1px solid var(--border-color);">
+                    <div class="control-group" style="flex-direction: column; align-items: flex-start;">
+                        <label>Rounded / Runcing <span id="val-man-round" style="float: right;">0px</span></label>
+                        <input type="range" min="0" max="20" value="0" step="1" style="width: 100%;" oninput="updateManifestoEffect('round', this.value)">
+                    </div>
+                    <div class="control-group" style="flex-direction: column; align-items: flex-start;">
+                        <label>Kasar / Halus (Noise) <span id="val-man-noise" style="float: right;">0</span></label>
+                        <input type="range" min="0" max="15" value="0" step="1" style="width: 100%;" oninput="updateManifestoEffect('noise', this.value)">
+                    </div>
+                    <div class="control-group" style="flex-direction: column; align-items: flex-start;">
+                        <label>Posisi Acak (Jitter) <span id="val-man-jitter" style="float: right;">0px</span></label>
+                        <input type="range" min="0" max="25" value="0" step="1" style="width: 100%;" oninput="updateManifestoEffect('jitter', this.value)">
+                    </div>
+                    <div class="control-group" style="flex-direction: column; align-items: flex-start;">
+                        <label>Acak Layout (Tracking) <span id="val-man-tracking" style="float: right;">0px</span></label>
+                        <input type="range" min="0" max="50" value="0" step="1" style="width: 100%;" oninput="updateManifestoEffect('tracking', this.value)">
+                    </div>
+                    <div class="control-group" style="flex-direction: column; align-items: flex-start;">
+                        <label>Piksel Kecil (Pixelate) <span id="val-man-pixel" style="float: right;">0px</span></label>
+                        <input type="range" min="0" max="12" value="0" step="1" style="width: 100%;" oninput="updateManifestoEffect('pixel', this.value)">
+                    </div>
+                </div>
+
+                <!-- Area Preview Teks Eksperimental -->
+                <div class="paragraph-preview-wrapper" style="padding: 40px; background: var(--light-gray); border-radius: 6px; border: 1px solid var(--border-color); overflow: hidden;">
+                    <div id="manifesto-text-canvas" style="font-family: 'GLF Grafem', sans-serif; font-size: 64px; line-height: 1.4; word-break: break-all; transition: filter 0.2s ease;" contenteditable="true">
+                        GLIFTYPE MANIFESTO EXPERIMENTAL TYPOGRAPHY DESTRUCTION LAB
                     </div>
                 </div>
             </div>
@@ -1434,6 +1480,45 @@
                 span.textContent = val;
             }
             setTimeout(adjustInputWidths, 10);
+        }
+
+        // Fungsi Kontrol Efek Destruktif di Halaman Manifesto
+        function updateManifestoEffect(type, value) {
+            const canvas = document.getElementById('manifesto-text-canvas');
+            
+            if (type === 'round') {
+                document.getElementById('val-man-round').textContent = value + 'px';
+                canvas.style.borderRadius = value + 'px';
+                canvas.style.filter = `drop-shadow(0 0 ${value * 0.2}px var(--text-color))`;
+            } 
+            else if (type === 'noise') {
+                document.getElementById('val-man-noise').textContent = value;
+                if (value > 0) {
+                    canvas.style.filter = `contrast(${1 + value * 0.2}) blur(${value * 0.05}px)`;
+                } else {
+                    canvas.style.filter = 'none';
+                }
+            } 
+            else if (type === 'jitter') {
+                document.getElementById('val-man-jitter').textContent = value + 'px';
+                if (value > 0) {
+                    canvas.style.transform = `translate(${Math.random() * value - value / 2}px, ${Math.random() * value - value / 2}px)`;
+                } else {
+                    canvas.style.transform = 'translate(0, 0)';
+                }
+            } 
+            else if (type === 'tracking') {
+                document.getElementById('val-man-tracking').textContent = value + 'px';
+                canvas.style.letterSpacing = value + 'px';
+            } 
+            else if (type === 'pixel') {
+                document.getElementById('val-man-pixel').textContent = value + 'px';
+                if (value > 0) {
+                    canvas.style.filter = `blur(${value * 0.15}px) contrast(${5 + value})`;
+                } else {
+                    canvas.style.filter = 'none';
+                }
+            }
         }
 
         // Toggle Theme (Light / Dark Mode)
