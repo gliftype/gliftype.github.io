@@ -306,20 +306,34 @@
             gap: 60px;
             white-space: nowrap;
             will-change: transform;
-            /* Kecepatan diperlambat menjadi 250s */
-            animation: seamlessMarquee 250s linear infinite;
+            /* Kecepatan disamakan ke 250s (arah default Kanan ke Kiri) */
+            animation: marqueeLeft 250s linear infinite;
+        }
+
+        /* Kelas untuk arah sebaliknya (Kiri ke Kanan) */
+        .marquee-track.reverse {
+            animation: marqueeRight 250s linear infinite;
         }
 
         .preview-wrapper:hover .marquee-track {
             animation-play-state: paused;
         }
 
-        @keyframes seamlessMarquee {
+        @keyframes marqueeLeft {
             0% {
                 transform: translateX(0);
             }
             100% {
                 transform: translateX(-50%);
+            }
+        }
+
+        @keyframes marqueeRight {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
             }
         }
 
@@ -643,7 +657,7 @@
     <main>
         <!-- Page Typefaces -->
         <section id="typefaces" class="page-section active">
-            <!-- Font 1: GLF Grafem -->
+            <!-- Font 1: GLF Grafem (Ganjil: Kanan ke Kiri) -->
             <div class="font-item-clean">
                 <div class="font-header-info">
                     <a href="#font-grafem" class="font-title-link" onclick="switchPage('font-grafem', event)">GLF Grafem</a>
@@ -673,7 +687,7 @@
                 </div>
             </div>
 
-            <!-- Font 2: GLF Fonem -->
+            <!-- Font 2: GLF Fonem (Genap: Kiri ke Kanan) -->
             <div class="font-item-clean">
                 <div class="font-header-info">
                     <a href="#font-fonem" class="font-title-link" onclick="switchPage('font-fonem', event)">GLF Fonem</a>
@@ -696,14 +710,14 @@
                     </div>
                 </div>
                 <div class="preview-wrapper" id="wrap-fonem-main">
-                    <div class="marquee-track">
+                    <div class="marquee-track reverse">
                         <input type="text" id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-main')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment. Kebumen is valued as a space for practicing food sovereignty and horizontal cooperation, where communities naturally organize themselves to protect the ecology from top-down industrialization and mining threats without relying on state authority.">
                         <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment. Kebumen is valued as a space for practicing food sovereignty and horizontal cooperation, where communities naturally organize themselves to protect the ecology from top-down industrialization and mining threats without relying on state authority.">
                     </div>
                 </div>
             </div>
 
-            <!-- Font 3: GLF Cikutra -->
+            <!-- Font 3: GLF Cikutra (Ganjil: Kanan ke Kiri) -->
             <div class="font-item-clean">
                 <div class="font-header-info">
                     <a href="#font-cikutra" class="font-title-link" onclick="switchPage('font-cikutra', event)">GLF Cikutra</a>
@@ -733,7 +747,7 @@
                 </div>
             </div>
 
-            <!-- Font 4: GLF Alofon -->
+            <!-- Font 4: GLF Alofon (Genap: Kiri ke Kanan) -->
             <div class="font-item-clean">
                 <div class="font-header-info">
                     <a href="#font-alofon" class="font-title-link" onclick="switchPage('font-alofon', event)">GLF Alofon</a>
@@ -756,7 +770,7 @@
                     </div>
                 </div>
                 <div class="preview-wrapper" id="wrap-alofon-main">
-                    <div class="marquee-track">
+                    <div class="marquee-track reverse">
                         <input type="text" id="alofon-preview-main" class="marquee-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-alofon-main')" readonly value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.">
                         <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.">
                     </div>
