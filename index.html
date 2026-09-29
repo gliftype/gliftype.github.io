@@ -386,6 +386,15 @@
             display: block;
         }
 
+        /* Destructive Lab Custom Styles */
+        #destructive-output {
+            display: inline-block;
+            cursor: text;
+        }
+        [data-theme="dark"] #destructive-output {
+            color: var(--text-color);
+        }
+
         /* Detail page layout & components */
         .back-link {
             display: inline-block;
@@ -826,46 +835,38 @@
             </div>
         </section>
 
-        <!-- Halaman Manifesto (Fitur Eksperimental Destruktif) -->
+        <!-- Halaman Manifesto (Destructive Font Lab ala Typoclast) -->
         <section id="manifesto" class="page-section">
-            <h1>Manifesto — Experimental Lab</h1>
+            <h1>Manifesto — Destructive Font Lab</h1>
             <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem; margin-bottom: 30px;">
-                Ruang eksperimen destruktif untuk merusak, mengacak, dan memanipulasi bentuk tipografi secara real-time. Geser kontrol di bawah untuk melihat efeknya pada font.
+                Sebuah ruang eksperimen tipografi destruktif. Ketik teks apa saja di bawah, lalu geser kontrol untuk merusak, melebur, dan mendistorsi bentuk huruf secara real-time.
             </p>
 
             <div class="font-item-clean" style="padding-top: 0;">
-                <div class="font-header-info">
-                    <div style="font-weight: 600; font-size: 1.15rem;">Destructive Controls Lab</div>
-                </div>
-                
-                <!-- Panel Slider Kontrol Destruktif -->
-                <div class="controls-bar-minimal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; background: var(--light-gray); padding: 20px; border-radius: 6px; border: 1px solid var(--border-color);">
+                <!-- Panel Kontrol Efek Destruktif -->
+                <div class="controls-bar-minimal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; background: var(--light-gray); padding: 20px; border-radius: 6px; border: 1px solid var(--border-color);">
                     <div class="control-group" style="flex-direction: column; align-items: flex-start;">
-                        <label>Rounded / Runcing <span id="val-man-round" style="float: right;">0px</span></label>
-                        <input type="range" min="0" max="20" value="0" step="1" style="width: 100%;" oninput="updateManifestoEffect('round', this.value)">
+                        <label>Melt / Peleburan <span id="val-man-melt" style="float: right;">0px</span></label>
+                        <input type="range" min="0" max="30" value="0" step="1" style="width: 100%;" oninput="updateDestructiveLab('melt', this.value)">
                     </div>
                     <div class="control-group" style="flex-direction: column; align-items: flex-start;">
-                        <label>Kasar / Halus (Noise) <span id="val-man-noise" style="float: right;">0</span></label>
-                        <input type="range" min="0" max="15" value="0" step="1" style="width: 100%;" oninput="updateManifestoEffect('noise', this.value)">
+                        <label>Glitch / Patah <span id="val-man-glitch" style="float: right;">0px</span></label>
+                        <input type="range" min="0" max="20" value="0" step="1" style="width: 100%;" oninput="updateDestructiveLab('glitch', this.value)">
                     </div>
                     <div class="control-group" style="flex-direction: column; align-items: flex-start;">
-                        <label>Posisi Acak (Jitter) <span id="val-man-jitter" style="float: right;">0px</span></label>
-                        <input type="range" min="0" max="25" value="0" step="1" style="width: 100%;" oninput="updateManifestoEffect('jitter', this.value)">
+                        <label>Chaos / Acak Titik <span id="val-man-chaos" style="float: right;">0deg</span></label>
+                        <input type="range" min="0" max="45" value="0" step="1" style="width: 100%;" oninput="updateDestructiveLab('chaos', this.value)">
                     </div>
                     <div class="control-group" style="flex-direction: column; align-items: flex-start;">
-                        <label>Acak Layout (Tracking) <span id="val-man-tracking" style="float: right;">0px</span></label>
-                        <input type="range" min="0" max="50" value="0" step="1" style="width: 100%;" oninput="updateManifestoEffect('tracking', this.value)">
-                    </div>
-                    <div class="control-group" style="flex-direction: column; align-items: flex-start;">
-                        <label>Piksel Kecil (Pixelate) <span id="val-man-pixel" style="float: right;">0px</span></label>
-                        <input type="range" min="0" max="12" value="0" step="1" style="width: 100%;" oninput="updateManifestoEffect('pixel', this.value)">
+                        <label>Tracking / Spasi <span id="val-man-space" style="float: right;">0px</span></label>
+                        <input type="range" min="-5" max="40" value="0" step="1" style="width: 100%;" oninput="updateDestructiveLab('space', this.value)">
                     </div>
                 </div>
 
-                <!-- Area Preview Teks Eksperimental -->
-                <div class="paragraph-preview-wrapper" style="padding: 40px; background: var(--light-gray); border-radius: 6px; border: 1px solid var(--border-color); overflow: hidden;">
-                    <div id="manifesto-text-canvas" style="font-family: 'GLF Grafem', sans-serif; font-size: 64px; line-height: 1.4; word-break: break-all; transition: filter 0.2s ease;" contenteditable="true">
-                        GLIFTYPE MANIFESTO EXPERIMENTAL TYPOGRAPHY DESTRUCTION LAB
+                <!-- Canvas Tempat Mengetik Teks Bebas dengan Efek Destruktif -->
+                <div class="destructive-workspace" style="padding: 50px; background: var(--light-gray); border-radius: 6px; border: 1px solid var(--border-color); min-height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                    <div id="destructive-output" contenteditable="true" spellcheck="false" style="font-family: 'GLF Grafem', sans-serif; font-size: 72px; font-weight: 700; text-align: center; line-height: 1.3; outline: none; word-break: break-word; transition: transform 0.1s ease; width: 100%;">
+                        DESTRUCTIVE LAB
                     </div>
                 </div>
             </div>
@@ -1482,42 +1483,39 @@
             setTimeout(adjustInputWidths, 10);
         }
 
-        // Fungsi Kontrol Efek Destruktif di Halaman Manifesto
-        function updateManifestoEffect(type, value) {
-            const canvas = document.getElementById('manifesto-text-canvas');
+        // Kontrol Efek Destruktif Real-Time ala Typoclast di Halaman Manifesto
+        function updateDestructiveLab(type, value) {
+            const output = document.getElementById('destructive-output');
             
-            if (type === 'round') {
-                document.getElementById('val-man-round').textContent = value + 'px';
-                canvas.style.borderRadius = value + 'px';
-                canvas.style.filter = `drop-shadow(0 0 ${value * 0.2}px var(--text-color))`;
-            } 
-            else if (type === 'noise') {
-                document.getElementById('val-man-noise').textContent = value;
+            if (type === 'melt') {
+                document.getElementById('val-man-melt').textContent = value + 'px';
                 if (value > 0) {
-                    canvas.style.filter = `contrast(${1 + value * 0.2}) blur(${value * 0.05}px)`;
+                    output.style.filter = `blur(${value * 0.1}px) contrast(${2 + value * 0.3}) drop-shadow(0 ${value}px ${value * 0.5}px var(--text-color))`;
                 } else {
-                    canvas.style.filter = 'none';
+                    output.style.filter = 'none';
                 }
             } 
-            else if (type === 'jitter') {
-                document.getElementById('val-man-jitter').textContent = value + 'px';
+            else if (type === 'glitch') {
+                document.getElementById('val-man-glitch').textContent = value + 'px';
                 if (value > 0) {
-                    canvas.style.transform = `translate(${Math.random() * value - value / 2}px, ${Math.random() * value - value / 2}px)`;
+                    output.style.textShadow = `${value}px 0px 0px rgba(255,0,0,0.7), -${value}px 0px 0px rgba(0,255,255,0.7)`;
+                    output.style.letterSpacing = (value * 0.5) + 'px';
                 } else {
-                    canvas.style.transform = 'translate(0, 0)';
+                    output.style.textShadow = 'none';
+                    output.style.letterSpacing = 'normal';
                 }
             } 
-            else if (type === 'tracking') {
-                document.getElementById('val-man-tracking').textContent = value + 'px';
-                canvas.style.letterSpacing = value + 'px';
-            } 
-            else if (type === 'pixel') {
-                document.getElementById('val-man-pixel').textContent = value + 'px';
+            else if (type === 'chaos') {
+                document.getElementById('val-man-chaos').textContent = value + 'deg';
                 if (value > 0) {
-                    canvas.style.filter = `blur(${value * 0.15}px) contrast(${5 + value})`;
+                    output.style.transform = `rotate(${value}deg) skew(${value * 0.5}deg)`;
                 } else {
-                    canvas.style.filter = 'none';
+                    output.style.transform = 'rotate(0deg) skew(0deg)';
                 }
+            } 
+            else if (type === 'space') {
+                document.getElementById('val-man-space').textContent = value + 'px';
+                output.style.letterSpacing = value + 'px';
             }
         }
 
