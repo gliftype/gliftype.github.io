@@ -303,16 +303,16 @@
 
         .marquee-track {
             display: inline-flex;
-            gap: 60px;
+            gap: 80px;
             white-space: nowrap;
             will-change: transform;
-            /* Kecepatan disamakan ke 250s (arah default Kanan ke Kiri) */
-            animation: marqueeLeft 250s linear infinite;
+            /* Kecepatan diperlambat sedikit ke 300s (arah default Kanan ke Kiri) */
+            animation: marqueeLeft 300s linear infinite;
         }
 
         /* Kelas untuk arah sebaliknya (Kiri ke Kanan) */
         .marquee-track.reverse {
-            animation: marqueeRight 250s linear infinite;
+            animation: marqueeRight 300s linear infinite;
         }
 
         .preview-wrapper:hover .marquee-track {
@@ -1143,9 +1143,9 @@
     </footer>
 
     <script>
-        // Menyesuaikan lebar input teks agar sesuai dengan panjang string agar tidak terpotong saat animasi
+        // Menyesuaikan lebar input teks agar akurat dan tidak terpotong saat animasi looping
         function adjustInputWidths() {
-            const inputs = document.querySelectorAll('.marquee-text-node');
+            const inputs = document.querySelectorAll('.marquee-text-node:not(.clone-node)');
             inputs.forEach(input => {
                 const tempSpan = document.createElement('span');
                 tempSpan.style.visibility = 'hidden';
@@ -1154,12 +1154,13 @@
                 tempSpan.style.font = window.getComputedStyle(input).font;
                 tempSpan.textContent = input.value || input.placeholder;
                 document.body.appendChild(tempSpan);
-                const textWidth = Math.ceil(tempSpan.getBoundingClientRect().width) + 80;
+                const textWidth = Math.ceil(tempSpan.getBoundingClientRect().width) + 100;
                 document.body.removeChild(tempSpan);
 
                 input.style.width = textWidth + 'px';
                 const clone = input.parentElement.querySelector('.clone-node');
                 if (clone) {
+                    clone.value = input.value;
                     clone.style.width = textWidth + 'px';
                 }
             });
