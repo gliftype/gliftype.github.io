@@ -306,11 +306,9 @@
             gap: 80px;
             white-space: nowrap;
             will-change: transform;
-            /* Kecepatan diperlambat sedikit ke 300s (arah default Kanan ke Kiri) */
             animation: marqueeLeft 300s linear infinite;
         }
 
-        /* Kelas untuk arah sebaliknya (Kiri ke Kanan) */
         .marquee-track.reverse {
             animation: marqueeRight 300s linear infinite;
         }
@@ -320,21 +318,13 @@
         }
 
         @keyframes marqueeLeft {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         @keyframes marqueeRight {
-            0% {
-                transform: translateX(-50%);
-            }
-            100% {
-                transform: translateX(0);
-            }
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
         }
 
         .marquee-text-node {
@@ -348,7 +338,7 @@
             user-select: text;
         }
 
-        /* User typing state */
+        /* User typing state untuk halaman utama */
         .preview-wrapper.user-typing-mode .marquee-track {
             animation: none !important;
             transform: none !important;
@@ -366,6 +356,27 @@
             overflow-x: auto !important;
             width: 100% !important;
             resize: vertical !important;
+        }
+
+        /* Styling khusus Paragraph Preview untuk Halaman Detail */
+        .paragraph-preview-wrapper {
+            width: 100%;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .paragraph-text-node {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-color);
+            resize: vertical;
+            font-family: inherit;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-y: hidden;
+            display: block;
         }
 
         /* Detail page layout & components */
@@ -657,7 +668,7 @@
     <main>
         <!-- Page Typefaces -->
         <section id="typefaces" class="page-section active">
-            <!-- Font 1: GLF Grafem (Ganjil: Kanan ke Kiri) -->
+            <!-- Font 1: GLF Grafem -->
             <div class="font-item-clean">
                 <div class="font-header-info">
                     <a href="#font-grafem" class="font-title-link" onclick="switchPage('font-grafem', event)">GLF Grafem</a>
@@ -687,7 +698,7 @@
                 </div>
             </div>
 
-            <!-- Font 2: GLF Fonem (Genap: Kiri ke Kanan) -->
+            <!-- Font 2: GLF Fonem -->
             <div class="font-item-clean">
                 <div class="font-header-info">
                     <a href="#font-fonem" class="font-title-link" onclick="switchPage('font-fonem', event)">GLF Fonem</a>
@@ -717,7 +728,7 @@
                 </div>
             </div>
 
-            <!-- Font 3: GLF Cikutra (Ganjil: Kanan ke Kiri) -->
+            <!-- Font 3: GLF Cikutra -->
             <div class="font-item-clean">
                 <div class="font-header-info">
                     <a href="#font-cikutra" class="font-title-link" onclick="switchPage('font-cikutra', event)">GLF Cikutra</a>
@@ -747,7 +758,7 @@
                 </div>
             </div>
 
-            <!-- Font 4: GLF Alofon (Genap: Kiri ke Kanan) -->
+            <!-- Font 4: GLF Alofon -->
             <div class="font-item-clean">
                 <div class="font-header-info">
                     <a href="#font-alofon" class="font-title-link" onclick="switchPage('font-alofon', event)">GLF Alofon</a>
@@ -794,8 +805,8 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="260" value="180" step="2" oninput="updateFont(this, 'grafem-preview-detail', 'fontSize', 'val-grafem-s-det')">
-                            <span id="val-grafem-s-det">180px</span>
+                            <input type="range" min="24" max="260" value="72" step="2" oninput="updateFont(this, 'grafem-preview-detail', 'fontSize', 'val-grafem-s-det')">
+                            <span id="val-grafem-s-det">72px</span>
                         </div>
                         <div class="control-group">
                             <label>Height</label>
@@ -804,11 +815,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="preview-wrapper" id="wrap-grafem-det">
-                    <div class="marquee-track">
-                        <input type="text" id="grafem-preview-detail" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-det')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.">
-                    </div>
+                <!-- Kolom Preview Paragraf Statis -->
+                <div class="paragraph-preview-wrapper">
+                    <textarea id="grafem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-size: 72px; line-height: 1.2;" rows="3">Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.</textarea>
                 </div>
             </div>
 
@@ -860,8 +869,8 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="260" value="180" step="2" oninput="updateFont(this, 'fonem-preview-detail', 'fontSize', 'val-fonem-s-det')">
-                            <span id="val-fonem-s-det">180px</span>
+                            <input type="range" min="24" max="260" value="72" step="2" oninput="updateFont(this, 'fonem-preview-detail', 'fontSize', 'val-fonem-s-det')">
+                            <span id="val-fonem-s-det">72px</span>
                         </div>
                         <div class="control-group">
                             <label>Height</label>
@@ -870,11 +879,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="preview-wrapper" id="wrap-fonem-det">
-                    <div class="marquee-track">
-                        <input type="text" id="fonem-preview-detail" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-det')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.">
-                    </div>
+                <!-- Kolom Preview Paragraf Statis -->
+                <div class="paragraph-preview-wrapper">
+                    <textarea id="fonem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-size: 72px; line-height: 1.2;" rows="3">Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.</textarea>
                 </div>
             </div>
 
@@ -926,8 +933,8 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="260" value="180" step="2" oninput="updateFont(this, 'cikutra-preview-detail', 'fontSize', 'val-cikutra-s-det')">
-                            <span id="val-cikutra-s-det">180px</span>
+                            <input type="range" min="24" max="260" value="72" step="2" oninput="updateFont(this, 'cikutra-preview-detail', 'fontSize', 'val-cikutra-s-det')">
+                            <span id="val-cikutra-s-det">72px</span>
                         </div>
                         <div class="control-group">
                             <label>Height</label>
@@ -936,11 +943,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="preview-wrapper" id="wrap-cikutra-det">
-                    <div class="marquee-track">
-                        <input type="text" id="cikutra-preview-detail" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-det')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.">
-                    </div>
+                <!-- Kolom Preview Paragraf Statis -->
+                <div class="paragraph-preview-wrapper">
+                    <textarea id="cikutra-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-size: 72px; line-height: 1.2;" rows="3">Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.</textarea>
                 </div>
             </div>
 
@@ -992,8 +997,8 @@
                         </div>
                         <div class="control-group">
                             <label>Size</label>
-                            <input type="range" min="24" max="260" value="180" step="2" oninput="updateFont(this, 'alofon-preview-detail', 'fontSize', 'val-alofon-s-det')">
-                            <span id="val-alofon-s-det">180px</span>
+                            <input type="range" min="24" max="260" value="72" step="2" oninput="updateFont(this, 'alofon-preview-detail', 'fontSize', 'val-alofon-s-det')">
+                            <span id="val-alofon-s-det">72px</span>
                         </div>
                         <div class="control-group">
                             <label>Height</label>
@@ -1002,11 +1007,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="preview-wrapper" id="wrap-alofon-det">
-                    <div class="marquee-track">
-                        <input type="text" id="alofon-preview-detail" class="marquee-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-alofon-det')" readonly value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.">
-                    </div>
+                <!-- Kolom Preview Paragraf Statis -->
+                <div class="paragraph-preview-wrapper">
+                    <textarea id="alofon-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-size: 72px; line-height: 1.2;" rows="3">A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.</textarea>
                 </div>
             </div>
 
@@ -1086,7 +1089,7 @@
 
                 <div>
                     <p><strong>DISCLAIMER</strong></p>
-                    <p>THE FONT SOFTWARE IS PROVIDED <strong>"AS IS"</strong>, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE.</p>
+                    <p>THE FONT SOFTWARE IS PROVIDED <strong>"AS IS"</strong>, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE.</p>
                 </div>
             </div>
         </section>
@@ -1143,9 +1146,9 @@
     </footer>
 
     <script>
-        // Menyesuaikan lebar input teks agar akurat dan tidak terpotong saat animasi looping
+        // Menyesuaikan lebar input teks agar akurat dan tidak terpotong saat animasi looping di halaman utama
         function adjustInputWidths() {
-            const inputs = document.querySelectorAll('.marquee-text-node:not(.clone-node)');
+            const inputs = document.querySelectorAll('#typefaces .marquee-text-node:not(.clone-node)');
             inputs.forEach(input => {
                 const tempSpan = document.createElement('span');
                 tempSpan.style.visibility = 'hidden';
@@ -1166,7 +1169,7 @@
             });
         }
 
-        // Fungsi saat input diklik/difokuskan untuk berhenti bergerak & bisa diedit
+        // Fungsi saat input diklik/difokuskan untuk berhenti bergerak & bisa diedit (khusus halaman utama)
         function stopRunningText(input, wrapperId) {
             const wrapper = document.getElementById(wrapperId);
             wrapper.classList.add('user-typing-mode');
@@ -1250,7 +1253,7 @@
                 });
         }
 
-        // Render grid glyph ke HTML (Diatur dengan targetWeight = 600)
+        // Render grid glyph ke HTML
         function renderGlyphsGrid(key, glyphsArray) {
             const container = document.getElementById(`glyphs-container-${key}`);
             const fontObj = loadedFontsData[key].fontObj;
