@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -317,7 +317,7 @@
         }
 
         .marquee-track.reverse {
-            animation: marqueeRight 150s linear infinite;
+            animation: marqueeLeft 150s linear infinite;
         }
 
         .preview-wrapper:hover .marquee-track {
@@ -737,7 +737,7 @@
                     </div>
                 </div>
                 <div class="preview-wrapper" id="wrap-fonem-main">
-                    <div class="marquee-track reverse">
+                    <div class="marquee-track">
                         <input type="text" id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-main')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
                         <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
                     </div>
@@ -807,7 +807,7 @@
                     </div>
                 </div>
                 <div class="preview-wrapper" id="wrap-alofon-main">
-                    <div class="marquee-track reverse">
+                    <div class="marquee-track">
                         <input type="text" id="alofon-preview-main" class="marquee-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-alofon-main')" readonly value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
                         <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
                     </div>
@@ -1508,7 +1508,14 @@
         // Inisialisasi Halaman
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
+            if (savedTheme) {
+                if (savedTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+            } else {
+                // Default ke dark mode jika belum ada localStorage
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
 
