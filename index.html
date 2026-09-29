@@ -35,6 +35,13 @@
             font-style: normal;
         }
 
+        @font-face {
+            font-family: 'GLF Amara';
+            src: url('fonts/GLF-Amara-VF.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
+        }
+
         /* Default (Light Mode) */
         :root {
             --bg-color: #ffffff;
@@ -787,6 +794,36 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Font 5: GLF Amara -->
+            <div class="font-item-clean">
+                <div class="font-header-info">
+                    <a href="#font-amara" class="font-title-link" onclick="switchPage('font-amara', event)">GLF Amara</a>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'amara-preview-main', 'fontWeight', 'val-amara-w')">
+                            <span id="val-amara-w">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="24" max="260" value="180" step="2" oninput="updateFont(this, 'amara-preview-main', 'fontSize', 'val-amara-s')">
+                            <span id="val-amara-s">180px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'amara-preview-main', 'lineHeight', 'val-amara-h')">
+                            <span id="val-amara-h">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-wrapper" id="wrap-amara-main">
+                    <div class="marquee-track">
+                        <input type="text" id="amara-preview-main" class="marquee-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-amara-main')" readonly value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-size: 180px; line-height: 1.2;" readonly tabindex="-1" value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.">
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Halaman Detail: GLF Grafem -->
@@ -830,7 +867,7 @@
                 <h3>Details</h3>
                 <div class="specs-grid">
                     <div class="spec-item"><label>Designed by</label><span>Sidiq Kamal Nurmawan</span></div>
-                    <div class="spec-item"><label>Released</label><span>Agustus 2026</span></div>
+                    <div class="spec-item"><label>Released</label><span>Juli 2026</span></div>
                     <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
                     <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
                     <div class="spec-item"><label>Support</label><span>Latin, Latin-1, Extended-A</span></div>
@@ -1022,7 +1059,7 @@
                 <h3>Details</h3>
                 <div class="specs-grid">
                     <div class="spec-item"><label>Designed by</label><span>Sidiq Kamal Nurmawan</span></div>
-                    <div class="spec-item"><label>Released</label><span>Agustus 2026</span></div>
+                    <div class="spec-item"><label>Released</label><span>September 2026</span></div>
                     <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
                     <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
                     <div class="spec-item"><label>Support</label><span>Latin, Latin-1</span></div>
@@ -1042,6 +1079,70 @@
 
             <div class="download-section">
                 <a href="fonts/GLF-Alofon-VF.woff2" class="btn-download" download>Download GLF-Alofon-VF.woff2</a>
+            </div>
+        </section>
+
+        <!-- Halaman Detail: GLF Amara -->
+        <section id="font-amara" class="page-section">
+            <a href="#typefaces" class="back-link" onclick="switchPage('typefaces', event)">&larr; Back to Typefaces</a>
+            <h1>GLF Amara</h1>
+            
+            <div class="font-item-clean" style="padding-top: 0;">
+                <div class="font-header-info">
+                    <div style="font-weight: 600; font-size: 1.15rem;">Interactive Preview</div>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'amara-preview-detail', 'fontWeight', 'val-amara-w-det')">
+                            <span id="val-amara-w-det">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="24" max="260" value="72" step="2" oninput="updateFont(this, 'amara-preview-detail', 'fontSize', 'val-amara-s-det')">
+                            <span id="val-amara-s-det">72px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'amara-preview-detail', 'lineHeight', 'val-amara-h-det')">
+                            <span id="val-amara-h-det">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Kolom Preview Paragraf Statis -->
+                <div class="paragraph-preview-wrapper">
+                    <textarea id="amara-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-size: 72px; line-height: 1.2;" rows="3">This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.</textarea>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>About</h3>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.</p>
+            </div>
+
+            <div class="detail-block">
+                <h3>Details</h3>
+                <div class="specs-grid">
+                    <div class="spec-item"><label>Designed by</label><span>Sidiq Kamal Nurmawan</span></div>
+                    <div class="spec-item"><label>Released</label><span>September 2026</span></div>
+                    <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
+                    <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
+                    <div class="spec-item"><label>Support</label><span>Latin, Latin-1</span></div>
+                </div>
+            </div>
+
+            <!-- GLF Amara Glyphs -->
+            <div class="detail-block">
+                <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-amara" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('amara')">
+                </div>
+                <div id="glyphs-container-amara">
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <a href="fonts/GLF-Amara-VF.woff2" class="btn-download" download>Download GLF-Amara-VF.woff2</a>
             </div>
         </section>
 
@@ -1182,7 +1283,8 @@
             'grafem': { url: 'fonts/GLF-Grafem-VF.ttf', fontObj: null, glyphs: [] },
             'fonem': { url: 'fonts/GLF-Fonem-VF.ttf', fontObj: null, glyphs: [] },
             'cikutra': { url: 'fonts/GLF-Cikutra-VF.ttf', fontObj: null, glyphs: [] },
-            'alofon': { url: 'fonts/GLF-Alofon-VF.ttf', fontObj: null, glyphs: [] }
+            'alofon': { url: 'fonts/GLF-Alofon-VF.ttf', fontObj: null, glyphs: [] },
+            'amara': { url: 'fonts/GLF-Amara-VF.ttf', fontObj: null, glyphs: [] }
         };
 
         // Fungsi Navigasi Halaman
@@ -1198,7 +1300,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 window.location.hash = pageId;
 
-                if (['font-grafem', 'font-fonem', 'font-cikutra', 'font-alofon'].includes(pageId)) {
+                if (['font-grafem', 'font-fonem', 'font-cikutra', 'font-alofon', 'font-amara'].includes(pageId)) {
                     const key = pageId.replace('font-', '');
                     if (!loadedFontsData[key].fontObj) {
                         fetchAndParseFont(key);
