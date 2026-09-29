@@ -310,14 +310,14 @@
 
         .marquee-track {
             display: inline-flex;
-            gap: 80px;
+            gap: 0px;
             white-space: nowrap;
             will-change: transform;
-            animation: marqueeLeft 300s linear infinite;
+            animation: marqueeLeft 150s linear infinite;
         }
 
         .marquee-track.reverse {
-            animation: marqueeRight 300s linear infinite;
+            animation: marqueeRight 150s linear infinite;
         }
 
         .preview-wrapper:hover .marquee-track {
@@ -340,7 +340,7 @@
             border: none;
             outline: none;
             color: var(--text-color);
-            white-space: nowrap;
+            white-space: pre;
             flex-shrink: 0;
             user-select: text;
         }
@@ -685,9 +685,9 @@
                             <span id="val-grafem-w">400</span>
                         </div>
                         <div class="control-group">
-                            <label>Width</label>
-                            <input type="range" min="75" max="125" value="100" step="1" oninput="updateFont(this, 'grafem-preview-main', 'fontWidth', 'val-grafem-wd')">
-                            <span id="val-grafem-wd">100</span>
+                            <label>Kerning</label>
+                            <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'grafem-preview-main', 'kerning', 'val-grafem-k')">
+                            <span id="val-grafem-k">0px</span>
                         </div>
                         <div class="control-group">
                             <label>Size</label>
@@ -703,8 +703,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-grafem-main">
                     <div class="marquee-track">
-                        <input type="text" id="grafem-preview-main" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-main')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones. It is seen as living proof that communities can organize themselves without state authority, where street walls serve as visual propaganda and underground hubs act as safe havens to challenge state control and top-down development.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones. It is seen as living proof that communities can organize themselves without state authority, where street walls serve as visual propaganda and underground hubs act as safe havens to challenge state control and top-down development.">
+                        <input type="text" id="grafem-preview-main" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-main')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.    ">
                     </div>
                 </div>
             </div>
@@ -720,9 +720,9 @@
                             <span id="val-fonem-w">400</span>
                         </div>
                         <div class="control-group">
-                            <label>Width</label>
-                            <input type="range" min="75" max="125" value="100" step="1" oninput="updateFont(this, 'fonem-preview-main', 'fontWidth', 'val-fonem-wd')">
-                            <span id="val-fonem-wd">100</span>
+                            <label>Kerning</label>
+                            <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'fonem-preview-main', 'kerning', 'val-fonem-k')">
+                            <span id="val-fonem-k">0px</span>
                         </div>
                         <div class="control-group">
                             <label>Size</label>
@@ -738,8 +738,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-fonem-main">
                     <div class="marquee-track reverse">
-                        <input type="text" id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-main')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment. Kebumen is valued as a space for practicing food sovereignty and horizontal cooperation, where communities naturally organize themselves to protect the ecology from top-down industrialization and mining threats without relying on state authority.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment. Kebumen is valued as a space for practicing food sovereignty and horizontal cooperation, where communities naturally organize themselves to protect the ecology from top-down industrialization and mining threats without relying on state authority.">
+                        <input type="text" id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-main')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
                     </div>
                 </div>
             </div>
@@ -755,9 +755,9 @@
                             <span id="val-cikutra-w">400</span>
                         </div>
                         <div class="control-group">
-                            <label>Width</label>
-                            <input type="range" min="75" max="125" value="100" step="1" oninput="updateFont(this, 'cikutra-preview-main', 'fontWidth', 'val-cikutra-wd')">
-                            <span id="val-cikutra-wd">100</span>
+                            <label>Kerning</label>
+                            <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'cikutra-preview-main', 'kerning', 'val-cikutra-k')">
+                            <span id="val-cikutra-k">0px</span>
                         </div>
                         <div class="control-group">
                             <label>Size</label>
@@ -773,8 +773,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-cikutra-main">
                     <div class="marquee-track">
-                        <input type="text" id="cikutra-preview-main" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-main')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival. To the city's radical collectives, the capital is a dystopian hyper-monitored hub where corporate greed fuels aggressive gentrification and forced evictions of the working class. However, within the cracks of this concrete metropolis, anarchists view Jakarta as a thriving network of underground resistance—where street-level solidarity, squatter networks, and localized mutual aid constantly sabotage the state's illusion of control.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival. To the city's radical collectives, the capital is a dystopian hyper-monitored hub where corporate greed fuels aggressive gentrification and forced evictions of the working class. However, within the cracks of this concrete metropolis, anarchists view Jakarta as a thriving network of underground resistance—where street-level solidarity, squatter networks, and localized mutual aid constantly sabotage the state's illusion of control.">
+                        <input type="text" id="cikutra-preview-main" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-main')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.    ">
                     </div>
                 </div>
             </div>
@@ -790,9 +790,9 @@
                             <span id="val-alofon-w">400</span>
                         </div>
                         <div class="control-group">
-                            <label>Width</label>
-                            <input type="range" min="75" max="125" value="100" step="1" oninput="updateFont(this, 'alofon-preview-main', 'fontWidth', 'val-alofon-wd')">
-                            <span id="val-alofon-wd">100</span>
+                            <label>Kerning</label>
+                            <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'alofon-preview-main', 'kerning', 'val-alofon-k')">
+                            <span id="val-alofon-k">0px</span>
                         </div>
                         <div class="control-group">
                             <label>Size</label>
@@ -808,8 +808,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-alofon-main">
                     <div class="marquee-track reverse">
-                        <input type="text" id="alofon-preview-main" class="marquee-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-alofon-main')" readonly value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.">
+                        <input type="text" id="alofon-preview-main" class="marquee-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-alofon-main')" readonly value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
                     </div>
                 </div>
             </div>
@@ -825,9 +825,9 @@
                             <span id="val-amara-w">400</span>
                         </div>
                         <div class="control-group">
-                            <label>Width</label>
-                            <input type="range" min="75" max="125" value="100" step="1" oninput="updateFont(this, 'amara-preview-main', 'fontWidth', 'val-amara-wd')">
-                            <span id="val-amara-wd">100</span>
+                            <label>Kerning</label>
+                            <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'amara-preview-main', 'kerning', 'val-amara-k')">
+                            <span id="val-amara-k">0px</span>
                         </div>
                         <div class="control-group">
                             <label>Size</label>
@@ -843,8 +843,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-amara-main">
                     <div class="marquee-track">
-                        <input type="text" id="amara-preview-main" class="marquee-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-amara-main')" readonly value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.">
+                        <input type="text" id="amara-preview-main" class="marquee-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-amara-main')" readonly value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.    ">
                     </div>
                 </div>
             </div>
@@ -865,9 +865,9 @@
                             <span id="val-grafem-w-det">400</span>
                         </div>
                         <div class="control-group">
-                            <label>Width</label>
-                            <input type="range" min="75" max="125" value="100" step="1" oninput="updateFont(this, 'grafem-preview-detail', 'fontWidth', 'val-grafem-wd-det')">
-                            <span id="val-grafem-wd-det">100</span>
+                            <label>Kerning</label>
+                            <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'grafem-preview-detail', 'kerning', 'val-grafem-k-det')">
+                            <span id="val-grafem-k-det">0px</span>
                         </div>
                         <div class="control-group">
                             <label>Size</label>
@@ -883,7 +883,7 @@
                 </div>
                 <!-- Kolom Preview Paragraf Statis -->
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="grafem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" rows="3">Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.</textarea>
+                    <textarea id="grafem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.</textarea>
                 </div>
             </div>
 
@@ -934,9 +934,9 @@
                             <span id="val-fonem-w-det">400</span>
                         </div>
                         <div class="control-group">
-                            <label>Width</label>
-                            <input type="range" min="75" max="125" value="100" step="1" oninput="updateFont(this, 'fonem-preview-detail', 'fontWidth', 'val-fonem-wd-det')">
-                            <span id="val-fonem-wd-det">100</span>
+                            <label>Kerning</label>
+                            <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'fonem-preview-detail', 'kerning', 'val-fonem-k-det')">
+                            <span id="val-fonem-k-det">0px</span>
                         </div>
                         <div class="control-group">
                             <label>Size</label>
@@ -952,7 +952,7 @@
                 </div>
                 <!-- Kolom Preview Paragraf Statis -->
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="fonem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" rows="3">Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.</textarea>
+                    <textarea id="fonem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.</textarea>
                 </div>
             </div>
 
@@ -1003,9 +1003,9 @@
                             <span id="val-cikutra-w-det">400</span>
                         </div>
                         <div class="control-group">
-                            <label>Width</label>
-                            <input type="range" min="75" max="125" value="100" step="1" oninput="updateFont(this, 'cikutra-preview-detail', 'fontWidth', 'val-cikutra-wd-det')">
-                            <span id="val-cikutra-wd-det">100</span>
+                            <label>Kerning</label>
+                            <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'cikutra-preview-detail', 'kerning', 'val-cikutra-k-det')">
+                            <span id="val-cikutra-k-det">0px</span>
                         </div>
                         <div class="control-group">
                             <label>Size</label>
@@ -1021,7 +1021,7 @@
                 </div>
                 <!-- Kolom Preview Paragraf Statis -->
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="cikutra-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" rows="3">Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.</textarea>
+                    <textarea id="cikutra-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.</textarea>
                 </div>
             </div>
 
@@ -1072,9 +1072,9 @@
                             <span id="val-alofon-w-det">400</span>
                         </div>
                         <div class="control-group">
-                            <label>Width</label>
-                            <input type="range" min="75" max="125" value="100" step="1" oninput="updateFont(this, 'alofon-preview-detail', 'fontWidth', 'val-alofon-wd-det')">
-                            <span id="val-alofon-wd-det">100</span>
+                            <label>Kerning</label>
+                            <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'alofon-preview-detail', 'kerning', 'val-alofon-k-det')">
+                            <span id="val-alofon-k-det">0px</span>
                         </div>
                         <div class="control-group">
                             <label>Size</label>
@@ -1090,7 +1090,7 @@
                 </div>
                 <!-- Kolom Preview Paragraf Statis -->
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="alofon-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" rows="3">A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.</textarea>
+                    <textarea id="alofon-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.</textarea>
                 </div>
             </div>
 
@@ -1141,9 +1141,9 @@
                             <span id="val-amara-w-det">400</span>
                         </div>
                         <div class="control-group">
-                            <label>Width</label>
-                            <input type="range" min="75" max="125" value="100" step="1" oninput="updateFont(this, 'amara-preview-detail', 'fontWidth', 'val-amara-wd-det')">
-                            <span id="val-amara-wd-det">100</span>
+                            <label>Kerning</label>
+                            <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'amara-preview-detail', 'kerning', 'val-amara-k-det')">
+                            <span id="val-amara-k-det">0px</span>
                         </div>
                         <div class="control-group">
                             <label>Size</label>
@@ -1159,7 +1159,7 @@
                 </div>
                 <!-- Kolom Preview Paragraf Statis -->
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="amara-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-stretch: 100%; font-size: 82px; line-height: 1.2;" rows="3">This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.</textarea>
+                    <textarea id="amara-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.</textarea>
                 </div>
             </div>
 
@@ -1303,11 +1303,12 @@
                 const tempSpan = document.createElement('span');
                 tempSpan.style.visibility = 'hidden';
                 tempSpan.style.position = 'absolute';
-                tempSpan.style.whiteSpace = 'nowrap';
+                tempSpan.style.whiteSpace = 'pre';
                 tempSpan.style.font = window.getComputedStyle(input).font;
-                tempSpan.textContent = input.value || input.placeholder;
+                tempSpan.style.letterSpacing = window.getComputedStyle(input).letterSpacing;
+                tempSpan.textContent = input.value;
                 document.body.appendChild(tempSpan);
-                const textWidth = Math.ceil(tempSpan.getBoundingClientRect().width) + 100;
+                const textWidth = Math.ceil(tempSpan.getBoundingClientRect().width);
                 document.body.removeChild(tempSpan);
 
                 input.style.width = textWidth + 'px';
@@ -1474,10 +1475,10 @@
                 target.style.fontWeight = val;
                 if (clone) clone.style.fontWeight = val;
                 span.textContent = val;
-            } else if (property === 'fontWidth') {
-                target.style.fontStretch = val + '%';
-                if (clone) clone.style.fontStretch = val + '%';
-                span.textContent = val;
+            } else if (property === 'kerning') {
+                target.style.letterSpacing = val + 'px';
+                if (clone) clone.style.letterSpacing = val + 'px';
+                span.textContent = val + 'px';
             } else if (property === 'fontSize') {
                 target.style.fontSize = val + 'px';
                 if (clone) clone.style.fontSize = val + 'px';
