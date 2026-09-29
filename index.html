@@ -310,7 +310,7 @@
 
         .marquee-track {
             display: inline-flex;
-            gap: 0px;
+            gap: 1.5rem; /* Menjadikan jarak antar elemen running text lebih rapat */
             white-space: nowrap;
             will-change: transform;
             animation: marqueeLeft 150s linear infinite;
@@ -685,6 +685,11 @@
                             <span id="val-grafem-w">400</span>
                         </div>
                         <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="1" oninput="updateFont(this, 'grafem-preview-main', 'width', 'val-grafem-wdth')">
+                            <span id="val-grafem-wdth">0</span>
+                        </div>
+                        <div class="control-group">
                             <label>Kerning</label>
                             <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'grafem-preview-main', 'kerning', 'val-grafem-k')">
                             <span id="val-grafem-k">0px</span>
@@ -718,6 +723,11 @@
                             <label>Weight</label>
                             <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'fonem-preview-main', 'fontWeight', 'val-fonem-w')">
                             <span id="val-fonem-w">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="1" oninput="updateFont(this, 'fonem-preview-main', 'width', 'val-fonem-wdth')">
+                            <span id="val-fonem-wdth">0</span>
                         </div>
                         <div class="control-group">
                             <label>Kerning</label>
@@ -755,6 +765,11 @@
                             <span id="val-cikutra-w">400</span>
                         </div>
                         <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="1" oninput="updateFont(this, 'cikutra-preview-main', 'width', 'val-cikutra-wdth')">
+                            <span id="val-cikutra-wdth">0</span>
+                        </div>
+                        <div class="control-group">
                             <label>Kerning</label>
                             <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'cikutra-preview-main', 'kerning', 'val-cikutra-k')">
                             <span id="val-cikutra-k">0px</span>
@@ -790,6 +805,11 @@
                             <span id="val-alofon-w">400</span>
                         </div>
                         <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="1" oninput="updateFont(this, 'alofon-preview-main', 'width', 'val-alofon-wdth')">
+                            <span id="val-alofon-wdth">0</span>
+                        </div>
+                        <div class="control-group">
                             <label>Kerning</label>
                             <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'alofon-preview-main', 'kerning', 'val-alofon-k')">
                             <span id="val-alofon-k">0px</span>
@@ -823,6 +843,11 @@
                             <label>Weight</label>
                             <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'amara-preview-main', 'fontWeight', 'val-amara-w')">
                             <span id="val-amara-w">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="1" oninput="updateFont(this, 'amara-preview-main', 'width', 'val-amara-wdth')">
+                            <span id="val-amara-wdth">0</span>
                         </div>
                         <div class="control-group">
                             <label>Kerning</label>
@@ -863,6 +888,11 @@
                             <label>Weight</label>
                             <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'grafem-preview-detail', 'fontWeight', 'val-grafem-w-det')">
                             <span id="val-grafem-w-det">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="1" oninput="updateFont(this, 'grafem-preview-detail', 'width', 'val-grafem-wdth-det')">
+                            <span id="val-grafem-wdth-det">0</span>
                         </div>
                         <div class="control-group">
                             <label>Kerning</label>
@@ -934,6 +964,11 @@
                             <span id="val-fonem-w-det">400</span>
                         </div>
                         <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="1" oninput="updateFont(this, 'fonem-preview-detail', 'width', 'val-fonem-wdth-det')">
+                            <span id="val-fonem-wdth-det">0</span>
+                        </div>
+                        <div class="control-group">
                             <label>Kerning</label>
                             <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'fonem-preview-detail', 'kerning', 'val-fonem-k-det')">
                             <span id="val-fonem-k-det">0px</span>
@@ -1001,6 +1036,11 @@
                             <label>Weight</label>
                             <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'cikutra-preview-detail', 'fontWeight', 'val-cikutra-w-det')">
                             <span id="val-cikutra-w-det">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="1" oninput="updateFont(this, 'cikutra-preview-detail', 'width', 'val-cikutra-wdth-det')">
+                            <span id="val-cikutra-wdth-det">0</span>
                         </div>
                         <div class="control-group">
                             <label>Kerning</label>
@@ -1072,6 +1112,11 @@
                             <span id="val-alofon-w-det">400</span>
                         </div>
                         <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="1" oninput="updateFont(this, 'alofon-preview-detail', 'width', 'val-alofon-wdth-det')">
+                            <span id="val-alofon-wdth-det">0</span>
+                        </div>
+                        <div class="control-group">
                             <label>Kerning</label>
                             <input type="range" min="-2" max="10" value="0" step="0.5" oninput="updateFont(this, 'alofon-preview-detail', 'kerning', 'val-alofon-k-det')">
                             <span id="val-alofon-k-det">0px</span>
@@ -1139,6 +1184,11 @@
                             <label>Weight</label>
                             <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'amara-preview-detail', 'fontWeight', 'val-amara-w-det')">
                             <span id="val-amara-w-det">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="1" oninput="updateFont(this, 'amara-preview-detail', 'width', 'val-amara-wdth-det')">
+                            <span id="val-amara-wdth-det">0</span>
                         </div>
                         <div class="control-group">
                             <label>Kerning</label>
@@ -1467,13 +1517,23 @@
         function updateFont(slider, targetId, property, spanId) {
             const target = document.getElementById(targetId);
             const span = document.getElementById(spanId);
-            const val = slider.value;
+            const val = parseFloat(slider.value);
 
             const clone = target.parentElement.querySelector('.clone-node');
 
             if (property === 'fontWeight') {
                 target.style.fontWeight = val;
                 if (clone) clone.style.fontWeight = val;
+                span.textContent = val;
+            } else if (property === 'width') {
+                // Memetakan rentang slider -20 s.d. 20 ke rentang sumbu variasi font 'wdth' (misal: 75 s.d. 125, di mana 0 bernilai 100)
+                const mappedWdth = ((val - (-20)) * (125 - 75)) / (20 - (-20)) + 75;
+                
+                // Jika menggunakan font-variation-settings gabungan (Weight & Width)
+                const currentWeight = target.style.fontWeight || 400;
+                target.style.fontVariationSettings = `'wght' ${currentWeight}, 'wdth' ${mappedWdth}`;
+                if (clone) clone.style.fontVariationSettings = `'wght' ${currentWeight}, 'wdth' ${mappedWdth}`;
+                
                 span.textContent = val;
             } else if (property === 'kerning') {
                 target.style.letterSpacing = val + 'px';
