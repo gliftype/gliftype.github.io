@@ -6,10 +6,9 @@
     <title>Typefaces — Gliftype</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
 
-    <!-- opentype.js untuk membaca file font .ttf di character map -->
+    <!-- opentype.js untuk membaca file font di character map -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
     <style>
-        /* Menggunakan format WOFF2 untuk performa web */
         @font-face {
             font-family: 'GLF Grafem';
             src: url('fonts/GLF-Grafem-VF.woff2') format('woff2');
@@ -1094,13 +1093,13 @@
             input.style.width = '100%';
         }
 
-        // Variabel untuk font web menggunakan WOFF2, sedangkan JS Character Map diarahkan ke .ttf
+        // Mapping file font konsisten dengan tanda hubung (-)
         const loadedFontsData = {
-            'grafem': { url: 'fonts/GLF-Grafem-VF.ttf', fontObj: null, glyphs: [] },
-            'fonem': { url: 'fonts/GLF-Fonem-VF.ttf', fontObj: null, glyphs: [] },
-            'cikutra': { url: 'fonts/GLF-Cikutra-VF.ttf', fontObj: null, glyphs: [] },
-            'alofon': { url: 'fonts/GLF-Alofon-VF.ttf', fontObj: null, glyphs: [] },
-            'amara': { url: 'fonts/GLF-Amara-VF.ttf', fontObj: null, glyphs: [] }
+            'grafem': { ttfUrl: 'fonts/GLF-Grafem-VF.ttf', fallbackUrl: 'fonts/GLF-Grafem-VF.woff2', fontObj: null, glyphs: [] },
+            'fonem': { ttfUrl: 'fonts/GLF-Fonem-VF.ttf', fallbackUrl: 'fonts/GLF-Fonem-VF.woff2', fontObj: null, glyphs: [] },
+            'cikutra': { ttfUrl: 'fonts/GLF-Cikutra-VF.ttf', fallbackUrl: 'fonts/GLF-Cikutra-VF.woff2', fontObj: null, glyphs: [] },
+            'alofon': { ttfUrl: 'fonts/GLF-Alofon-VF.ttf', fallbackUrl: 'fonts/GLF-Alofon-VF.woff2', fontObj: null, glyphs: [] },
+            'amara': { ttfUrl: 'fonts/GLF-Amara-VF.ttf', fallbackUrl: 'fonts/GLF-Amara-VF.woff2', fontObj: null, glyphs: [] }
         };
 
         function switchSection(sectionId, event) {
@@ -1129,42 +1128,45 @@
             setTimeout(adjustInputWidths, 50);
         }
 
-        function fetchAndParseFont(key) {
+        async function fetchAndParseFont(key) {
             const fontData = loadedFontsData[key];
             const container = document.getElementById(`glyphs-container-${key}`);
 
-            fetch(fontData.url)
-                .then(res => {
-                    if (!res.ok) throw new Error("File font .ttf tidak ditemukan di path " + fontData.url);
-                    return res.arrayBuffer();
-                })
-                .then(buffer => {
-                    const font = opentype.parse(buffer);
-                    fontData.fontObj = font;
-                    
-                    const list = [];
-                    for (let i = 0; i < font.numGlyphs; i++) {
-                        const glyph = font.glyphs.get(i);
-                        if (i > 0 && (!glyph.path || glyph.path.commands.length === 0) && glyph.unicode === undefined) {
-                            continue;
-                        }
-                        let unicodeStr = glyph.unicode ? 'U+' + glyph.unicode.toString(16).toUpperCase().padStart(4, '0') : '';
-                        let char = glyph.unicode ? String.fromCharCode(glyph.unicode) : '';
-                        
-                        list.push({
-                            index: i,
-                            name: glyph.name || `glyph_${i}`,
-                            unicodeStr: unicodeStr,
-                            char: char,
-                            glyphObj: glyph
-                        });
+            try {
+                let res = await fetch(fontData.ttfUrl);
+                if (!res.ok) {
+                    res = await fetch(fontData.fallbackUrl);
+                    if (!res.ok) {
+                        throw new Error(`File font tidak ditemukan di path ${fontData.ttfUrl} maupun ${fontData.fallbackUrl}`);
                     }
-                    fontData.glyphs = list;
-                    renderGlyphsGrid(key, list);
-                })
-                .catch(err => {
-                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font (.ttf): ${err.message}.</div>`;
-                });
+                }
+
+                const buffer = await res.arrayBuffer();
+                const font = opentype.parse(buffer);
+                fontData.fontObj = font;
+                
+                const list = [];
+                for (let i = 0; i < font.numGlyphs; i++) {
+                    const glyph = font.glyphs.get(i);
+                    if (i > 0 && (!glyph.path || glyph.path.commands.length === 0) && glyph.unicode === undefined) {
+                        continue;
+                    }
+                    let unicodeStr = glyph.unicode ? 'U+' + glyph.unicode.toString(16).toUpperCase().padStart(4, '0') : '';
+                    let char = glyph.unicode ? String.fromCharCode(glyph.unicode) : '';
+                    
+                    list.push({
+                        index: i,
+                        name: glyph.name || `glyph_${i}`,
+                        unicodeStr: unicodeStr,
+                        char: char,
+                        glyphObj: glyph
+                    });
+                }
+                fontData.glyphs = list;
+                renderGlyphsGrid(key, list);
+            } catch (err) {
+                container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font untuk Character Map: ${err.message}. Pastikan file font (.ttf atau .woff2) tersedia di folder 'fonts/'.</div>`;
+            }
         }
 
         function renderGlyphsGrid(key, glyphsArray) {
