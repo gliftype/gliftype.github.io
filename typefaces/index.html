@@ -644,16 +644,16 @@
 </head>
 <body>
 
-    <header id="site-header">
+     <header id="site-header">
         <div class="header-container">
-            <a href="/" class="logotype" onclick="switchSection('typefaces', event)">
-                <img src="/images/logo.svg" alt="Gliftype Logo">
+            <a href="/" class="logotype">
+                <img src="images/logo.svg" alt="Gliftype Logo">
             </a>
             <div class="nav-right">
-                <nav class="desktop-nav">
-                    <a href="/typefaces" class="nav-link active" onclick="switchSection('typefaces', event)">Typefaces</a>
-                    <a href="/license" class="nav-link" onclick="switchSection('license', event)">License</a>
-                    <a href="/about" class="nav-link" onclick="switchSection('about', event)">About</a>
+                <nav>
+                    <a href="/typefaces">Typefaces</a>
+                    <a href="/license">License</a>
+                    <a href="/about">About</a>
                 </nav>
 
                 <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
@@ -684,9 +684,9 @@
 
     <div class="mobile-menu-overlay" id="mobile-menu">
         <div class="mobile-nav-links">
-            <a href="/typefaces" class="nav-link active" onclick="switchSection('typefaces', event); toggleMobileMenu();">Typefaces</a>
-            <a href="/license" class="nav-link" onclick="switchSection('license', event); toggleMobileMenu();">License</a>
-            <a href="/about" class="nav-link" onclick="switchSection('about', event); toggleMobileMenu();">About</a>
+              <a href="/typefaces">Typefaces</a>
+              <a href="/license">License</a>
+              <a href="/about">About</a>
         </div>
         <div class="mobile-menu-footer">
             <div>&copy; 2026 Gliftype</div>
