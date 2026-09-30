@@ -407,21 +407,6 @@
             font-weight: 600;
         }
 
-        .glyph-search-bar {
-            margin-bottom: 20px;
-        }
-
-        .glyph-search-input {
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            background: var(--light-gray);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            border-radius: 4px;
-            outline: none;
-            width: 280px;
-        }
-
         .glyph-table {
             display: flex;
             flex-wrap: wrap;
@@ -795,11 +780,8 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
-                <div class="glyph-search-bar">
-                    <input type="text" id="search-grafem" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('grafem')">
-                </div>
                 <div id="glyphs-container-grafem">
-                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font...</div>
                 </div>
             </div>
 
@@ -862,11 +844,8 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
-                <div class="glyph-search-bar">
-                    <input type="text" id="search-fonem" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('fonem')">
-                </div>
                 <div id="glyphs-container-fonem">
-                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font...</div>
                 </div>
             </div>
 
@@ -929,11 +908,8 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
-                <div class="glyph-search-bar">
-                    <input type="text" id="search-cikutra" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('cikutra')">
-                </div>
                 <div id="glyphs-container-cikutra">
-                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font...</div>
                 </div>
             </div>
 
@@ -996,11 +972,8 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
-                <div class="glyph-search-bar">
-                    <input type="text" id="search-alofon" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('alofon')">
-                </div>
                 <div id="glyphs-container-alofon">
-                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font...</div>
                 </div>
             </div>
 
@@ -1063,11 +1036,8 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
-                <div class="glyph-search-bar">
-                    <input type="text" id="search-amara" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('amara')">
-                </div>
                 <div id="glyphs-container-amara">
-                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font...</div>
                 </div>
             </div>
 
@@ -1136,7 +1106,6 @@
                 targetSection.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
-                // Menghapus hash jika kembali ke typefaces utama, dan menetapkan hash jika membuka detail font
                 if (sectionId === 'typefaces') {
                     history.pushState("", document.title, window.location.pathname + window.location.search);
                 } else {
@@ -1187,7 +1156,7 @@
                     renderGlyphsGrid(key, list);
                 })
                 .catch(err => {
-                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font .ttf: ${err.message}.</div>`;
+                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font: ${err.message}.</div>`;
                 });
         }
 
@@ -1204,7 +1173,7 @@
             const descender = fontObj.descender || -200;
             const height = ascender - descender;
             const viewBox = `0 ${-ascender} ${unitsPerEm} ${height}`;
-            let targetWeight = 600;
+            let targetWeight = 400;
 
             let html = `<div class="glyph-table">`;
             glyphsArray.forEach((item) => {
@@ -1218,7 +1187,7 @@
 
                 html += `
                     <div class="glyph-cell" title="${item.name} (${item.unicodeStr})">
-                        <svg viewBox="${viewBox}" style="font-weight: ${targetWeight}; font-variation-settings: 'wght' ${targetWeight};">
+                        <svg viewBox="${viewBox}" style="font-weight: ${targetWeight};">
                             <path d="${pathData}"></path>
                         </svg>
                     </div>
@@ -1226,24 +1195,6 @@
             });
             html += `</div>`;
             container.innerHTML = html;
-        }
-
-        function filterGlyphs(key) {
-            const query = document.getElementById(`search-${key}`).value.toLowerCase().trim();
-            const fontData = loadedFontsData[key];
-            if (!fontData.fontObj) return;
-
-            if (!query) {
-                renderGlyphsGrid(key, fontData.glyphs);
-                return;
-            }
-
-            const filtered = fontData.glyphs.filter(item => 
-                item.name.toLowerCase().includes(query) ||
-                item.unicodeStr.toLowerCase().includes(query) ||
-                item.char.toLowerCase() === query
-            );
-            renderGlyphsGrid(key, filtered);
         }
 
         function updateFont(slider, targetId, property, spanId) {
@@ -1319,4 +1270,3 @@
     </script>
 </body>
 </html>
-```[cite: 1]
