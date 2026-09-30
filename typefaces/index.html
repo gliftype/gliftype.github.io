@@ -77,7 +77,7 @@
         }
 
         body.menu-open {
-            overflow: hidden; /* Mencegah layar utama ikut di-scroll ketika menu mobile terbuka */
+            overflow: hidden;
         }
 
         header {
@@ -109,7 +109,7 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            z-index: 1101; /* Supaya logo tetap terlihat di atas overlay menu */
+            z-index: 1201; /* Pastikan logo tetap di atas overlay */
         }
 
         .logotype img {
@@ -127,6 +127,7 @@
             display: flex;
             align-items: center;
             gap: 32px;
+            z-index: 1201; /* Pastikan tombol kontrol & hamburger berada di atas overlay */
         }
 
         nav.desktop-nav {
@@ -156,7 +157,6 @@
             justify-content: center;
             padding: 4px;
             transition: var(--transition);
-            z-index: 1101;
         }
 
         .theme-toggle-btn:hover {
@@ -178,7 +178,7 @@
         [data-theme="dark"] .icon-moon { display: block; }
         [data-theme="dark"] .icon-sun { display: none; }
 
-        /* Hamburger Button (Hanya tampil di mobile) */
+        /* Hamburger Button */
         .hamburger-btn {
             display: none;
             background: none;
@@ -189,7 +189,6 @@
             height: 20px;
             flex-direction: column;
             justify-content: space-between;
-            z-index: 1101;
             padding: 0;
         }
 
@@ -197,11 +196,11 @@
             display: block;
             width: 100%;
             height: 2px;
-            background-color: currentColor;
+            background-color: var(--text-color);
             transition: var(--transition);
         }
 
-        /* Animasi Hamburger berubah jadi Silang (X) */
+        /* Animasi Hamburger berubah menjadi Silang (X) yang jelas */
         .hamburger-btn.active span:nth-child(1) {
             transform: translateY(9px) rotate(45deg);
         }
@@ -212,7 +211,7 @@
             transform: translateY(-9px) rotate(-45deg);
         }
 
-        /* Mobile Menu Overlay Fullscreen (Gaya Cotype Foundry) */
+        /* Mobile Menu Overlay Fullscreen */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -220,7 +219,7 @@
             width: 100vw;
             height: 100vh;
             background-color: var(--bg-color);
-            z-index: 1100;
+            z-index: 1100; /* Berada di bawah header (z-index 1201) agar tombol X tetap bisa ditekan */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -238,16 +237,22 @@
         .mobile-nav-links {
             display: flex;
             flex-direction: column;
-            gap: 20px;
         }
 
+        /* Styling baris link menu dengan divider */
         .mobile-nav-links a {
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 500; /* Diubah dari bold menjadi medium/regular (500) */
             text-decoration: none;
             color: var(--gray-color);
             transition: var(--transition);
             letter-spacing: -0.02em;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-color); /* Divider di setiap baris page */
+        }
+
+        .mobile-nav-links a:first-child {
+            border-top: 1px solid var(--border-color); /* Divider untuk baris paling atas */
         }
 
         .mobile-nav-links a:hover, .mobile-nav-links a.active {
@@ -616,16 +621,16 @@
                 padding: 20px;
             }
             footer {
-                display: none; /* Sembunyikan footer bawah bawaan di mobile karena sudah dipindah ke dalam overlay menu */
+                display: none;
             }
             .footer-divider {
                 display: none;
             }
             nav.desktop-nav {
-                display: none; /* Sembunyikan navigasi biasa di mobile */
+                display: none;
             }
             .hamburger-btn {
-                display: flex; /* Tampilkan tombol hamburger di mobile */
+                display: flex;
             }
             .mobile-menu-overlay {
                 padding: 100px 20px 30px 20px;
@@ -675,7 +680,7 @@
         </div>
     </header>
 
-    <!-- Mobile Menu Overlay Fullscreen (Gaya Cotype Foundry) -->
+    <!-- Mobile Menu Overlay Fullscreen -->
     <div class="mobile-menu-overlay" id="mobile-menu">
         <div class="mobile-nav-links">
             <a href="/typefaces" class="nav-link active" onclick="switchSection('typefaces', event); toggleMobileMenu();">Typefaces</a>
@@ -1258,13 +1263,13 @@
             
             document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
             
+            TheTargetSection = document.getElementById(sectionId);
             const targetSection = document.getElementById(sectionId);
             if (targetSection) {
                 targetSection.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 window.location.hash = sectionId;
 
-                // Update kelas active pada navigasi desktop & mobile
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
                     if(link.getAttribute('href') === '/' + sectionId || link.getAttribute('href') === '#' + sectionId) {
