@@ -91,6 +91,11 @@
             transition: var(--transition);
         }
 
+        /* Saat menu terbuka, angkat header ke atas overlay agar tombol X bisa diklik */
+        body.menu-open header {
+            z-index: 2000;
+        }
+
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -109,7 +114,8 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            z-index: 1500;
+            position: relative;
+            z-index: 2001;
         }
 
         .logotype img {
@@ -127,7 +133,8 @@
             display: flex;
             align-items: center;
             gap: 32px;
-            z-index: 1500; /* Ditingkatkan agar berada di atas overlay menu */
+            position: relative;
+            z-index: 2001;
         }
 
         nav.desktop-nav {
@@ -190,7 +197,8 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 0;
-            z-index: 1500;
+            position: relative;
+            z-index: 2001;
         }
 
         .hamburger-btn span {
@@ -219,7 +227,7 @@
             width: 100vw;
             height: 100vh;
             background-color: var(--bg-color);
-            z-index: 1400; /* Lebih rendah dari nav-right agar tombol hamburger tetap bisa diklik */
+            z-index: 1500;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -630,8 +638,9 @@
             .hamburger-btn {
                 display: flex;
             }
+            /* Padding bawah mobile menu dikurangi agar footer naik ke atas dan terlihat di HP */
             .mobile-menu-overlay {
-                padding: 100px 20px 30px 20px;
+                padding: 90px 20px 25px 20px;
             }
         }
     </style>
