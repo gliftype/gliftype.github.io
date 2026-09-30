@@ -76,6 +76,10 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
+        body.menu-open {
+            overflow: hidden; /* Mencegah layar utama ikut di-scroll ketika menu mobile terbuka */
+        }
+
         header {
             position: fixed;
             top: 0;
@@ -105,6 +109,7 @@
             display: flex;
             align-items: center;
             text-decoration: none;
+            z-index: 1101; /* Supaya logo tetap terlihat di atas overlay menu */
         }
 
         .logotype img {
@@ -124,12 +129,12 @@
             gap: 32px;
         }
 
-        nav {
+        nav.desktop-nav {
             display: flex;
             gap: 32px;
         }
 
-        nav a {
+        nav.desktop-nav a {
             text-decoration: none;
             color: var(--gray-color);
             font-size: 0.95rem;
@@ -137,7 +142,7 @@
             transition: var(--transition);
         }
 
-        nav a:hover, nav a.active {
+        nav.desktop-nav a:hover, nav.desktop-nav a.active {
             color: var(--text-color);
         }
 
@@ -151,6 +156,7 @@
             justify-content: center;
             padding: 4px;
             transition: var(--transition);
+            z-index: 1101;
         }
 
         .theme-toggle-btn:hover {
@@ -171,6 +177,108 @@
         .icon-sun { display: block; }
         [data-theme="dark"] .icon-moon { display: block; }
         [data-theme="dark"] .icon-sun { display: none; }
+
+        /* Hamburger Button (Hanya tampil di mobile) */
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+            width: 28px;
+            height: 20px;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1101;
+            padding: 0;
+        }
+
+        .hamburger-btn span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: currentColor;
+            transition: var(--transition);
+        }
+
+        /* Animasi Hamburger berubah jadi Silang (X) */
+        .hamburger-btn.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-btn.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Mobile Menu Overlay Fullscreen (Gaya Cotype Foundry) */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 100px 40px 40px 40px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-nav-links a {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--gray-color);
+            transition: var(--transition);
+            letter-spacing: -0.02em;
+        }
+
+        .mobile-nav-links a:hover, .mobile-nav-links a.active {
+            color: var(--text-color);
+        }
+
+        .mobile-menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .mobile-menu-footer .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .mobile-menu-footer .footer-links a {
+            text-decoration: none;
+            color: var(--gray-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-footer .footer-links a:hover {
+            color: var(--text-color);
+        }
 
         main {
             margin-top: 100px;
@@ -498,6 +606,7 @@
             color: var(--text-color);
         }
 
+        /* Responsive Media Query untuk Mobile */
         @media (max-width: 768px) {
             .header-container, .footer-divider, footer {
                 padding-left: 20px;
@@ -507,9 +616,19 @@
                 padding: 20px;
             }
             footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
+                display: none; /* Sembunyikan footer bawah bawaan di mobile karena sudah dipindah ke dalam overlay menu */
+            }
+            .footer-divider {
+                display: none;
+            }
+            nav.desktop-nav {
+                display: none; /* Sembunyikan navigasi biasa di mobile */
+            }
+            .hamburger-btn {
+                display: flex; /* Tampilkan tombol hamburger di mobile */
+            }
+            .mobile-menu-overlay {
+                padding: 100px 20px 30px 20px;
             }
         }
     </style>
@@ -518,15 +637,17 @@
 
     <header id="site-header">
         <div class="header-container">
-            <a href="/" class="logotype">
+            <a href="/" class="logotype" onclick="switchSection('typefaces', event)">
                 <img src="/images/logo.svg" alt="Gliftype Logo">
             </a>
             <div class="nav-right">
-                <nav>
-                    <a href="/typefaces" class="nav-link active">Typefaces</a>
-                    <a href="/license" class="nav-link">License</a>
-                    <a href="/about" class="nav-link">About</a>
+                <!-- Navigasi Desktop -->
+                <nav class="desktop-nav">
+                    <a href="/typefaces" class="nav-link active" onclick="switchSection('typefaces', event)">Typefaces</a>
+                    <a href="/license" class="nav-link" onclick="switchSection('license', event)">License</a>
+                    <a href="/about" class="nav-link" onclick="switchSection('about', event)">About</a>
                 </nav>
+
                 <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
                     <svg class="icon-sun" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -543,9 +664,33 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
+
+                <!-- Tombol Hamburger Mobile -->
+                <button class="hamburger-btn" id="hamburger-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu Overlay Fullscreen (Gaya Cotype Foundry) -->
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <div class="mobile-nav-links">
+            <a href="/typefaces" class="nav-link active" onclick="switchSection('typefaces', event); toggleMobileMenu();">Typefaces</a>
+            <a href="/license" class="nav-link" onclick="switchSection('license', event); toggleMobileMenu();">License</a>
+            <a href="/about" class="nav-link" onclick="switchSection('about', event); toggleMobileMenu();">About</a>
+        </div>
+        <div class="mobile-menu-footer">
+            <div>&copy; 2026 Gliftype.</div>
+            <div class="footer-links">
+                <a href="https://instagram.com/gliftype/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://github.com/gliftype/" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="mailto:typeglif@gmail.com">Email</a>
+            </div>
+        </div>
+    </div>
 
     <main>
         <!-- Katalog Typefaces -->
@@ -724,6 +869,18 @@
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Halaman License -->
+        <section id="license" class="page-section">
+            <h1>License</h1>
+            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">All typefaces available on Gliftype are released under the SIL Open Font License (OFL), allowing you to use, study, modify, and redistribute them freely.</p>
+        </section>
+
+        <!-- Halaman About -->
+        <section id="about" class="page-section">
+            <h1>About</h1>
+            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">Gliftype is an independent digital type foundry based in Indonesia, focusing on experimental variable fonts and expressive typography.</p>
         </section>
 
         <!-- Halaman Detail: GLF Grafem -->
@@ -1051,8 +1208,8 @@
     <footer>
         <div>&copy; 2026 Gliftype Foundry. All rights reserved.</div>
         <div class="footer-links">
-            <a href="https://github.com/gliftype/" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://instagram.com/gliftype/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://github.com/gliftype/" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="mailto:typeglif@gmail.com">Email</a>
         </div>
     </footer>
@@ -1107,6 +1264,14 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 window.location.hash = sectionId;
 
+                // Update kelas active pada navigasi desktop & mobile
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('href') === '/' + sectionId || link.getAttribute('href') === '#' + sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+
                 if (['font-grafem', 'font-fonem', 'font-cikutra', 'font-alofon', 'font-amara'].includes(sectionId)) {
                     const key = sectionId.replace('font-', '');
                     if (!loadedFontsData[key].fontObj) {
@@ -1115,6 +1280,15 @@
                 }
             }
             setTimeout(adjustInputWidths, 50);
+        }
+
+        function toggleMobileMenu() {
+            const hamburger = document.getElementById('hamburger-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+            document.body.classList.toggle('menu-open');
         }
 
         function fetchAndParseFont(key) {
