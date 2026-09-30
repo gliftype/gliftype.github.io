@@ -109,7 +109,7 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            z-index: 1201; /* Pastikan logo tetap di atas overlay */
+            z-index: 1201;
         }
 
         .logotype img {
@@ -127,7 +127,7 @@
             display: flex;
             align-items: center;
             gap: 32px;
-            z-index: 1201; /* Pastikan tombol kontrol & hamburger berada di atas overlay */
+            z-index: 1201;
         }
 
         nav.desktop-nav {
@@ -200,7 +200,6 @@
             transition: var(--transition);
         }
 
-        /* Animasi Hamburger berubah menjadi Silang (X) yang jelas */
         .hamburger-btn.active span:nth-child(1) {
             transform: translateY(9px) rotate(45deg);
         }
@@ -219,7 +218,7 @@
             width: 100vw;
             height: 100vh;
             background-color: var(--bg-color);
-            z-index: 1100; /* Berada di bawah header (z-index 1201) agar tombol X tetap bisa ditekan */
+            z-index: 1100;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -239,20 +238,19 @@
             flex-direction: column;
         }
 
-        /* Styling baris link menu dengan divider */
         .mobile-nav-links a {
             font-size: 2rem;
-            font-weight: 500; /* Diubah dari bold menjadi medium/regular (500) */
+            font-weight: 500;
             text-decoration: none;
             color: var(--gray-color);
             transition: var(--transition);
             letter-spacing: -0.02em;
             padding: 24px 0;
-            border-bottom: 1px solid var(--border-color); /* Divider di setiap baris page */
+            border-bottom: 1px solid var(--border-color);
         }
 
         .mobile-nav-links a:first-child {
-            border-top: 1px solid var(--border-color); /* Divider untuk baris paling atas */
+            border-top: 1px solid var(--border-color);
         }
 
         .mobile-nav-links a:hover, .mobile-nav-links a.active {
@@ -611,7 +609,6 @@
             color: var(--text-color);
         }
 
-        /* Responsive Media Query untuk Mobile */
         @media (max-width: 768px) {
             .header-container, .footer-divider, footer {
                 padding-left: 20px;
@@ -646,7 +643,6 @@
                 <img src="/images/logo.svg" alt="Gliftype Logo">
             </a>
             <div class="nav-right">
-                <!-- Navigasi Desktop -->
                 <nav class="desktop-nav">
                     <a href="/typefaces" class="nav-link active" onclick="switchSection('typefaces', event)">Typefaces</a>
                     <a href="/license" class="nav-link" onclick="switchSection('license', event)">License</a>
@@ -670,7 +666,6 @@
                     </svg>
                 </button>
 
-                <!-- Tombol Hamburger Mobile -->
                 <button class="hamburger-btn" id="hamburger-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
                     <span></span>
                     <span></span>
@@ -680,7 +675,6 @@
         </div>
     </header>
 
-    <!-- Mobile Menu Overlay Fullscreen -->
     <div class="mobile-menu-overlay" id="mobile-menu">
         <div class="mobile-nav-links">
             <a href="/typefaces" class="nav-link active" onclick="switchSection('typefaces', event); toggleMobileMenu();">Typefaces</a>
@@ -698,7 +692,6 @@
     </div>
 
     <main>
-        <!-- Katalog Typefaces -->
         <section id="typefaces" class="page-section active">
             <!-- Font 1: GLF Grafem -->
             <div class="font-item-clean">
@@ -1263,7 +1256,6 @@
             
             document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
             
-            TheTargetSection = document.getElementById(sectionId);
             const targetSection = document.getElementById(sectionId);
             if (targetSection) {
                 targetSection.classList.add('active');
