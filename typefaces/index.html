@@ -6,36 +6,36 @@
     <title>Typefaces — Gliftype</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
 
-    <!-- opentype.js untuk membaca file font .ttf -->
+    <!-- opentype.js untuk membaca file font .ttf di character map -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
     <style>
         @font-face {
             font-family: 'GLF Grafem';
-            src: url('fonts/GLF-Grafem-VF.woff2') format('woff2-variations');
+            src: url('fonts/GLF-Grafem-VF.ttf') format('truetype');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Fonem';
-            src: url('fonts/GLF-Fonem-VF.woff2') format('woff2-variations');
+            src: url('fonts/GLF-Fonem-VF.ttf') format('truetype');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Cikutra';
-            src: url('fonts/GLF-Cikutra-VF.woff2') format('woff2-variations');
+            src: url('fonts/GLF-Cikutra-VF.ttf') format('truetype');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Alofon';
-            src: url('fonts/GLF-Alofon-VF.woff2') format('woff2-variations');
+            src: url('fonts/GLF-Alofon-VF.ttf') format('truetype');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Amara';
-            src: url('fonts/GLF-Amara-VF.woff2') format('woff2-variations');
+            src: url('fonts/GLF-Amara-VF.ttf') format('truetype');
             font-weight: 100 900;
             font-style: normal;
         }
@@ -407,21 +407,6 @@
             font-weight: 600;
         }
 
-        .glyph-search-bar {
-            margin-bottom: 20px;
-        }
-
-        .glyph-search-input {
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            background: var(--light-gray);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            border-radius: 4px;
-            outline: none;
-            width: 280px;
-        }
-
         .glyph-table {
             display: flex;
             flex-wrap: wrap;
@@ -534,13 +519,13 @@
     <header id="site-header">
         <div class="header-container">
             <a href="/" class="logotype">
-                <img src="/images/logo.svg" alt="Gliftype Logo">
+                <img src="images/logo.svg" alt="Gliftype Logo">
             </a>
             <div class="nav-right">
                 <nav>
-                    <a href="/typefaces" class="nav-link active">Typefaces</a>
-                    <a href="/license" class="nav-link">License</a>
-                    <a href="/about" class="nav-link">About</a>
+                    <a href="#typefaces" class="nav-link active" onclick="switchSection('typefaces', event)">Typefaces</a>
+                    <a href="#license" class="nav-link" onclick="event.preventDefault();">License</a>
+                    <a href="#about" class="nav-link" onclick="event.preventDefault();">About</a>
                 </nav>
                 <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
                     <svg class="icon-sun" viewBox="0 0 24 24">
@@ -594,8 +579,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-grafem-main">
                     <div class="marquee-track">
-                        <input type="text" id="grafem-preview-main" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-main')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.    ">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.    ">
+                        <input type="text" id="grafem-preview-main" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-main')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.    ">
                     </div>
                 </div>
             </div>
@@ -629,8 +614,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-fonem-main">
                     <div class="marquee-track">
-                        <input type="text" id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-main')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
+                        <input type="text" id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-main')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
                     </div>
                 </div>
             </div>
@@ -664,8 +649,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-cikutra-main">
                     <div class="marquee-track">
-                        <input type="text" id="cikutra-preview-main" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-main')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.    ">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.    ">
+                        <input type="text" id="cikutra-preview-main" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-main')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.    ">
                     </div>
                 </div>
             </div>
@@ -699,8 +684,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-alofon-main">
                     <div class="marquee-track">
-                        <input type="text" id="alofon-preview-main" class="marquee-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-alofon-main')" readonly value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
+                        <input type="text" id="alofon-preview-main" class="marquee-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-alofon-main')" readonly value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
                     </div>
                 </div>
             </div>
@@ -734,8 +719,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-amara-main">
                     <div class="marquee-track">
-                        <input type="text" id="amara-preview-main" class="marquee-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-amara-main')" readonly value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.    ">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.    ">
+                        <input type="text" id="amara-preview-main" class="marquee-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-amara-main')" readonly value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.    ">
                     </div>
                 </div>
             </div>
@@ -773,7 +758,7 @@
                     </div>
                 </div>
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="grafem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.</textarea>
+                    <textarea id="grafem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.</textarea>
                 </div>
             </div>
 
@@ -795,11 +780,8 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
-                <div class="glyph-search-bar">
-                    <input type="text" id="search-grafem" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('grafem')">
-                </div>
                 <div id="glyphs-container-grafem">
-                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font...</div>
                 </div>
             </div>
 
@@ -840,7 +822,7 @@
                     </div>
                 </div>
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="fonem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.</textarea>
+                    <textarea id="fonem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.</textarea>
                 </div>
             </div>
 
@@ -862,11 +844,8 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
-                <div class="glyph-search-bar">
-                    <input type="text" id="search-fonem" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('fonem')">
-                </div>
                 <div id="glyphs-container-fonem">
-                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font...</div>
                 </div>
             </div>
 
@@ -907,7 +886,7 @@
                     </div>
                 </div>
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="cikutra-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.</textarea>
+                    <textarea id="cikutra-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.</textarea>
                 </div>
             </div>
 
@@ -929,11 +908,8 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
-                <div class="glyph-search-bar">
-                    <input type="text" id="search-cikutra" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('cikutra')">
-                </div>
                 <div id="glyphs-container-cikutra">
-                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font...</div>
                 </div>
             </div>
 
@@ -974,7 +950,7 @@
                     </div>
                 </div>
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="alofon-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.</textarea>
+                    <textarea id="alofon-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.</textarea>
                 </div>
             </div>
 
@@ -996,11 +972,8 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
-                <div class="glyph-search-bar">
-                    <input type="text" id="search-alofon" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('alofon')">
-                </div>
                 <div id="glyphs-container-alofon">
-                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font...</div>
                 </div>
             </div>
 
@@ -1041,7 +1014,7 @@
                     </div>
                 </div>
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="amara-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.</textarea>
+                    <textarea id="amara-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.</textarea>
                 </div>
             </div>
 
@@ -1063,11 +1036,8 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
-                <div class="glyph-search-bar">
-                    <input type="text" id="search-amara" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('amara')">
-                </div>
                 <div id="glyphs-container-amara">
-                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font...</div>
                 </div>
             </div>
 
@@ -1135,7 +1105,12 @@
             if (targetSection) {
                 targetSection.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                window.location.hash = sectionId;
+                
+                if (sectionId === 'typefaces') {
+                    history.pushState("", document.title, window.location.pathname + window.location.search);
+                } else {
+                    window.location.hash = sectionId;
+                }
 
                 if (['font-grafem', 'font-fonem', 'font-cikutra', 'font-alofon', 'font-amara'].includes(sectionId)) {
                     const key = sectionId.replace('font-', '');
@@ -1181,7 +1156,7 @@
                     renderGlyphsGrid(key, list);
                 })
                 .catch(err => {
-                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font .ttf: ${err.message}.</div>`;
+                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font: ${err.message}.</div>`;
                 });
         }
 
@@ -1198,7 +1173,7 @@
             const descender = fontObj.descender || -200;
             const height = ascender - descender;
             const viewBox = `0 ${-ascender} ${unitsPerEm} ${height}`;
-            let targetWeight = 600;
+            let targetWeight = 400;
 
             let html = `<div class="glyph-table">`;
             glyphsArray.forEach((item) => {
@@ -1212,7 +1187,7 @@
 
                 html += `
                     <div class="glyph-cell" title="${item.name} (${item.unicodeStr})">
-                        <svg viewBox="${viewBox}" style="font-weight: ${targetWeight}; font-variation-settings: 'wght' ${targetWeight};">
+                        <svg viewBox="${viewBox}" style="font-weight: ${targetWeight};">
                             <path d="${pathData}"></path>
                         </svg>
                     </div>
@@ -1220,24 +1195,6 @@
             });
             html += `</div>`;
             container.innerHTML = html;
-        }
-
-        function filterGlyphs(key) {
-            const query = document.getElementById(`search-${key}`).value.toLowerCase().trim();
-            const fontData = loadedFontsData[key];
-            if (!fontData.fontObj) return;
-
-            if (!query) {
-                renderGlyphsGrid(key, fontData.glyphs);
-                return;
-            }
-
-            const filtered = fontData.glyphs.filter(item => 
-                item.name.toLowerCase().includes(query) ||
-                item.unicodeStr.toLowerCase().includes(query) ||
-                item.char.toLowerCase() === query
-            );
-            renderGlyphsGrid(key, filtered);
         }
 
         function updateFont(slider, targetId, property, spanId) {
@@ -1248,7 +1205,11 @@
 
             if (property === 'fontWeight') {
                 target.style.fontWeight = val;
-                if (clone) clone.style.fontWeight = val;
+                target.style.fontVariationSettings = `'wght' ${val}`;
+                if (clone) {
+                    clone.style.fontWeight = val;
+                    clone.style.fontVariationSettings = `'wght' ${val}`;
+                }
                 span.textContent = val;
             } else if (property === 'width') {
                 target.style.letterSpacing = val + 'px';
