@@ -109,7 +109,7 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            z-index: 1201;
+            z-index: 1500;
         }
 
         .logotype img {
@@ -127,7 +127,7 @@
             display: flex;
             align-items: center;
             gap: 32px;
-            z-index: 1201;
+            z-index: 1500; /* Ditingkatkan agar berada di atas overlay menu */
         }
 
         nav.desktop-nav {
@@ -190,6 +190,7 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 0;
+            z-index: 1500;
         }
 
         .hamburger-btn span {
@@ -218,7 +219,7 @@
             width: 100vw;
             height: 100vh;
             background-color: var(--bg-color);
-            z-index: 1100;
+            z-index: 1400; /* Lebih rendah dari nav-right agar tombol hamburger tetap bisa diklik */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
