@@ -7,10 +7,17 @@
     <link rel="icon" type="image/png" href="images/favicon.png">
 
     <!-- Open Graph / Social Media Preview Meta Tags -->
-    <meta property="og:title" content="Gliftype Foundry">
+    <meta property="og:title" content="Gliftype — Open Source Type Foundry">
     <meta property="og:description" content="Gliftype is an open-source type foundry; we create independent and free fonts for everyone.">
-    <meta property="og:image" content="images/ogimage.png">
+    <meta property="og:image" content="https://gliftype.com/images/ogimage.png">
+    <meta property="og:url" content="https://gliftype.com/">
     <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gliftype — Open Source Type Foundry">
+    <meta name="twitter:description" content="Gliftype is an open-source type foundry; we create independent and free fonts for everyone.">
+    <meta name="twitter:image" content="https://gliftype.com/images/ogimage.png">
 
     <!-- opentype.js untuk membaca file font .ttf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
@@ -324,10 +331,6 @@
             animation: marqueeLeft 150s linear infinite;
         }
 
-        .marquee-track.reverse {
-            animation: marqueeLeft 150s linear infinite;
-        }
-
         .preview-wrapper:hover .marquee-track {
             animation-play-state: paused;
         }
@@ -335,11 +338,6 @@
         @keyframes marqueeLeft {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
-        }
-
-        @keyframes marqueeRight {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
         }
 
         .marquee-text-node {
