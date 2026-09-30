@@ -4,38 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Typefaces — Gliftype</title>
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 
     <!-- opentype.js untuk membaca file font .ttf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
     <style>
         @font-face {
             font-family: 'GLF Grafem';
-            src: url('/fonts/GLF-Grafem-VF.woff2') format('woff2-variations');
+            src: url('fonts/GLF-Grafem-VF.woff2') format('woff2-variations');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Fonem';
-            src: url('/fonts/GLF-Fonem-VF.woff2') format('woff2-variations');
+            src: url('fonts/GLF-Fonem-VF.woff2') format('woff2-variations');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Cikutra';
-            src: url('/fonts/GLF-Cikutra-VF.woff2') format('woff2-variations');
+            src: url('fonts/GLF-Cikutra-VF.woff2') format('woff2-variations');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Alofon';
-            src: url('/fonts/GLF-Alofon-VF.woff2') format('woff2-variations');
+            src: url('fonts/GLF-Alofon-VF.woff2') format('woff2-variations');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Amara';
-            src: url('/fonts/GLF-Amara-VF.woff2') format('woff2-variations');
+            src: url('fonts/GLF-Amara-VF.woff2') format('woff2-variations');
             font-weight: 100 900;
             font-style: normal;
         }
@@ -76,10 +76,6 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        body.menu-open {
-            overflow: hidden;
-        }
-
         header {
             position: fixed;
             top: 0;
@@ -89,10 +85,6 @@
             z-index: 1000;
             border-bottom: 1px solid transparent;
             transition: var(--transition);
-        }
-
-        body.menu-open header {
-            z-index: 2000;
         }
 
         .header-container {
@@ -113,8 +105,6 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            position: relative;
-            z-index: 2001;
         }
 
         .logotype img {
@@ -132,16 +122,14 @@
             display: flex;
             align-items: center;
             gap: 32px;
-            position: relative;
-            z-index: 2001;
         }
 
-        nav.desktop-nav {
+        nav {
             display: flex;
             gap: 32px;
         }
 
-        nav.desktop-nav a {
+        nav a {
             text-decoration: none;
             color: var(--gray-color);
             font-size: 0.95rem;
@@ -149,7 +137,7 @@
             transition: var(--transition);
         }
 
-        nav.desktop-nav a:hover, nav.desktop-nav a.active {
+        nav a:hover, nav a.active {
             color: var(--text-color);
         }
 
@@ -183,113 +171,6 @@
         .icon-sun { display: block; }
         [data-theme="dark"] .icon-moon { display: block; }
         [data-theme="dark"] .icon-sun { display: none; }
-
-        .hamburger-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-color);
-            width: 28px;
-            height: 20px;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 0;
-            position: relative;
-            z-index: 2001;
-        }
-
-        .hamburger-btn span {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background-color: var(--text-color);
-            transition: var(--transition);
-        }
-
-        .hamburger-btn.active span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-        .hamburger-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger-btn.active span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100dvh;
-            background-color: var(--bg-color);
-            z-index: 1500;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 90px 40px 40px 40px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            overflow-y: auto;
-        }
-
-        .mobile-menu-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav-links {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .mobile-nav-links a {
-            font-size: 2rem;
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--gray-color);
-            transition: var(--transition);
-            letter-spacing: -0.02em;
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .mobile-nav-links a:first-child {
-            border-top: none;
-        }
-
-        .mobile-nav-links a:hover, .mobile-nav-links a.active {
-            color: var(--text-color);
-        }
-
-        .mobile-menu-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            color: var(--gray-color);
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-            margin-top: 20px;
-        }
-
-        .mobile-menu-footer .footer-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .mobile-menu-footer .footer-links a {
-            text-decoration: none;
-            color: var(--gray-color);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .mobile-menu-footer .footer-links a:hover {
-            color: var(--text-color);
-        }
 
         main {
             margin-top: 100px;
@@ -526,6 +407,21 @@
             font-weight: 600;
         }
 
+        .glyph-search-bar {
+            margin-bottom: 20px;
+        }
+
+        .glyph-search-input {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            background: var(--light-gray);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 4px;
+            outline: none;
+            width: 280px;
+        }
+
         .glyph-table {
             display: flex;
             flex-wrap: wrap;
@@ -592,9 +488,8 @@
         footer {
             padding: 30px 40px;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 16px;
+            justify-content: space-between;
+            align-items: center;
             font-size: 0.9rem;
             color: var(--gray-color);
             max-width: 1750px;
@@ -626,36 +521,27 @@
             main {
                 padding: 20px;
             }
-            nav.desktop-nav {
-                display: none;
-            }
-            .hamburger-btn {
-                display: flex;
-            }
-            .mobile-menu-overlay {
-                padding: 85px 20px 25px 20px;
-            }
-            .mobile-nav-links a {
-                font-size: 1.75rem;
-                padding: 18px 0;
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
             }
         }
     </style>
 </head>
 <body>
 
-     <header id="site-header">
+    <header id="site-header">
         <div class="header-container">
             <a href="/" class="logotype">
-                <img src="images/logo.svg" alt="Gliftype Logo">
+                <img src="/images/logo.svg" alt="Gliftype Logo">
             </a>
             <div class="nav-right">
                 <nav>
-                    <a href="/typefaces">Typefaces</a>
-                    <a href="/license">License</a>
-                    <a href="/about">About</a>
+                    <a href="/typefaces" class="nav-link active">Typefaces</a>
+                    <a href="/license" class="nav-link">License</a>
+                    <a href="/about" class="nav-link">About</a>
                 </nav>
-
                 <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
                     <svg class="icon-sun" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -672,33 +558,12 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
-
-                <button class="hamburger-btn" id="hamburger-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </div>
     </header>
 
-    <div class="mobile-menu-overlay" id="mobile-menu">
-        <div class="mobile-nav-links">
-              <a href="/typefaces">Typefaces</a>
-              <a href="/license">License</a>
-              <a href="/about">About</a>
-        </div>
-        <div class="mobile-menu-footer">
-            <div>&copy; 2026 Gliftype</div>
-            <div class="footer-links">
-                <a href="https://instagram.com/gliftype/" target="_blank" rel="noopener noreferrer">Instagram</a>
-                <a href="https://github.com/gliftype/" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="mailto:typeglif@gmail.com">Email</a>
-            </div>
-        </div>
-    </div>
-
     <main>
+        <!-- Katalog Typefaces -->
         <section id="typefaces" class="page-section active">
             <!-- Font 1: GLF Grafem -->
             <div class="font-item-clean">
@@ -876,18 +741,6 @@
             </div>
         </section>
 
-        <!-- Halaman License -->
-        <section id="license" class="page-section">
-            <h1>License</h1>
-            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">All typefaces available on Gliftype are released under the SIL Open Font License (OFL), allowing you to use, study, modify, and redistribute them freely.</p>
-        </section>
-
-        <!-- Halaman About -->
-        <section id="about" class="page-section">
-            <h1>About</h1>
-            <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">Gliftype is an independent digital type foundry based in Indonesia, focusing on experimental variable fonts and expressive typography.</p>
-        </section>
-
         <!-- Halaman Detail: GLF Grafem -->
         <section id="font-grafem" class="page-section">
             <a href="#typefaces" class="back-link" onclick="switchSection('typefaces', event)">&larr; Back to Typefaces</a>
@@ -942,6 +795,9 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-grafem" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('grafem')">
+                </div>
                 <div id="glyphs-container-grafem">
                     <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
                 </div>
@@ -1006,6 +862,9 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-fonem" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('fonem')">
+                </div>
                 <div id="glyphs-container-fonem">
                     <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
                 </div>
@@ -1070,6 +929,9 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-cikutra" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('cikutra')">
+                </div>
                 <div id="glyphs-container-cikutra">
                     <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
                 </div>
@@ -1134,6 +996,9 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-alofon" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('alofon')">
+                </div>
                 <div id="glyphs-container-alofon">
                     <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
                 </div>
@@ -1198,6 +1063,9 @@
 
             <div class="detail-block">
                 <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-amara" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('amara')">
+                </div>
                 <div id="glyphs-container-amara">
                     <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
                 </div>
@@ -1213,8 +1081,8 @@
     <footer>
         <div>&copy; 2026 Gliftype Foundry. All rights reserved.</div>
         <div class="footer-links">
-            <a href="https://instagram.com/gliftype/" target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href="https://github.com/gliftype/" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://instagram.com/gliftype/" target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href="mailto:typeglif@gmail.com">Email</a>
         </div>
     </footer>
@@ -1251,11 +1119,11 @@
         }
 
         const loadedFontsData = {
-            'grafem': { url: '/fonts/GLF-Grafem-VF.ttf', fontObj: null, glyphs: [] },
-            'fonem': { url: '/fonts/GLF-Fonem-VF.ttf', fontObj: null, glyphs: [] },
-            'cikutra': { url: '/fonts/GLF-Cikutra-VF.ttf', fontObj: null, glyphs: [] },
-            'alofon': { url: '/fonts/GLF-Alofon-VF.ttf', fontObj: null, glyphs: [] },
-            'amara': { url: '/fonts/GLF-Amara-VF.ttf', fontObj: null, glyphs: [] }
+            'grafem': { url: 'fonts/GLF-Grafem-VF.ttf', fontObj: null, glyphs: [] },
+            'fonem': { url: 'fonts/GLF-Fonem-VF.ttf', fontObj: null, glyphs: [] },
+            'cikutra': { url: 'fonts/GLF-Cikutra-VF.ttf', fontObj: null, glyphs: [] },
+            'alofon': { url: 'fonts/GLF-Alofon-VF.ttf', fontObj: null, glyphs: [] },
+            'amara': { url: 'fonts/GLF-Amara-VF.ttf', fontObj: null, glyphs: [] }
         };
 
         function switchSection(sectionId, event) {
@@ -1269,13 +1137,6 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 window.location.hash = sectionId;
 
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.classList.remove('active');
-                    if(link.getAttribute('href') === '/' + sectionId || link.getAttribute('href') === '#' + sectionId) {
-                        link.classList.add('active');
-                    }
-                });
-
                 if (['font-grafem', 'font-fonem', 'font-cikutra', 'font-alofon', 'font-amara'].includes(sectionId)) {
                     const key = sectionId.replace('font-', '');
                     if (!loadedFontsData[key].fontObj) {
@@ -1284,15 +1145,6 @@
                 }
             }
             setTimeout(adjustInputWidths, 50);
-        }
-
-        function toggleMobileMenu() {
-            const hamburger = document.getElementById('hamburger-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('open');
-            document.body.classList.toggle('menu-open');
         }
 
         function fetchAndParseFont(key) {
@@ -1368,6 +1220,24 @@
             });
             html += `</div>`;
             container.innerHTML = html;
+        }
+
+        function filterGlyphs(key) {
+            const query = document.getElementById(`search-${key}`).value.toLowerCase().trim();
+            const fontData = loadedFontsData[key];
+            if (!fontData.fontObj) return;
+
+            if (!query) {
+                renderGlyphsGrid(key, fontData.glyphs);
+                return;
+            }
+
+            const filtered = fontData.glyphs.filter(item => 
+                item.name.toLowerCase().includes(query) ||
+                item.unicodeStr.toLowerCase().includes(query) ||
+                item.char.toLowerCase() === query
+            );
+            renderGlyphsGrid(key, filtered);
         }
 
         function updateFont(slider, targetId, property, spanId) {
