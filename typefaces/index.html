@@ -9,33 +9,34 @@
     <!-- opentype.js untuk membaca file font .ttf di character map -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
     <style>
+        /* Menggunakan format WOFF2 untuk performa web */
         @font-face {
             font-family: 'GLF Grafem';
-            src: url('fonts/GLF-Grafem-VF.ttf') format('truetype');
+            src: url('fonts/GLF-Grafem-VF.woff2') format('woff2');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Fonem';
-            src: url('fonts/GLF-Fonem-VF.ttf') format('truetype');
+            src: url('fonts/GLF-Fonem-VF.woff2') format('woff2');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Cikutra';
-            src: url('fonts/GLF-Cikutra-VF.ttf') format('truetype');
+            src: url('fonts/GLF-Cikutra-VF.woff2') format('woff2');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Alofon';
-            src: url('fonts/GLF-Alofon-VF.ttf') format('truetype');
+            src: url('fonts/GLF-Alofon-VF.woff2') format('woff2');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Amara';
-            src: url('fonts/GLF-Amara-VF.ttf') format('truetype');
+            src: url('fonts/GLF-Amara-VF.woff2') format('woff2');
             font-weight: 100 900;
             font-style: normal;
         }
@@ -105,6 +106,10 @@
             display: flex;
             align-items: center;
             text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-color);
+            letter-spacing: -0.02em;
         }
 
         .logotype img {
@@ -519,7 +524,8 @@
     <header id="site-header">
         <div class="header-container">
             <a href="/" class="logotype">
-                <img src="images/logo.svg" alt="Gliftype Logo">
+                <img src="images/logo.svg" alt="Gliftype Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                <span style="display:none;">Gliftype</span>
             </a>
             <div class="nav-right">
                 <nav>
@@ -1088,6 +1094,7 @@
             input.style.width = '100%';
         }
 
+        // Variabel untuk font web menggunakan WOFF2, sedangkan JS Character Map diarahkan ke .ttf
         const loadedFontsData = {
             'grafem': { url: 'fonts/GLF-Grafem-VF.ttf', fontObj: null, glyphs: [] },
             'fonem': { url: 'fonts/GLF-Fonem-VF.ttf', fontObj: null, glyphs: [] },
@@ -1156,7 +1163,7 @@
                     renderGlyphsGrid(key, list);
                 })
                 .catch(err => {
-                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font: ${err.message}.</div>`;
+                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font (.ttf): ${err.message}.</div>`;
                 });
         }
 
