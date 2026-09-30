@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Gliftype</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --gray-color: #767676;
+            --light-gray: #f9f9f9;
+            --border-color: #eaeaea;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #000000;
+            --text-color: #f5f5f7;
+            --gray-color: #999999;
+            --light-gray: #111111;
+            --border-color: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-color);
+            z-index: 1000;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 40px;
+            max-width: 1750px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header.scrolled {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logotype {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logotype img {
+            height: 32px;
+            width: auto;
+            transition: var(--transition);
+            filter: brightness(0);
+        }
+        
+        [data-theme="dark"] .logotype img {
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--gray-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-color);
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            transition: var(--transition);
+        }
+
+        .theme-toggle-btn:hover {
+            color: var(--text-color);
+        }
+
+        .theme-toggle-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-moon { display: none; }
+        .icon-sun { display: block; }
+        [data-theme="dark"] .icon-moon { display: block; }
+        [data-theme="dark"] .icon-sun { display: none; }
+
+        main {
+            margin-top: 100px;
+            flex: 1;
+            padding: 40px;
+            max-width: 1750px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 30px;
+        }
+
+        .about-founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .founder-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .founder-img-wrapper {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: 4px;
+            background-color: var(--light-gray);
+            border: 1px solid var(--border-color);
+        }
+
+        .founder-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .founder-card:hover .founder-img-wrapper img {
+            filter: grayscale(0%);
+        }
+
+        .founder-info h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .founder-info p {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+
+        .btn-get-in-touch {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .btn-get-in-touch:hover {
+            opacity: 0.8;
+        }
+
+        .footer-divider {
+            width: 100%;
+            max-width: 1750px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-divider hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        footer {
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            max-width: 1750px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--gray-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .header-container, .footer-divider, footer {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            main {
+                padding: 20px;
+            }
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logotype">
+                <img src="images/logo.svg" alt="Gliftype Logo">
+            </a>
+            <div class="nav-right">
+                <nav>
+                    <a href="typefaces.html">Typefaces</a>
+                    <a href="license.html">License</a>
+                    <a href="about.html" class="active">About</a>
+                </nav>
+                <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>About</h1>
+        <div style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem; display: flex; flex-direction: column; gap: 20px;">
+            <p>Gliftype is an open-source type foundry founded by Sidiq Kamal Nurmawan and Erwin Wirianata, based in Kebumen and Bandung, Indonesia. We wanted a space to just mess around with visual design and have fun. At the moment, we’re just focusing on producing open-source fonts and taking a few custom font orders on the side. Gliftype will always remain a home for open-source typefaces, so if we ever explore commercial stuff later on, we’ll set up a separate sub-brand to handle it. So yeah, everything here is free for your personal or commercial projects. If you have a project using our fonts, please send it over. We’d be thrilled to see it and share it. Thank you so much, love you all!</p>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 10px 0;">
+
+            <div class="about-founders-grid">
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="images/sidiq.jpg" alt="Sidiq Kamal Nurmawan">
+                    </div>
+                    <div class="founder-info">
+                        <h4>Sidiq Kamal Nurmawan</h4>
+                        <p>Kebumen</p>
+                    </div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="images/erwin.jpg" alt="Erwin Wirianata">
+                    </div>
+                    <div class="founder-info">
+                        <h4>Erwin Wirianata</h4>
+                        <p>Bandung</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 10px 0;">
+
+            <p>If you need something a bit more specific, we're totally open for custom type commissions to match exactly what you're looking for.</p>
+
+            <div>
+                <a href="mailto:typeglif@gmail.com" class="btn-get-in-touch">Get in Touch</a>
+            </div>
+        </div>
+    </main>
+
+    <div class="footer-divider"><hr></div>
+    <footer>
+        <div>&copy; 2026 Gliftype Foundry. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="https://github.com/gliftype/" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://instagram.com/gliftype/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="mailto:typeglif@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            if (newTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                if (savedTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('site-header');
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
