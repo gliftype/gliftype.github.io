@@ -1,1 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License — Gliftype</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
 
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --gray-color: #767676;
+            --light-gray: #f9f9f9;
+            --border-color: #eaeaea;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #000000;
+            --text-color: #f5f5f7;
+            --gray-color: #999999;
+            --light-gray: #111111;
+            --border-color: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-color);
+            z-index: 1000;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 40px;
+            max-width: 1750px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header.scrolled {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logotype {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logotype img {
+            height: 32px;
+            width: auto;
+            transition: var(--transition);
+            filter: brightness(0);
+        }
+        
+        [data-theme="dark"] .logotype img {
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--gray-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-color);
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            transition: var(--transition);
+        }
+
+        .theme-toggle-btn:hover {
+            color: var(--text-color);
+        }
+
+        .theme-toggle-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-moon { display: none; }
+        .icon-sun { display: block; }
+        [data-theme="dark"] .icon-moon { display: block; }
+        [data-theme="dark"] .icon-sun { display: none; }
+
+        main {
+            margin-top: 100px;
+            flex: 1;
+            padding: 40px;
+            max-width: 1750px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 30px;
+        }
+
+        .footer-divider {
+            width: 100%;
+            max-width: 1750px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-divider hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        footer {
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            max-width: 1750px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--gray-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .header-container, .footer-divider, footer {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            main {
+                padding: 20px;
+            }
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logotype">
+                <img src="images/logo.svg" alt="Gliftype Logo">
+            </a>
+            <div class="nav-right">
+                <nav>
+                    <a href="typefaces.html">Typefaces</a>
+                    <a href="license.html" class="active">License</a>
+                    <a href="about.html">About</a>
+                </nav>
+                <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>License</h1>
+        <div style="color: var(--gray-color); max-width: 900px; font-size: 0.95rem; line-height: 1.7; display: flex; flex-direction: column; gap: 20px;">
+            <p><strong>Copyright &copy; 2026, Glif Type Foundry (<a href="https://www.gliftype.com/" target="_blank" style="color: inherit;">https://www.gliftype.com/</a> | typeglif@gmail.com)</strong></p>
+            
+            <p>This Font Software is licensed under the <strong>SIL Open Font License, Version 1.1</strong>. This license is copied below, and is also available with a FAQ at: <a href="https://scripts.sil.org/OFL" target="_blank" style="color: inherit;">https://scripts.sil.org/OFL</a></p>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 10px 0;">
+
+            <p><strong>SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007</strong></p>
+
+            <div>
+                <p><strong>PREAMBLE</strong></p>
+                <p>The goals of the Open Font License (OFL) are to stimulate worldwide development of collaborative font projects, to support the font creation efforts of academic and linguistic communities, and to provide a free and open framework in which fonts may be shared and improved in partnership with others.</p>
+                <p style="margin-top: 10px;">The OFL allows the licensed fonts to be <strong>used, studied, modified and redistributed freely</strong> as long as they are not sold by themselves. The fonts, including any derivative works, can be bundled, embedded, redistributed and/or sold with any software provided that any reserved names are not used by derivative works. The fonts and derivatives, however, cannot be released under any other type of license. The requirement for fonts to remain under this license does not apply to any document created using the fonts or their derivatives.</p>
+            </div>
+
+            <div>
+                <p><strong>DEFINITIONS</strong></p>
+                <p><strong>"Font Software"</strong> refers to the set of files released by the Copyright Holder(s) under this license and clearly marked as such. This may include source files, build scripts and documentation.</p>
+                <p style="margin-top: 8px;"><strong>"Reserved Font Name"</strong> refers to any names specified as such after the copyright statement(s).</p>
+                <p style="margin-top: 8px;"><strong>"Original Version"</strong> refers to the collection of Font Software components as distributed by the Copyright Holder(s).</p>
+                <p style="margin-top: 8px;"><strong>"Modified Version"</strong> refers to any derivative made by adding to, deleting, or substituting — in part or in whole — any of the components of the Original Version, by changing formats or by porting the Font Software to a new environment.</p>
+                <p style="margin-top: 8px;"><strong>"Author"</strong> refers to any designer, engineer, programmer, technical writer or other person who contributed to the Font Software.</p>
+            </div>
+
+            <div>
+                <p><strong>PERMISSION & CONDITIONS</strong></p>
+                <p>Permission is hereby granted, free of charge, to any person obtaining a copy of the Font Software, to use, study, copy, merge, embed, modify, redistribute, and sell modified and unmodified copies of the Font Software, subject to the following conditions:</p>
+                <p style="margin-top: 10px;"><strong>1)</strong> Neither the Font Software nor any of its individual components, in Original or Modified Versions, <strong>may be sold by itself</strong>.</p>
+                <p style="margin-top: 8px;"><strong>2)</strong> Original or Modified Versions of the Font Software may be bundled, redistributed and/or sold with any software, provided that each copy contains the above copyright notice and this license. These can be included either as stand-alone text files, human-readable headers or in the appropriate machine-readable metadata fields within text or binary files as long as those fields can be easily viewed by the user.</p>
+                <p style="margin-top: 8px;"><strong>3)</strong> No Modified Version of the Font Software may use the <strong>Reserved Font Name(s)</strong> unless explicit written permission is granted by the corresponding Copyright Holder. This restriction only applies to the primary font name as presented to the users.</p>
+                <p style="margin-top: 8px;"><strong>4)</strong> The name(s) of the Copyright Holder(s) or the Author(s) of the Font Software shall not be used to promote, endorse or advertise any Modified Version, except to acknowledge the contribution(s) of the Copyright Holder(s) and the Author(s) or with their explicit written permission.</p>
+                <p style="margin-top: 8px;"><strong>5)</strong> The Font Software, modified or unmodified, in part or in whole, must be distributed entirely under this license, and <strong>must not be distributed under any other license</strong>. The requirement for fonts to remain under this license does not apply to any document created using the Font Software.</p>
+            </div>
+
+            <div>
+                <p><strong>TERMINATION</strong></p>
+                <p>This license becomes <strong>null and void</strong> if any of the above conditions are not met.</p>
+            </div>
+
+            <div>
+                <p><strong>DISCLAIMER</strong></p>
+                <p>THE FONT SOFTWARE IS PROVIDED <strong>"AS IS"</strong>, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE.</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="footer-divider"><hr></div>
+    <footer>
+        <div>&copy; 2026 Gliftype Foundry. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="https://github.com/gliftype/" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://instagram.com/gliftype/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="mailto:typeglif@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            if (newTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                if (savedTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('site-header');
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
