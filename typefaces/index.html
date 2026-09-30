@@ -1135,7 +1135,13 @@
             if (targetSection) {
                 targetSection.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                window.location.hash = sectionId;
+                
+                // Menghapus hash jika kembali ke typefaces utama, dan menetapkan hash jika membuka detail font
+                if (sectionId === 'typefaces') {
+                    history.pushState("", document.title, window.location.pathname + window.location.search);
+                } else {
+                    window.location.hash = sectionId;
+                }
 
                 if (['font-grafem', 'font-fonem', 'font-cikutra', 'font-alofon', 'font-amara'].includes(sectionId)) {
                     const key = sectionId.replace('font-', '');
@@ -1313,3 +1319,4 @@
     </script>
 </body>
 </html>
+```[cite: 1]
