@@ -259,8 +259,9 @@
             border-bottom: 1px solid var(--border-color);
         }
 
+        /* Menghilangkan garis border di atas elemen pertama (typefaces) */
         .mobile-nav-links a:first-child {
-            border-top: 1px solid var(--border-color);
+            border-top: none;
         }
 
         .mobile-nav-links a:hover, .mobile-nav-links a.active {
@@ -592,11 +593,13 @@
             width: 100%;
         }
 
+        /* Footer utama diset stack vertikal: copyright di baris atas, sosmed di baris bawah */
         footer {
             padding: 30px 40px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
             font-size: 0.9rem;
             color: var(--gray-color);
             max-width: 1750px;
