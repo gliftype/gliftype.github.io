@@ -1,1 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typefaces — Gliftype</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
 
+    <!-- opentype.js untuk membaca file font .ttf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'GLF Grafem';
+            src: url('fonts/GLF-Grafem-VF.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GLF Fonem';
+            src: url('fonts/GLF-Fonem-VF.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GLF Cikutra';
+            src: url('fonts/GLF-Cikutra-VF.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GLF Alofon';
+            src: url('fonts/GLF-Alofon-VF.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GLF Amara';
+            src: url('fonts/GLF-Amara-VF.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --gray-color: #767676;
+            --light-gray: #f9f9f9;
+            --border-color: #eaeaea;
+            --slider-bg: #e0e0e0;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #000000;
+            --text-color: #f5f5f7;
+            --gray-color: #999999;
+            --light-gray: #111111;
+            --border-color: #222222;
+            --slider-bg: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-color);
+            z-index: 1000;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 40px;
+            max-width: 1750px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header.scrolled {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logotype {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logotype img {
+            height: 32px;
+            width: auto;
+            transition: var(--transition);
+            filter: brightness(0);
+        }
+        
+        [data-theme="dark"] .logotype img {
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--gray-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-color);
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            transition: var(--transition);
+        }
+
+        .theme-toggle-btn:hover {
+            color: var(--text-color);
+        }
+
+        .theme-toggle-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-moon { display: none; }
+        .icon-sun { display: block; }
+        [data-theme="dark"] .icon-moon { display: block; }
+        [data-theme="dark"] .icon-sun { display: none; }
+
+        main {
+            margin-top: 100px;
+            flex: 1;
+            padding: 40px;
+            max-width: 1750px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 30px;
+        }
+
+        .font-item-clean {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .font-item-clean:first-child {
+            padding-top: 0;
+        }
+
+        .font-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .font-title-link {
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .font-title-link:hover {
+            color: var(--gray-color);
+        }
+
+        .controls-bar-minimal {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            background: transparent;
+            font-size: 0.85rem;
+            color: var(--gray-color);
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .control-group span {
+            font-variant-numeric: tabular-nums;
+            min-width: 50px;
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--text-color);
+        }
+
+        .control-group input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--slider-bg);
+            height: 2px;
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+            width: 65px;
+            transition: background 0.3s ease;
+        }
+
+        .control-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--text-color);
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        .preview-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 10px 0;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            gap: 1.5rem;
+            white-space: nowrap;
+            will-change: transform;
+            animation: marqueeLeft 150s linear infinite;
+        }
+
+        .preview-wrapper:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes marqueeLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-text-node {
+            display: inline-block;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-color);
+            white-space: pre;
+            flex-shrink: 0;
+            user-select: text;
+        }
+
+        .preview-wrapper.user-typing-mode .marquee-track {
+            animation: none !important;
+            transform: none !important;
+            display: block !important;
+            width: 100%;
+        }
+
+        .preview-wrapper.user-typing-mode .marquee-text-node.clone-node {
+            display: none !important;
+        }
+
+        .preview-wrapper.user-typing-mode input {
+            white-space: pre-wrap !important;
+            width: 100% !important;
+        }
+
+        .paragraph-preview-wrapper {
+            width: 100%;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .paragraph-text-node {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-color);
+            resize: vertical;
+            font-family: inherit;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-y: hidden;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--gray-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: var(--text-color);
+        }
+
+        .detail-block {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .detail-block h3 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            background: var(--bg-color);
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .spec-item label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--gray-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .spec-item span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .glyph-search-bar {
+            margin-bottom: 20px;
+        }
+
+        .glyph-search-input {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            background: var(--light-gray);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 4px;
+            outline: none;
+            width: 280px;
+        }
+
+        .glyph-table {
+            display: flex;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border-color);
+            border-left: 1px solid var(--border-color);
+            background: var(--bg-color);
+        }
+
+        .glyph-cell {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            user-select: none;
+            cursor: pointer;
+            padding: 6px;
+        }
+
+        .glyph-cell:hover {
+            background: var(--light-gray);
+        }
+
+        .glyph-cell svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--text-color);
+        }
+
+        .download-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn-download {
+            background-color: var(--light-gray);
+            color: var(--gray-color);
+            border: 1px solid var(--border-color);
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .footer-divider {
+            width: 100%;
+            max-width: 1750px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-divider hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        footer {
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            max-width: 1750px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--gray-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .header-container, .footer-divider, footer {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            main {
+                padding: 20px;
+            }
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logotype">
+                <img src="images/logo.svg" alt="Gliftype Logo">
+            </a>
+            <div class="nav-right">
+                <nav>
+                    <a href="typefaces.html" class="nav-link active">Typefaces</a>
+                    <a href="license.html" class="nav-link">License</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </nav>
+                <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Katalog Typefaces -->
+        <section id="typefaces" class="page-section active">
+            <!-- Font 1: GLF Grafem -->
+            <div class="font-item-clean">
+                <div class="font-header-info">
+                    <a href="#font-grafem" class="font-title-link" onclick="switchSection('font-grafem', event)">GLF Grafem</a>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'grafem-preview-main', 'fontWeight', 'val-grafem-w')">
+                            <span id="val-grafem-w">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="0.5" oninput="updateFont(this, 'grafem-preview-main', 'width', 'val-grafem-wdth')">
+                            <span id="val-grafem-wdth">0px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="12" max="260" value="82" step="2" oninput="updateFont(this, 'grafem-preview-main', 'fontSize', 'val-grafem-s')">
+                            <span id="val-grafem-s">82px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'grafem-preview-main', 'lineHeight', 'val-grafem-h')">
+                            <span id="val-grafem-h">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-wrapper" id="wrap-grafem-main">
+                    <div class="marquee-track">
+                        <input type="text" id="grafem-preview-main" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-main')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.    ">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Font 2: GLF Fonem -->
+            <div class="font-item-clean">
+                <div class="font-header-info">
+                    <a href="#font-fonem" class="font-title-link" onclick="switchSection('font-fonem', event)">GLF Fonem</a>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'fonem-preview-main', 'fontWeight', 'val-fonem-w')">
+                            <span id="val-fonem-w">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="0.5" oninput="updateFont(this, 'fonem-preview-main', 'width', 'val-fonem-wdth')">
+                            <span id="val-fonem-wdth">0px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="12" max="260" value="82" step="2" oninput="updateFont(this, 'fonem-preview-main', 'fontSize', 'val-fonem-s')">
+                            <span id="val-fonem-s">82px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'fonem-preview-main', 'lineHeight', 'val-fonem-h')">
+                            <span id="val-fonem-h">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-wrapper" id="wrap-fonem-main">
+                    <div class="marquee-track">
+                        <input type="text" id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-main')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Font 3: GLF Cikutra -->
+            <div class="font-item-clean">
+                <div class="font-header-info">
+                    <a href="#font-cikutra" class="font-title-link" onclick="switchSection('font-cikutra', event)">GLF Cikutra</a>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'cikutra-preview-main', 'fontWeight', 'val-cikutra-w')">
+                            <span id="val-cikutra-w">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="0.5" oninput="updateFont(this, 'cikutra-preview-main', 'width', 'val-cikutra-wdth')">
+                            <span id="val-cikutra-wdth">0px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="12" max="260" value="82" step="2" oninput="updateFont(this, 'cikutra-preview-main', 'fontSize', 'val-cikutra-s')">
+                            <span id="val-cikutra-s">82px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'cikutra-preview-main', 'lineHeight', 'val-cikutra-h')">
+                            <span id="val-cikutra-h">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-wrapper" id="wrap-cikutra-main">
+                    <div class="marquee-track">
+                        <input type="text" id="cikutra-preview-main" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-main')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.    ">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Font 4: GLF Alofon -->
+            <div class="font-item-clean">
+                <div class="font-header-info">
+                    <a href="#font-alofon" class="font-title-link" onclick="switchSection('font-alofon', event)">GLF Alofon</a>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'alofon-preview-main', 'fontWeight', 'val-alofon-w')">
+                            <span id="val-alofon-w">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="0.5" oninput="updateFont(this, 'alofon-preview-main', 'width', 'val-alofon-wdth')">
+                            <span id="val-alofon-wdth">0px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="12" max="260" value="82" step="2" oninput="updateFont(this, 'alofon-preview-main', 'fontSize', 'val-alofon-s')">
+                            <span id="val-alofon-s">82px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'alofon-preview-main', 'lineHeight', 'val-alofon-h')">
+                            <span id="val-alofon-h">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-wrapper" id="wrap-alofon-main">
+                    <div class="marquee-track">
+                        <input type="text" id="alofon-preview-main" class="marquee-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-alofon-main')" readonly value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Font 5: GLF Amara -->
+            <div class="font-item-clean">
+                <div class="font-header-info">
+                    <a href="#font-amara" class="font-title-link" onclick="switchSection('font-amara', event)">GLF Amara</a>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'amara-preview-main', 'fontWeight', 'val-amara-w')">
+                            <span id="val-amara-w">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="0.5" oninput="updateFont(this, 'amara-preview-main', 'width', 'val-amara-wdth')">
+                            <span id="val-amara-wdth">0px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="12" max="260" value="82" step="2" oninput="updateFont(this, 'amara-preview-main', 'fontSize', 'val-amara-s')">
+                            <span id="val-amara-s">82px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'amara-preview-main', 'lineHeight', 'val-amara-h')">
+                            <span id="val-amara-h">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-wrapper" id="wrap-amara-main">
+                    <div class="marquee-track">
+                        <input type="text" id="amara-preview-main" class="marquee-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-amara-main')" readonly value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.    ">
+                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.    ">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Halaman Detail: GLF Grafem -->
+        <section id="font-grafem" class="page-section">
+            <a href="#typefaces" class="back-link" onclick="switchSection('typefaces', event)">&larr; Back to Typefaces</a>
+            <h1>GLF Grafem</h1>
+            
+            <div class="font-item-clean" style="padding-top: 0;">
+                <div class="font-header-info">
+                    <div style="font-weight: 600; font-size: 1.15rem;">Interactive Preview</div>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'grafem-preview-detail', 'fontWeight', 'val-grafem-w-det')">
+                            <span id="val-grafem-w-det">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="0.5" oninput="updateFont(this, 'grafem-preview-detail', 'width', 'val-grafem-wdth-det')">
+                            <span id="val-grafem-wdth-det">0px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="12" max="260" value="82" step="2" oninput="updateFont(this, 'grafem-preview-detail', 'fontSize', 'val-grafem-s-det')">
+                            <span id="val-grafem-s-det">82px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'grafem-preview-detail', 'lineHeight', 'val-grafem-h-det')">
+                            <span id="val-grafem-h-det">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="paragraph-preview-wrapper">
+                    <textarea id="grafem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.</textarea>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>About</h3>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">Grafem is a robust and highly versatile Neo-Grotesque sans-serif, engineered for both striking visual impact and functional clarity.</p>
+            </div>
+
+            <div class="detail-block">
+                <h3>Details</h3>
+                <div class="specs-grid">
+                    <div class="spec-item"><label>Designed by</label><span>Sidiq Kamal Nurmawan</span></div>
+                    <div class="spec-item"><label>Released</label><span>July 2026</span></div>
+                    <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
+                    <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
+                    <div class="spec-item"><label>Support</label><span>Latin, Latin-1, Extended-A</span></div>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-grafem" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('grafem')">
+                </div>
+                <div id="glyphs-container-grafem">
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <a href="#" class="btn-download" onclick="event.preventDefault();">Under Maintenance</a>
+            </div>
+        </section>
+
+        <!-- Halaman Detail: GLF Fonem -->
+        <section id="font-fonem" class="page-section">
+            <a href="#typefaces" class="back-link" onclick="switchSection('typefaces', event)">&larr; Back to Typefaces</a>
+            <h1>GLF Fonem</h1>
+            
+            <div class="font-item-clean" style="padding-top: 0;">
+                <div class="font-header-info">
+                    <div style="font-weight: 600; font-size: 1.15rem;">Interactive Preview</div>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'fonem-preview-detail', 'fontWeight', 'val-fonem-w-det')">
+                            <span id="val-fonem-w-det">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="0.5" oninput="updateFont(this, 'fonem-preview-detail', 'width', 'val-fonem-wdth-det')">
+                            <span id="val-fonem-wdth-det">0px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="12" max="260" value="82" step="2" oninput="updateFont(this, 'fonem-preview-detail', 'fontSize', 'val-fonem-s-det')">
+                            <span id="val-fonem-s-det">82px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'fonem-preview-detail', 'lineHeight', 'val-fonem-h-det')">
+                            <span id="val-fonem-h-det">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="paragraph-preview-wrapper">
+                    <textarea id="fonem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.</textarea>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>About</h3>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">Fonem is a versatile modern sans-serif type family ranging from delicate Thin to impactful Black weights.</p>
+            </div>
+
+            <div class="detail-block">
+                <h3>Details</h3>
+                <div class="specs-grid">
+                    <div class="spec-item"><label>Designed by</label><span>Sidiq Kamal Nurmawan</span></div>
+                    <div class="spec-item"><label>Released</label><span>August 2026</span></div>
+                    <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
+                    <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
+                    <div class="spec-item"><label>Support</label><span>Latin, Latin-1 Supplement</span></div>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-fonem" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('fonem')">
+                </div>
+                <div id="glyphs-container-fonem">
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <a href="#" class="btn-download" onclick="event.preventDefault();">Under Maintenance</a>
+            </div>
+        </section>
+
+        <!-- Halaman Detail: GLF Cikutra -->
+        <section id="font-cikutra" class="page-section">
+            <a href="#typefaces" class="back-link" onclick="switchSection('typefaces', event)">&larr; Back to Typefaces</a>
+            <h1>GLF Cikutra</h1>
+            
+            <div class="font-item-clean" style="padding-top: 0;">
+                <div class="font-header-info">
+                    <div style="font-weight: 600; font-size: 1.15rem;">Interactive Preview</div>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'cikutra-preview-detail', 'fontWeight', 'val-cikutra-w-det')">
+                            <span id="val-cikutra-w-det">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="0.5" oninput="updateFont(this, 'cikutra-preview-detail', 'width', 'val-cikutra-wdth-det')">
+                            <span id="val-cikutra-wdth-det">0px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="12" max="260" value="82" step="2" oninput="updateFont(this, 'cikutra-preview-detail', 'fontSize', 'val-cikutra-s-det')">
+                            <span id="val-cikutra-s-det">82px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'cikutra-preview-detail', 'lineHeight', 'val-cikutra-h-det')">
+                            <span id="val-cikutra-h-det">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="paragraph-preview-wrapper">
+                    <textarea id="cikutra-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.</textarea>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>About</h3>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">Cikutra features a unique architectural character design.</p>
+            </div>
+
+            <div class="detail-block">
+                <h3>Details</h3>
+                <div class="specs-grid">
+                    <div class="spec-item"><label>Designed by</label><span>Sidiq Kamal Nurmawan</span></div>
+                    <div class="spec-item"><label>Released</label><span>August 2026</span></div>
+                    <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
+                    <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
+                    <div class="spec-item"><label>Support</label><span>Latin, Latin-1</span></div>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-cikutra" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('cikutra')">
+                </div>
+                <div id="glyphs-container-cikutra">
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <a href="#" class="btn-download" onclick="event.preventDefault();">Under Maintenance</a>
+            </div>
+        </section>
+
+        <!-- Halaman Detail: GLF Alofon -->
+        <section id="font-alofon" class="page-section">
+            <a href="#typefaces" class="back-link" onclick="switchSection('typefaces', event)">&larr; Back to Typefaces</a>
+            <h1>GLF Alofon</h1>
+            
+            <div class="font-item-clean" style="padding-top: 0;">
+                <div class="font-header-info">
+                    <div style="font-weight: 600; font-size: 1.15rem;">Interactive Preview</div>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'alofon-preview-detail', 'fontWeight', 'val-alofon-w-det')">
+                            <span id="val-alofon-w-det">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="0.5" oninput="updateFont(this, 'alofon-preview-detail', 'width', 'val-alofon-wdth-det')">
+                            <span id="val-alofon-wdth-det">0px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="12" max="260" value="82" step="2" oninput="updateFont(this, 'alofon-preview-detail', 'fontSize', 'val-alofon-s-det')">
+                            <span id="val-alofon-s-det">82px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'alofon-preview-detail', 'lineHeight', 'val-alofon-h-det')">
+                            <span id="val-alofon-h-det">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="paragraph-preview-wrapper">
+                    <textarea id="alofon-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.</textarea>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>About</h3>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.</p>
+            </div>
+
+            <div class="detail-block">
+                <h3>Details</h3>
+                <div class="specs-grid">
+                    <div class="spec-item"><label>Designed by</label><span>Sidiq Kamal Nurmawan</span></div>
+                    <div class="spec-item"><label>Released</label><span>September 2026</span></div>
+                    <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
+                    <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
+                    <div class="spec-item"><label>Support</label><span>Latin, Latin-1</span></div>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-alofon" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('alofon')">
+                </div>
+                <div id="glyphs-container-alofon">
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <a href="#" class="btn-download" onclick="event.preventDefault();">Under Maintenance</a>
+            </div>
+        </section>
+
+        <!-- Halaman Detail: GLF Amara -->
+        <section id="font-amara" class="page-section">
+            <a href="#typefaces" class="back-link" onclick="switchSection('typefaces', event)">&larr; Back to Typefaces</a>
+            <h1>GLF Amara</h1>
+            
+            <div class="font-item-clean" style="padding-top: 0;">
+                <div class="font-header-info">
+                    <div style="font-weight: 600; font-size: 1.15rem;">Interactive Preview</div>
+                    <div class="controls-bar-minimal">
+                        <div class="control-group">
+                            <label>Weight</label>
+                            <input type="range" min="100" max="900" value="400" step="10" oninput="updateFont(this, 'amara-preview-detail', 'fontWeight', 'val-amara-w-det')">
+                            <span id="val-amara-w-det">400</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Width</label>
+                            <input type="range" min="-20" max="20" value="0" step="0.5" oninput="updateFont(this, 'amara-preview-detail', 'width', 'val-amara-wdth-det')">
+                            <span id="val-amara-wdth-det">0px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Size</label>
+                            <input type="range" min="12" max="260" value="82" step="2" oninput="updateFont(this, 'amara-preview-detail', 'fontSize', 'val-amara-s-det')">
+                            <span id="val-amara-s-det">82px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Height</label>
+                            <input type="range" min="1.0" max="2.0" value="1.2" step="0.1" oninput="updateFont(this, 'amara-preview-detail', 'lineHeight', 'val-amara-h-det')">
+                            <span id="val-amara-h-det">1.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="paragraph-preview-wrapper">
+                    <textarea id="amara-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.</textarea>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>About</h3>
+                <p style="color: var(--gray-color); max-width: 800px; font-size: 1.05rem;">This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions. It features exaggerated weight transitions, juxtaposing ultra-thick vertical stems with razor-thin horizontal serifs and fine hairlines, giving it a dramatic, architectural presence on the page.</p>
+            </div>
+
+            <div class="detail-block">
+                <h3>Details</h3>
+                <div class="specs-grid">
+                    <div class="spec-item"><label>Designed by</label><span>Sidiq Kamal Nurmawan</span></div>
+                    <div class="spec-item"><label>Released</label><span>September 2026</span></div>
+                    <div class="spec-item"><label>Version</label><span>1.0.0</span></div>
+                    <div class="spec-item"><label>Licensed</label><span>SIL Open Font License</span></div>
+                    <div class="spec-item"><label>Support</label><span>Latin, Latin-1</span></div>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <h3>Glyphs & Character Map</h3>
+                <div class="glyph-search-bar">
+                    <input type="text" id="search-amara" class="glyph-search-input" placeholder="Cari nama glyph atau karakter..." oninput="filterGlyphs('amara')">
+                </div>
+                <div id="glyphs-container-amara">
+                    <div style="color: var(--gray-color); font-size: 0.9rem;">Memuat seluruh glyph font asli...</div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <a href="#" class="btn-download" onclick="event.preventDefault();">Under Maintenance</a>
+            </div>
+        </section>
+    </main>
+
+    <div class="footer-divider"><hr></div>
+    <footer>
+        <div>&copy; 2026 Gliftype Foundry. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="https://github.com/gliftype/" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://instagram.com/gliftype/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="mailto:typeglif@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script>
+        function adjustInputWidths() {
+            const inputs = document.querySelectorAll('#typefaces .marquee-text-node:not(.clone-node)');
+            inputs.forEach(input => {
+                const tempSpan = document.createElement('span');
+                tempSpan.style.visibility = 'hidden';
+                tempSpan.style.position = 'absolute';
+                tempSpan.style.whiteSpace = 'pre';
+                tempSpan.style.font = window.getComputedStyle(input).font;
+                tempSpan.style.letterSpacing = window.getComputedStyle(input).letterSpacing;
+                tempSpan.textContent = input.value;
+                document.body.appendChild(tempSpan);
+                const textWidth = Math.ceil(tempSpan.getBoundingClientRect().width);
+                document.body.removeChild(tempSpan);
+
+                input.style.width = textWidth + 'px';
+                const clone = input.parentElement.querySelector('.clone-node');
+                if (clone) {
+                    clone.value = input.value;
+                    clone.style.width = textWidth + 'px';
+                }
+            });
+        }
+
+        function stopRunningText(input, wrapperId) {
+            const wrapper = document.getElementById(wrapperId);
+            wrapper.classList.add('user-typing-mode');
+            input.removeAttribute('readonly');
+            input.style.width = '100%';
+        }
+
+        const loadedFontsData = {
+            'grafem': { url: 'fonts/GLF-Grafem-VF.ttf', fontObj: null, glyphs: [] },
+            'fonem': { url: 'fonts/GLF-Fonem-VF.ttf', fontObj: null, glyphs: [] },
+            'cikutra': { url: 'fonts/GLF-Cikutra-VF.ttf', fontObj: null, glyphs: [] },
+            'alofon': { url: 'fonts/GLF-Alofon-VF.ttf', fontObj: null, glyphs: [] },
+            'amara': { url: 'fonts/GLF-Amara-VF.ttf', fontObj: null, glyphs: [] }
+        };
+
+        function switchSection(sectionId, event) {
+            if (event) event.preventDefault();
+            
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.location.hash = sectionId;
+
+                if (['font-grafem', 'font-fonem', 'font-cikutra', 'font-alofon', 'font-amara'].includes(sectionId)) {
+                    const key = sectionId.replace('font-', '');
+                    if (!loadedFontsData[key].fontObj) {
+                        fetchAndParseFont(key);
+                    }
+                }
+            }
+            setTimeout(adjustInputWidths, 50);
+        }
+
+        function fetchAndParseFont(key) {
+            const fontData = loadedFontsData[key];
+            const container = document.getElementById(`glyphs-container-${key}`);
+
+            fetch(fontData.url)
+                .then(res => {
+                    if (!res.ok) throw new Error("File font .ttf tidak ditemukan di path " + fontData.url);
+                    return res.arrayBuffer();
+                })
+                .then(buffer => {
+                    const font = opentype.parse(buffer);
+                    fontData.fontObj = font;
+                    
+                    const list = [];
+                    for (let i = 0; i < font.numGlyphs; i++) {
+                        const glyph = font.glyphs.get(i);
+                        if (i > 0 && (!glyph.path || glyph.path.commands.length === 0) && glyph.unicode === undefined) {
+                            continue;
+                        }
+                        let unicodeStr = glyph.unicode ? 'U+' + glyph.unicode.toString(16).toUpperCase().padStart(4, '0') : '';
+                        let char = glyph.unicode ? String.fromCharCode(glyph.unicode) : '';
+                        
+                        list.push({
+                            index: i,
+                            name: glyph.name || `glyph_${i}`,
+                            unicodeStr: unicodeStr,
+                            char: char,
+                            glyphObj: glyph
+                        });
+                    }
+                    fontData.glyphs = list;
+                    renderGlyphsGrid(key, list);
+                })
+                .catch(err => {
+                    container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Gagal memuat file font .ttf: ${err.message}.</div>`;
+                });
+        }
+
+        function renderGlyphsGrid(key, glyphsArray) {
+            const container = document.getElementById(`glyphs-container-${key}`);
+            const fontObj = loadedFontsData[key].fontObj;
+            if (glyphsArray.length === 0) {
+                container.innerHTML = `<div style="color: var(--gray-color); font-size: 0.9rem;">Tidak ada glyph ditemukan.</div>`;
+                return;
+            }
+
+            const unitsPerEm = fontObj.unitsPerEm || 1000;
+            const ascender = fontObj.ascender || 800;
+            const descender = fontObj.descender || -200;
+            const height = ascender - descender;
+            const viewBox = `0 ${-ascender} ${unitsPerEm} ${height}`;
+            let targetWeight = 600;
+
+            let html = `<div class="glyph-table">`;
+            glyphsArray.forEach((item) => {
+                let pathData = '';
+                try {
+                    const path = item.glyphObj.getPath(0, 0, unitsPerEm);
+                    pathData = path.toPathData(2);
+                } catch (e) {
+                    pathData = '';
+                }
+
+                html += `
+                    <div class="glyph-cell" title="${item.name} (${item.unicodeStr})">
+                        <svg viewBox="${viewBox}" style="font-weight: ${targetWeight}; font-variation-settings: 'wght' ${targetWeight};">
+                            <path d="${pathData}"></path>
+                        </svg>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function filterGlyphs(key) {
+            const query = document.getElementById(`search-${key}`).value.toLowerCase().trim();
+            const fontData = loadedFontsData[key];
+            if (!fontData.fontObj) return;
+
+            if (!query) {
+                renderGlyphsGrid(key, fontData.glyphs);
+                return;
+            }
+
+            const filtered = fontData.glyphs.filter(item => 
+                item.name.toLowerCase().includes(query) ||
+                item.unicodeStr.toLowerCase().includes(query) ||
+                item.char.toLowerCase() === query
+            );
+            renderGlyphsGrid(key, filtered);
+        }
+
+        function updateFont(slider, targetId, property, spanId) {
+            const target = document.getElementById(targetId);
+            const span = document.getElementById(spanId);
+            const val = parseFloat(slider.value);
+            const clone = target.parentElement.querySelector('.clone-node');
+
+            if (property === 'fontWeight') {
+                target.style.fontWeight = val;
+                if (clone) clone.style.fontWeight = val;
+                span.textContent = val;
+            } else if (property === 'width') {
+                target.style.letterSpacing = val + 'px';
+                if (clone) clone.style.letterSpacing = val + 'px';
+                span.textContent = val + 'px';
+            } else if (property === 'fontSize') {
+                target.style.fontSize = val + 'px';
+                if (clone) clone.style.fontSize = val + 'px';
+                span.textContent = val + 'px';
+            } else if (property === 'lineHeight') {
+                target.style.lineHeight = val;
+                if (clone) clone.style.lineHeight = val;
+                span.textContent = val;
+            }
+            setTimeout(adjustInputWidths, 10);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            if (newTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                if (savedTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                switchSection(hash);
+            }
+
+            adjustInputWidths();
+        });
+
+        window.addEventListener('resize', () => {
+            adjustInputWidths();
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('site-header');
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
