@@ -302,10 +302,10 @@
 
         .marquee-track {
             display: inline-flex;
-            gap: 0px;
-            white-space: pre;
+            gap: 80px;
+            white-space: nowrap;
             will-change: transform;
-            animation: marqueeLeft 120s linear infinite;
+            animation: marqueeLeft 45s linear infinite;
             width: max-content;
         }
 
@@ -315,7 +315,7 @@
 
         @keyframes marqueeLeft {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(calc(-50% - 40px)); }
         }
 
         .marquee-text-node {
@@ -324,7 +324,7 @@
             border: none;
             outline: none;
             color: var(--text-color);
-            white-space: pre;
+            white-space: nowrap;
             flex-shrink: 0;
             user-select: text;
         }
@@ -340,9 +340,10 @@
             display: none !important;
         }
 
-        .preview-wrapper.user-typing-mode input {
+        .preview-wrapper.user-typing-mode span {
             white-space: pre-wrap !important;
             width: 100% !important;
+            outline: none;
         }
 
         .paragraph-preview-wrapper {
@@ -584,8 +585,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-grafem-main">
                     <div class="marquee-track">
-                        <input type="text" id="grafem-preview-main" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-grafem-main')" readonly value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.    ">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.    ">
+                        <span id="grafem-preview-main" class="marquee-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onclick="stopRunningText(this, 'wrap-grafem-main')">Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.</span>
+                        <span class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;">Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance.</span>
                     </div>
                 </div>
             </div>
@@ -619,8 +620,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-fonem-main">
                     <div class="marquee-track">
-                        <input type="text" id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-fonem-main')" readonly value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.    ">
+                        <span id="fonem-preview-main" class="marquee-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onclick="stopRunningText(this, 'wrap-fonem-main')">Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.</span>
+                        <span class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;">Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation.</span>
                     </div>
                 </div>
             </div>
@@ -654,8 +655,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-cikutra-main">
                     <div class="marquee-track">
-                        <input type="text" id="cikutra-preview-main" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-cikutra-main')" readonly value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.    ">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.    ">
+                        <span id="cikutra-preview-main" class="marquee-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onclick="stopRunningText(this, 'wrap-cikutra-main')">Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.</span>
+                        <span class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;">Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash.</span>
                     </div>
                 </div>
             </div>
@@ -689,8 +690,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-alofon-main">
                     <div class="marquee-track">
-                        <input type="text" id="alofon-preview-main" class="marquee-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-alofon-main')" readonly value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.    ">
+                        <span id="alofon-preview-main" class="marquee-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onclick="stopRunningText(this, 'wrap-alofon-main')">A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.</span>
+                        <span class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;">A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic.</span>
                     </div>
                 </div>
             </div>
@@ -724,8 +725,8 @@
                 </div>
                 <div class="preview-wrapper" id="wrap-amara-main">
                     <div class="marquee-track">
-                        <input type="text" id="amara-preview-main" class="marquee-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onfocus="stopRunningText(this, 'wrap-amara-main')" readonly value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.    ">
-                        <input type="text" class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" readonly tabindex="-1" value="This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.    ">
+                        <span id="amara-preview-main" class="marquee-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" onclick="stopRunningText(this, 'wrap-amara-main')">This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.</span>
+                        <span class="marquee-text-node clone-node" aria-hidden="true" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;">This typeface is a striking, high-contrast display serif that marries classical elegance with modern, bold proportions.</span>
                     </div>
                 </div>
             </div>
@@ -1063,37 +1064,11 @@
     </footer>
 
     <script>
-        function adjustInputWidths() {
-            const inputs = document.querySelectorAll('#typefaces .marquee-text-node:not(.clone-node)');
-            inputs.forEach(input => {
-                const tempSpan = document.createElement('span');
-                tempSpan.style.visibility = 'hidden';
-                tempSpan.style.position = 'absolute';
-                tempSpan.style.whiteSpace = 'pre';
-                tempSpan.style.font = window.getComputedStyle(input).font;
-                tempSpan.style.letterSpacing = window.getComputedStyle(input).letterSpacing;
-                
-                // Tambahkan ruang ekstra agar teks berjalan mulus tanpa terpotong
-                tempSpan.textContent = input.value + "     ";
-                
-                document.body.appendChild(tempSpan);
-                const textWidth = Math.ceil(tempSpan.getBoundingClientRect().width);
-                document.body.removeChild(tempSpan);
-
-                input.style.width = textWidth + 'px';
-                const clone = input.parentElement.querySelector('.clone-node');
-                if (clone) {
-                    clone.value = input.value + "     ";
-                    clone.style.width = textWidth + 'px';
-                }
-            });
-        }
-
-        function stopRunningText(input, wrapperId) {
+        function stopRunningText(spanElement, wrapperId) {
             const wrapper = document.getElementById(wrapperId);
             wrapper.classList.add('user-typing-mode');
-            input.removeAttribute('readonly');
-            input.style.width = '100%';
+            spanElement.setAttribute('contenteditable', 'true');
+            spanElement.focus();
         }
 
         const loadedFontsData = {
@@ -1127,7 +1102,6 @@
                     }
                 }
             }
-            setTimeout(adjustInputWidths, 50);
         }
 
         async function fetchAndParseFont(key) {
@@ -1184,6 +1158,8 @@
             const descender = fontObj.descender || -200;
             const height = ascender - descender;
             const viewBox = `0 ${-ascender} ${unitsPerEm} ${height}`;
+            
+            // Atur weight statis untuk character map di sini (misal: 400, 600, 700, dsb)
             let targetWeight = 400;
 
             let html = `<div class="glyph-table">`;
@@ -1198,7 +1174,7 @@
 
                 html += `
                     <div class="glyph-cell" title="${item.name} (${item.unicodeStr})">
-                        <svg viewBox="${viewBox}" style="font-weight: ${targetWeight};">
+                        <svg viewBox="${viewBox}" style="font-weight: ${targetWeight}; font-variation-settings: 'wght' ${targetWeight};">
                             <path d="${pathData}"></path>
                         </svg>
                     </div>
@@ -1235,7 +1211,6 @@
                 if (clone) clone.style.lineHeight = val;
                 span.textContent = val;
             }
-            setTimeout(adjustInputWidths, 10);
         }
 
         function toggleTheme() {
@@ -1266,12 +1241,6 @@
             if (hash && document.getElementById(hash)) {
                 switchSection(hash);
             }
-
-            adjustInputWidths();
-        });
-
-        window.addEventListener('resize', () => {
-            adjustInputWidths();
         });
 
         window.addEventListener('scroll', () => {
