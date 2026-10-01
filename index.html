@@ -8,7 +8,7 @@
 
     <!-- Open Graph / Social Media Preview Meta Tags -->
     <meta property="og:title" content="Gliftype — Open Source Type Foundry">
-    <meta property="og:description" content="Gliftype is an open-source type foundry; we create independent and free fonts for everyone.">
+    <meta property="og:description" content="A digital collective forging raw, uncompromised, and anti-institutional typefaces.">
     <meta property="og:image" content="https://gliftype.com/images/ogimage.png">
     <meta property="og:url" content="https://gliftype.com/">
     <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Gliftype — Open Source Type Foundry">
-    <meta name="twitter:description" content="Gliftype is an open-source type foundry; we create independent and free fonts for everyone.">
+    <meta name="twitter:description" content="A digital collective forging raw, uncompromised, and anti-institutional typefaces.">
     <meta name="twitter:image" content="https://gliftype.com/images/ogimage.png">
 
     <style>
@@ -24,7 +24,6 @@
             --bg-color: #ffffff;
             --text-color: #111111;
             --gray-color: #767676;
-            --light-gray: #f9f9f9;
             --border-color: #eaeaea;
             --transition: all 0.3s ease;
         }
@@ -33,7 +32,6 @@
             --bg-color: #000000;
             --text-color: #f5f5f7;
             --gray-color: #999999;
-            --light-gray: #111111;
             --border-color: #222222;
         }
 
@@ -72,7 +70,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 24px 40px;
-            max-width: 1750px;
+            max-width: 100%;
             width: 100%;
             margin: 0 auto;
         }
@@ -152,45 +150,37 @@
         [data-theme="dark"] .icon-moon { display: block; }
         [data-theme="dark"] .icon-sun { display: none; }
 
-        /* KONTEN UTAMA: Horizontal Scrollable Cards (Gaya Link-Kit) */
+        /* KONTEN UTAMA FULL PAGE */
         main {
             margin-top: 140px;
             flex: 1;
-            padding: 40px 20px 60px 20px;
-            max-width: 1200px;
+            padding: 40px 40px 60px 40px;
             width: 100%;
-            margin-left: auto;
-            margin-right: auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .hero-section {
-            margin-bottom: 32px;
-            text-align: left;
-            padding-left: 10px;
+            margin-bottom: 50px;
+            max-width: 900px;
         }
 
         h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 8px;
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text-color);
+            letter-spacing: -0.01em;
         }
 
-        .hero-desc {
-            font-size: 1rem;
-            color: var(--gray-color);
-        }
-
-        /* Container Slider Kartu */
+        /* Container Slider Kartu Full Page */
         .cards-slider-container {
             width: 100%;
             overflow-x: auto;
             display: flex;
-            gap: 20px;
-            padding: 10px 10px 30px 10px;
+            gap: 40px;
+            padding: 10px 0 30px 0;
             scroll-snap-type: x mandatory;
             scrollbar-width: thin;
             scrollbar-color: var(--gray-color) transparent;
@@ -209,15 +199,14 @@
             border-radius: 10px;
         }
 
-        /* Kartu Individual Font */
+        /* Kartu Minimalis (Tanpa Border & Tanpa Background Fill) */
         .font-card {
-            min-width: 340px;
-            max-width: 380px;
-            height: 420px;
-            background: var(--light-gray);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 28px;
+            min-width: 420px;
+            max-width: 480px;
+            height: 480px;
+            background: transparent;
+            border: none;
+            padding: 0;
             text-decoration: none;
             color: var(--text-color);
             display: flex;
@@ -226,12 +215,10 @@
             scroll-snap-align: start;
             flex-shrink: 0;
             transition: var(--transition);
-            position: relative;
         }
 
         .font-card:hover {
-            border-color: var(--gray-color);
-            transform: translateY(-4px);
+            transform: translateY(-6px);
         }
 
         .card-top {
@@ -241,7 +228,7 @@
         }
 
         .font-title {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 700;
             letter-spacing: -0.01em;
         }
@@ -250,43 +237,44 @@
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 20px;
             border: 1px solid var(--border-color);
             color: var(--gray-color);
         }
 
-        /* Area Pangram / Preview Huruf */
-        .pangram-preview {
-            font-size: 1.4rem;
-            line-height: 1.3;
+        /* Tampilan Huruf Aa Besar Menggantikan Pangram */
+        .aa-preview {
+            font-size: 8rem;
+            line-height: 1;
             font-weight: 400;
             color: var(--text-color);
             margin: 20px 0;
-            word-break: break-word;
+            letter-spacing: -0.04em;
         }
 
-        /* Simulasi gaya font unik per kartu */
-        .card-grafem .pangram-preview { font-family: monospace; letter-spacing: -0.05em; }
-        .card-fonem .pangram-preview { font-style: italic; }
-        .card-cikutra .pangram-preview { font-weight: 800; text-transform: uppercase; }
-        .card-alofon .pangram-preview { letter-spacing: 0.08em; }
-        .card-amara .pangram-preview { font-family: serif; }
+        /* Variasi Gaya Font di tiap Kartu */
+        .card-grafem .aa-preview { font-family: monospace; }
+        .card-fonem .aa-preview { font-style: italic; }
+        .card-cikutra .aa-preview { font-weight: 900; }
+        .card-alofon .aa-preview { letter-spacing: 0.15em; }
+        .card-amara .aa-preview { font-family: serif; }
 
         .card-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: var(--gray-color);
-            border-top: 1px solid var(--border-color);
-            padding-top: 16px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
             transition: var(--transition);
         }
 
         .font-card:hover .card-bottom {
             color: var(--text-color);
+            border-color: var(--text-color);
         }
 
         .card-bottom svg {
@@ -301,13 +289,13 @@
         }
 
         .font-card:hover .card-bottom svg {
-            transform: translateX(3px);
+            transform: translateX(4px);
         }
 
         /* FOOTER TETAP SAMA */
         .footer-divider {
             width: 100%;
-            max-width: 1750px;
+            max-width: 100%;
             margin: 0 auto;
             padding: 0 40px;
         }
@@ -325,7 +313,7 @@
             align-items: center;
             font-size: 0.9rem;
             color: var(--gray-color);
-            max-width: 1750px;
+            max-width: 100%;
             width: 100%;
             margin: 0 auto;
         }
@@ -347,21 +335,24 @@
         }
 
         @media (max-width: 768px) {
-            .header-container, .footer-divider, footer {
+            .header-container, main, .footer-divider, footer {
                 padding-left: 20px;
                 padding-right: 20px;
             }
             h1 {
-                font-size: 1.6rem;
+                font-size: 1.1rem;
+            }
+            .font-card {
+                min-width: 300px;
+                height: 400px;
+            }
+            .aa-preview {
+                font-size: 6rem;
             }
             footer {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 16px;
-            }
-            .font-card {
-                min-width: 290px;
-                height: 380px;
             }
         }
     </style>
@@ -400,11 +391,10 @@
         </div>
     </header>
 
-    <!-- Bagian Tengah dengan Horizontal Scroll Cards & Pangram -->
+    <!-- Konten Utama Full Page -->
     <main>
         <div class="hero-section">
-            <h1>Retail fonts are just for beginners</h1>
-            <p class="hero-desc">Geser ke samping untuk mengeksplorasi koleksi font open-source kami.</p>
+            <h1>A digital collective forging raw, uncompromised, and anti-institutional typefaces. We destroy the gatekeeping of traditional typography by releasing high-quality, experimental open-source fonts for the cultural frontline. No licenses, no masters, no corporate sterile designs—just pure typographic chaos for the public domain.</h1>
         </div>
 
         <div class="cards-slider-container">
@@ -414,11 +404,9 @@
                     <span class="font-title">GLF Grafem</span>
                     <span class="font-badge">Variable</span>
                 </div>
-                <div class="pangram-preview">
-                    "The quick brown fox jumps over the lazy dog."
-                </div>
+                <div class="aa-preview">Aa</div>
                 <div class="card-bottom">
-                    <span>Lihat Detail Font</span>
+                    <span>View Font Detail</span>
                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
@@ -429,11 +417,9 @@
                     <span class="font-title">GLF Fonem</span>
                     <span class="font-badge">Variable</span>
                 </div>
-                <div class="pangram-preview">
-                    "Pack my box with five dozen liquor jugs."
-                </div>
+                <div class="aa-preview">Aa</div>
                 <div class="card-bottom">
-                    <span>Lihat Detail Font</span>
+                    <span>View Font Detail</span>
                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
@@ -444,11 +430,9 @@
                     <span class="font-title">GLF Cikutra</span>
                     <span class="font-badge">Variable</span>
                 </div>
-                <div class="pangram-preview">
-                    "Sphinx of black quartz, judge my vow."
-                </div>
+                <div class="aa-preview">Aa</div>
                 <div class="card-bottom">
-                    <span>Lihat Detail Font</span>
+                    <span>View Font Detail</span>
                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
@@ -459,11 +443,9 @@
                     <span class="font-title">GLF Alofon</span>
                     <span class="font-badge">Variable</span>
                 </div>
-                <div class="pangram-preview">
-                    "Waltz, bad nymph, for quick jigs vex."
-                </div>
+                <div class="aa-preview">Aa</div>
                 <div class="card-bottom">
-                    <span>Lihat Detail Font</span>
+                    <span>View Font Detail</span>
                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
@@ -474,11 +456,9 @@
                     <span class="font-title">GLF Amara</span>
                     <span class="font-badge">Variable</span>
                 </div>
-                <div class="pangram-preview">
-                    "Jinxed wizards pluck ivy from the big quilt."
-                </div>
+                <div class="aa-preview">Aa</div>
                 <div class="card-bottom">
-                    <span>Lihat Detail Font</span>
+                    <span>View Font Detail</span>
                     <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
             </a>
