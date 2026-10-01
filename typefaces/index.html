@@ -292,29 +292,35 @@
             transition: transform 0.1s ease;
         }
 
-        /* Styling Dropdown Kustom untuk Dual Column (Tanpa Box Abu) */
+        /* Dropdown Minimalis (Tanpa Border/Garis dan Tanpa Box Abu-abu) */
         .style-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
             background: transparent;
             color: var(--text-color);
-            border: 1px solid var(--border-color);
-            padding: 6px 12px;
-            border-radius: 4px;
+            border: none;
+            padding: 4px 24px 4px 0;
             font-size: 0.85rem;
             font-weight: 500;
             outline: none;
             cursor: pointer;
             transition: var(--transition);
             width: fit-content;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23767676' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: 14px;
         }
         .style-select:hover {
-            border-color: var(--gray-color);
+            color: var(--gray-color);
         }
         .style-select option {
             background-color: var(--bg-color);
             color: var(--text-color);
         }
 
-        /* Layout 2 Kolom untuk Pratinjau Baru (Tanpa Box Kontainer) */
+        /* Layout 2 Kolom untuk Pratinjau Baru */
         .dual-column-preview {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -824,11 +830,11 @@
                     </div>
                 </div>
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="grafem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones.</textarea>
+                    <textarea id="grafem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Bandung isn’t just a tourist destination, but a battleground for autonomous spaces and grassroots resistance. To the local DIY scene, the city’s heavy commercialization and gentrification have only fueled horizontal solidarity through mutual aid networks and capitalist-free zones. Counter-hegemonic culture thrives in urban alleyways and damp rehearsal studios where independent punk records are pressed by hand. Music becomes an unfiltered medium to document systemic failure, police brutality, and housing displacement across neighborhoods.</textarea>
                 </div>
             </div>
 
-            <!-- Dual-Column Preview (Tanpa Judul & Tanpa Box Abu) -->
+            <!-- Dual-Column Preview (Dengan Dropdown Minimalis & Slider Size Per Kolom) -->
             <div class="font-item-clean">
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
@@ -844,8 +850,18 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="grafem-col-1" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Counter-hegemonic culture thrives in urban alleyways and damp rehearsal studios where independent punk records are pressed by hand. Music becomes an unfiltered medium to document systemic failure, police brutality, and housing displacement.</textarea>
+                        <textarea id="grafem-col-1" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Counter-hegemonic culture thrives in urban alleyways and damp rehearsal studios where independent punk records are pressed by hand. Music becomes an unfiltered medium to document systemic failure, police brutality, and housing displacement. Autonomous collectives continue to build counter-institutions that prioritize communal care, mutual aid, horizontal organizing, and people-powered resistance over corporate commercialization and state extraction.</textarea>
+                        
+                        <!-- Slider Size untuk Kolom Kiri -->
+                        <div class="controls-bar-minimal" style="margin-top: 8px;">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'grafem-col-1', 'val-gcol1-s')">
+                                <span id="val-gcol1-s">18px</span>
+                            </div>
+                        </div>
                     </div>
+
                     <!-- Kolom Kanan -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'grafem-col-2')">
@@ -859,7 +875,16 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="grafem-col-2" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">The struggle for spatial justice requires sustained collective action rather than fleeting aesthetic trends. Autonomous collectives continue to build counter-institutions that prioritize communal care over market-driven extraction.</textarea>
+                        <textarea id="grafem-col-2" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">The struggle for spatial justice requires sustained collective action rather than fleeting aesthetic trends. Autonomous collectives continue to build counter-institutions that prioritize communal care over market-driven extraction, ensuring that urban spaces remain accessible to the communities who actually inhabit, shape, and breathe life into them every single day against all odds.</textarea>
+                        
+                        <!-- Slider Size untuk Kolom Kanan -->
+                        <div class="controls-bar-minimal" style="margin-top: 8px;">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'grafem-col-2', 'val-gcol2-s')">
+                                <span id="val-gcol2-s">18px</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -924,11 +949,11 @@
                     </div>
                 </div>
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="fonem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment.</textarea>
+                    <textarea id="fonem-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Kebumen is seen as a battleground for agrarian resistance and a symbol of grassroots solidarity against environmental exploitation. Rather than just a quiet agricultural region, independent collectives view the area—especially coastal zones like Urutsewu—as a site of genuine struggle where local farmers defend their ancestral land against state and military encroachment, corporate greed, and ecological devastation caused by destructive industrial projects.</textarea>
                 </div>
             </div>
 
-            <!-- Dual-Column Preview (Tanpa Judul & Tanpa Box Abu) -->
+            <!-- Dual-Column Preview -->
             <div class="font-item-clean">
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
@@ -944,8 +969,17 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="fonem-col-1" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Agrarian defense networks organize local communities to safeguard shared natural resources from corporate exploitation and bureaucratic takeover.</textarea>
+                        <textarea id="fonem-col-1" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Agrarian defense networks organize local communities to safeguard shared natural resources from corporate exploitation, land grabbing, and bureaucratic takeover, ensuring long-term ecological balance and food sovereignty for future generations.</textarea>
+                        
+                        <div class="controls-bar-minimal" style="margin-top: 8px;">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'fonem-col-1', 'val-fcol1-s')">
+                                <span id="val-fcol1-s">18px</span>
+                            </div>
+                        </div>
                     </div>
+
                     <!-- Kolom Kanan -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'fonem-col-2')">
@@ -959,7 +993,15 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="fonem-col-2" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Solidarity across regions proves that grassroots resistance can effectively challenge structural power imbalances and reclaim communal sovereignty.</textarea>
+                        <textarea id="fonem-col-2" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Solidarity across regions proves that grassroots resistance can effectively challenge structural power imbalances, dismantle oppressive state policies, and reclaim communal sovereignty over land, water, and forests.</textarea>
+                        
+                        <div class="controls-bar-minimal" style="margin-top: 8px;">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'fonem-col-2', 'val-fcol2-s')">
+                                <span id="val-fcol2-s">18px</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1024,11 +1066,11 @@
                     </div>
                 </div>
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="cikutra-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival.</textarea>
+                    <textarea id="cikutra-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">Jakarta is the ultimate concrete jungle of state repression and hyper-capitalism, but also the ground zero for intense anti-authoritarian clash and urban survival. Amidst towering skyscrapers and endless traffic congestion, disenfranchised urban communities carve out spaces for radical expression, mutual aid, and unyielding resistance against systemic inequality.</textarea>
                 </div>
             </div>
 
-            <!-- Dual-Column Preview (Tanpa Judul & Tanpa Box Abu) -->
+            <!-- Dual-Column Preview -->
             <div class="font-item-clean">
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
@@ -1044,8 +1086,17 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="cikutra-col-1" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Navigating high-speed metropolitan corridors exposes stark economic divides, fueling radical urban art movements and counter-cultural expressions.</textarea>
+                        <textarea id="cikutra-col-1" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Navigating high-speed metropolitan corridors exposes stark economic divides, fueling radical urban art movements, underground subcultures, and counter-cultural expressions that challenge dominant narratives of modern progress.</textarea>
+                        
+                        <div class="controls-bar-minimal" style="margin-top: 8px;">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'cikutra-col-1', 'val-ccol1-s')">
+                                <span id="val-ccol1-s">18px</span>
+                            </div>
+                        </div>
                     </div>
+
                     <!-- Kolom Kanan -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'cikutra-col-2')">
@@ -1059,7 +1110,15 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="cikutra-col-2" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Subversive public interventions transform grey concrete walls into communicative canvases for social commentary and political resistance.</textarea>
+                        <textarea id="cikutra-col-2" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Subversive public interventions transform grey concrete walls into communicative canvases for social commentary, anti-fascist messaging, and political resistance across the sprawling cityscape.</textarea>
+                        
+                        <div class="controls-bar-minimal" style="margin-top: 8px;">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'cikutra-col-2', 'val-ccol2-s')">
+                                <span id="val-ccol2-s">18px</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1124,11 +1183,11 @@
                     </div>
                 </div>
                 <div class="paragraph-preview-wrapper">
-                    <textarea id="alofon-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines.</textarea>
+                    <textarea id="alofon-preview-detail" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; letter-spacing: 0px; font-size: 82px; line-height: 1.2;" rows="3">A dynamic condensed sans-serif family ranging from Thin to Black, unified by a strong 1970s retro aesthetic. Its tall, compact proportions adapt seamlessly from elegant, minimalist editorial layouts to powerful, high-impact vintage headlines, creating an unforgettable visual presence across print and digital media platforms.</textarea>
                 </div>
             </div>
 
-            <!-- Dual-Column Preview (Tanpa Judul & Tanpa Box Abu) -->
+            <!-- Dual-Column Preview -->
             <div class="font-item-clean">
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
@@ -1144,8 +1203,17 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="alofon-col-1" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Retro typography captures the enduring spirit of vintage posters and counter-cultural manifestos from decades past.</textarea>
+                        <textarea id="alofon-col-1" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Retro typography captures the enduring spirit of vintage posters and counter-cultural manifestos from decades past, blending nostalgic charm with contemporary typographic precision.</textarea>
+                        
+                        <div class="controls-bar-minimal" style="margin-top: 8px;">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'alofon-col-1', 'val-acol1-s')">
+                                <span id="val-acol1-s">18px</span>
+                            </div>
+                        </div>
                     </div>
+
                     <!-- Kolom Kanan -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'alofon-col-2')">
@@ -1159,7 +1227,15 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="alofon-col-2" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Compact proportions allow designers to pack punchy editorial statements into tight spaces with immense visual clarity.</textarea>
+                        <textarea id="alofon-col-2" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Compact proportions allow designers to pack punchy editorial statements into tight spaces with immense visual clarity and artistic sophistication.</textarea>
+                        
+                        <div class="controls-bar-minimal" style="margin-top: 8px;">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'alofon-col-2', 'val-acol2-s')">
+                                <span id="val-acol2-s">18px</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1228,7 +1304,7 @@
                 </div>
             </div>
 
-            <!-- Dual-Column Preview (Tanpa Judul & Tanpa Box Abu) -->
+            <!-- Dual-Column Preview -->
             <div class="font-item-clean">
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
@@ -1244,8 +1320,17 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="amara-col-1" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">High-contrast serifs bring a sense of classical refinement and dramatic elegance to modern editorial publications and literary journals.</textarea>
+                        <textarea id="amara-col-1" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">High-contrast serifs bring a sense of classical refinement and dramatic elegance to modern editorial publications, literary journals, and luxury branding ventures.</textarea>
+                        
+                        <div class="controls-bar-minimal" style="margin-top: 8px;">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'amara-col-1', 'val-amcol1-s')">
+                                <span id="val-amcol1-s">18px</span>
+                            </div>
+                        </div>
                     </div>
+
                     <!-- Kolom Kanan -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'amara-col-2')">
@@ -1259,7 +1344,15 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="amara-col-2" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Exaggerated weight transitions create an unforgettable visual rhythm across book covers and sophisticated branding systems.</textarea>
+                        <textarea id="amara-col-2" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Exaggerated weight transitions create an unforgettable visual rhythm across striking book covers, artistic posters, and sophisticated identity systems.</textarea>
+                        
+                        <div class="controls-bar-minimal" style="margin-top: 8px;">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'amara-col-2', 'val-amcol2-s')">
+                                <span id="val-amcol2-s">18px</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1317,6 +1410,18 @@
             if (target) {
                 target.style.fontWeight = val;
                 target.style.fontVariationSettings = `'wght' ${val}`;
+            }
+        }
+
+        function updateColumnSize(slider, targetTextAreaId, spanId) {
+            const target = document.getElementById(targetTextAreaId);
+            const span = document.getElementById(spanId);
+            const val = slider.value;
+            if (target) {
+                target.style.fontSize = val + 'px';
+            }
+            if (span) {
+                span.textContent = val + 'px';
             }
         }
 
