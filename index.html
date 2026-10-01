@@ -20,37 +20,6 @@
     <meta name="twitter:image" content="https://gliftype.com/images/ogimage.png">
 
     <style>
-        @font-face {
-            font-family: 'GLF Grafem';
-            src: url('fonts/GLF-Grafem-VF.woff2') format('woff2-variations');
-            font-weight: 100 900;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'GLF Fonem';
-            src: url('fonts/GLF-Fonem-VF.woff2') format('woff2-variations');
-            font-weight: 100 900;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'GLF Cikutra';
-            src: url('fonts/GLF-Cikutra-VF.woff2') format('woff2-variations');
-            font-weight: 100 900;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'GLF Alofon';
-            src: url('fonts/GLF-Alofon-VF.woff2') format('woff2-variations');
-            font-weight: 100 900;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'GLF Amara';
-            src: url('fonts/GLF-Amara-VF.woff2') format('woff2-variations');
-            font-weight: 100 900;
-            font-style: normal;
-        }
-
         :root {
             --bg-color: #ffffff;
             --text-color: #111111;
@@ -181,78 +150,85 @@
         [data-theme="dark"] .icon-moon { display: block; }
         [data-theme="dark"] .icon-sun { display: none; }
 
+        /* Main Content diatur bergaya Link-in-Bio (Terpusat & Ramping) */
         main {
-            margin-top: 120px;
+            margin-top: 140px;
             flex: 1;
-            padding: 40px;
-            max-width: 1750px;
+            padding: 40px 20px;
+            max-width: 560px;
             width: 100%;
             margin-left: auto;
             margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .hero-section {
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: 700;
             letter-spacing: -0.03em;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .hero-desc {
-            font-size: 1.15rem;
+            font-size: 1rem;
             color: var(--gray-color);
-            max-width: 700px;
         }
 
-        /* Grid Cards untuk Font */
-        .fonts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
+        /* Daftar Tautan ala Link-in-Bio */
+        .bio-links-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
 
-        .font-card {
+        .bio-card {
             background: var(--light-gray);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 24px;
+            border-radius: 12px;
+            padding: 18px 24px;
             text-decoration: none;
             color: var(--text-color);
             display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            height: 280px;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.95rem;
             transition: var(--transition);
         }
 
-        .font-card:hover {
+        .bio-card:hover {
             border-color: var(--gray-color);
-            transform: translateY(-4px);
+            transform: translateY(-2px);
         }
 
-        .card-header {
+        .bio-card span {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 0.95rem;
-            font-weight: 600;
+            gap: 12px;
         }
 
-        .card-styles {
-            color: var(--gray-color);
-            font-weight: 400;
-            font-size: 0.85rem;
+        .bio-card svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--gray-color);
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: var(--transition);
         }
 
-        .card-display {
-            font-size: 5rem;
-            font-weight: 400;
-            text-align: center;
-            line-height: 1;
+        .bio-card:hover svg {
+            stroke: var(--text-color);
+            transform: translateX(2px);
         }
 
         .footer-divider {
@@ -301,11 +277,8 @@
                 padding-left: 20px;
                 padding-right: 20px;
             }
-            main {
-                padding: 20px;
-            }
             h1 {
-                font-size: 2.2rem;
+                font-size: 1.6rem;
             }
             footer {
                 flex-direction: column;
@@ -317,6 +290,7 @@
 </head>
 <body>
 
+    <!-- Header tetap sama seperti sebelumnya -->
     <header id="site-header">
         <div class="header-container">
             <a href="/" class="logotype">
@@ -348,67 +322,38 @@
         </div>
     </header>
 
+    <!-- Bagian Tengah diubah menjadi layout Link-in-Bio -->
     <main>
         <section class="hero-section">
             <h1>Retail fonts are just for beginners</h1>
-            <p class="hero-desc">Yep, we're broke and somehow got the wild idea to make open-source typefaces instead - a totally dumb and insane move.</p>
+            <p class="hero-desc">Yep, we're broke and somehow got the wild idea to make open-source typefaces instead.</p>
         </section>
 
-        <section class="fonts-grid-section">
-            <div class="fonts-grid">
-                <!-- Card 1: GLF Grafem -->
-                <a href="typefaces.html#font-grafem" class="font-card">
-                    <div class="card-header">
-                        <span class="card-name">GLF Grafem</span>
-                        <span class="card-styles">VF (Variable)</span>
-                    </div>
-                    <div class="card-display" style="font-family: 'GLF Grafem', sans-serif;">Aa</div>
-                    <div style="visibility: hidden;">spacer</div>
-                </a>
-
-                <!-- Card 2: GLF Fonem -->
-                <a href="typefaces.html#font-fonem" class="font-card">
-                    <div class="card-header">
-                        <span class="card-name">GLF Fonem</span>
-                        <span class="card-styles">VF (Variable)</span>
-                    </div>
-                    <div class="card-display" style="font-family: 'GLF Fonem', sans-serif;">Aa</div>
-                    <div style="visibility: hidden;">spacer</div>
-                </a>
-
-                <!-- Card 3: GLF Cikutra -->
-                <a href="typefaces.html#font-cikutra" class="font-card">
-                    <div class="card-header">
-                        <span class="card-name">GLF Cikutra</span>
-                        <span class="card-styles">VF (Variable)</span>
-                    </div>
-                    <div class="card-display" style="font-family: 'GLF Cikutra', sans-serif;">Aa</div>
-                    <div style="visibility: hidden;">spacer</div>
-                </a>
-
-                <!-- Card 4: GLF Alofon -->
-                <a href="typefaces.html#font-alofon" class="font-card">
-                    <div class="card-header">
-                        <span class="card-name">GLF Alofon</span>
-                        <span class="card-styles">VF (Variable)</span>
-                    </div>
-                    <div class="card-display" style="font-family: 'GLF Alofon', sans-serif;">Aa</div>
-                    <div style="visibility: hidden;">spacer</div>
-                </a>
-
-                <!-- Card 5: GLF Amara -->
-                <a href="typefaces.html#font-amara" class="font-card">
-                    <div class="card-header">
-                        <span class="card-name">GLF Amara</span>
-                        <span class="card-styles">VF (Variable)</span>
-                    </div>
-                    <div class="card-display" style="font-family: 'GLF Amara', sans-serif;">Aa</div>
-                    <div style="visibility: hidden;">spacer</div>
-                </a>
-            </div>
+        <section class="bio-links-list">
+            <a href="typefaces.html#font-grafem" class="bio-card">
+                <span>GLF Grafem (Variable)</span>
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="typefaces.html#font-fonem" class="bio-card">
+                <span>GLF Fonem (Variable)</span>
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="typefaces.html#font-cikutra" class="bio-card">
+                <span>GLF Cikutra (Variable)</span>
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="typefaces.html#font-alofon" class="bio-card">
+                <span>GLF Alofon (Variable)</span>
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="typefaces.html#font-amara" class="bio-card">
+                <span>GLF Amara (Variable)</span>
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
         </section>
     </main>
 
+    <!-- Footer tetap sama seperti sebelumnya -->
     <div class="footer-divider"><hr></div>
     <footer>
         <div>&copy; 2026 Gliftype Foundry. All rights reserved.</div>
