@@ -330,12 +330,20 @@
         }
 
         .column-box {
+            position: relative; /* Menjadikan kontainer acuan posisi absolute slider kanan atas */
             display: flex;
             flex-direction: column;
             gap: 12px;
             background: transparent;
             padding: 0;
             border: none;
+        }
+
+        /* Slider Size di Kanan Atas Kolom */
+        .column-top-right-controls {
+            position: absolute;
+            top: 0;
+            right: 0;
         }
 
         .column-box textarea {
@@ -348,7 +356,7 @@
             font-family: inherit;
             white-space: pre-wrap;
             word-break: break-word;
-            font-size: 1.15rem;
+            font-size: 32px; /* Default diset 32px */
             line-height: 1.6;
         }
 
@@ -834,11 +842,20 @@
                 </div>
             </div>
 
-            <!-- Dual-Column Preview (Dengan Dropdown Minimalis & Slider Size Per Kolom) -->
+            <!-- Dual-Column Preview (Slider Size di Kanan Atas, Default Size 32px) -->
             <div class="font-item-clean">
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
                     <div class="column-box">
+                        <!-- Slider Size di Kanan Atas Kolom -->
+                        <div class="controls-bar-minimal column-top-right-controls">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="32" step="1" oninput="updateColumnSize(this, 'grafem-col-1', 'val-gcol1-s')">
+                                <span id="val-gcol1-s">32px</span>
+                            </div>
+                        </div>
+
                         <select class="style-select" onchange="changeColumnStyle(this, 'grafem-col-1')">
                             <option value="100">Thin</option>
                             <option value="200">Extra Light</option>
@@ -850,20 +867,20 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="grafem-col-1" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Counter-hegemonic culture thrives in urban alleyways and damp rehearsal studios where independent punk records are pressed by hand. Music becomes an unfiltered medium to document systemic failure, police brutality, and housing displacement. Autonomous collectives continue to build counter-institutions that prioritize communal care, mutual aid, horizontal organizing, and people-powered resistance over corporate commercialization and state extraction.</textarea>
-                        
-                        <!-- Slider Size untuk Kolom Kiri -->
-                        <div class="controls-bar-minimal" style="margin-top: 8px;">
-                            <div class="control-group">
-                                <label>Size</label>
-                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'grafem-col-1', 'val-gcol1-s')">
-                                <span id="val-gcol1-s">18px</span>
-                            </div>
-                        </div>
+                        <textarea id="grafem-col-1" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; font-size: 32px;" rows="5">Counter-hegemonic culture thrives in urban alleyways and damp rehearsal studios where independent punk records are pressed by hand. Music becomes an unfiltered medium to document systemic failure, police brutality, and housing displacement. Autonomous collectives continue to build counter-institutions that prioritize communal care, mutual aid, horizontal organizing, and people-powered resistance over corporate commercialization and state extraction.</textarea>
                     </div>
 
                     <!-- Kolom Kanan -->
                     <div class="column-box">
+                        <!-- Slider Size di Kanan Atas Kolom -->
+                        <div class="controls-bar-minimal column-top-right-controls">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="32" step="1" oninput="updateColumnSize(this, 'grafem-col-2', 'val-gcol2-s')">
+                                <span id="val-gcol2-s">32px</span>
+                            </div>
+                        </div>
+
                         <select class="style-select" onchange="changeColumnStyle(this, 'grafem-col-2')">
                             <option value="100">Thin</option>
                             <option value="200">Extra Light</option>
@@ -875,16 +892,7 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="grafem-col-2" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">The struggle for spatial justice requires sustained collective action rather than fleeting aesthetic trends. Autonomous collectives continue to build counter-institutions that prioritize communal care over market-driven extraction, ensuring that urban spaces remain accessible to the communities who actually inhabit, shape, and breathe life into them every single day against all odds.</textarea>
-                        
-                        <!-- Slider Size untuk Kolom Kanan -->
-                        <div class="controls-bar-minimal" style="margin-top: 8px;">
-                            <div class="control-group">
-                                <label>Size</label>
-                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'grafem-col-2', 'val-gcol2-s')">
-                                <span id="val-gcol2-s">18px</span>
-                            </div>
-                        </div>
+                        <textarea id="grafem-col-2" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700; font-size: 32px;" rows="5">The struggle for spatial justice requires sustained collective action rather than fleeting aesthetic trends. Autonomous collectives continue to build counter-institutions that prioritize communal care over market-driven extraction, ensuring that urban spaces remain accessible to the communities who actually inhabit, shape, and breathe life into them every single day against all odds.</textarea>
                     </div>
                 </div>
             </div>
@@ -953,11 +961,19 @@
                 </div>
             </div>
 
-            <!-- Dual-Column Preview -->
+            <!-- Dual-Column Preview (Slider Size di Kanan Atas, Default Size 32px) -->
             <div class="font-item-clean">
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
                     <div class="column-box">
+                        <div class="controls-bar-minimal column-top-right-controls">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="32" step="1" oninput="updateColumnSize(this, 'fonem-col-1', 'val-fcol1-s')">
+                                <span id="val-fcol1-s">32px</span>
+                            </div>
+                        </div>
+
                         <select class="style-select" onchange="changeColumnStyle(this, 'fonem-col-1')">
                             <option value="100">Thin</option>
                             <option value="200">Extra Light</option>
@@ -969,19 +985,19 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="fonem-col-1" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Agrarian defense networks organize local communities to safeguard shared natural resources from corporate exploitation, land grabbing, and bureaucratic takeover, ensuring long-term ecological balance and food sovereignty for future generations.</textarea>
-                        
-                        <div class="controls-bar-minimal" style="margin-top: 8px;">
-                            <div class="control-group">
-                                <label>Size</label>
-                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'fonem-col-1', 'val-fcol1-s')">
-                                <span id="val-fcol1-s">18px</span>
-                            </div>
-                        </div>
+                        <textarea id="fonem-col-1" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; font-size: 32px;" rows="5">Agrarian defense networks organize local communities to safeguard shared natural resources from corporate exploitation, land grabbing, and bureaucratic takeover, ensuring long-term ecological balance and food sovereignty for future generations.</textarea>
                     </div>
 
                     <!-- Kolom Kanan -->
                     <div class="column-box">
+                        <div class="controls-bar-minimal column-top-right-controls">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="32" step="1" oninput="updateColumnSize(this, 'fonem-col-2', 'val-fcol2-s')">
+                                <span id="val-fcol2-s">32px</span>
+                            </div>
+                        </div>
+
                         <select class="style-select" onchange="changeColumnStyle(this, 'fonem-col-2')">
                             <option value="100">Thin</option>
                             <option value="200">Extra Light</option>
@@ -993,15 +1009,7 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="fonem-col-2" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Solidarity across regions proves that grassroots resistance can effectively challenge structural power imbalances, dismantle oppressive state policies, and reclaim communal sovereignty over land, water, and forests.</textarea>
-                        
-                        <div class="controls-bar-minimal" style="margin-top: 8px;">
-                            <div class="control-group">
-                                <label>Size</label>
-                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'fonem-col-2', 'val-fcol2-s')">
-                                <span id="val-fcol2-s">18px</span>
-                            </div>
-                        </div>
+                        <textarea id="fonem-col-2" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700; font-size: 32px;" rows="5">Solidarity across regions proves that grassroots resistance can effectively challenge structural power imbalances, dismantle oppressive state policies, and reclaim communal sovereignty over land, water, and forests.</textarea>
                     </div>
                 </div>
             </div>
@@ -1070,11 +1078,19 @@
                 </div>
             </div>
 
-            <!-- Dual-Column Preview -->
+            <!-- Dual-Column Preview (Slider Size di Kanan Atas, Default Size 32px) -->
             <div class="font-item-clean">
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
                     <div class="column-box">
+                        <div class="controls-bar-minimal column-top-right-controls">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="32" step="1" oninput="updateColumnSize(this, 'cikutra-col-1', 'val-ccol1-s')">
+                                <span id="val-ccol1-s">32px</span>
+                            </div>
+                        </div>
+
                         <select class="style-select" onchange="changeColumnStyle(this, 'cikutra-col-1')">
                             <option value="100">Thin</option>
                             <option value="200">Extra Light</option>
@@ -1086,19 +1102,19 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="cikutra-col-1" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Navigating high-speed metropolitan corridors exposes stark economic divides, fueling radical urban art movements, underground subcultures, and counter-cultural expressions that challenge dominant narratives of modern progress.</textarea>
-                        
-                        <div class="controls-bar-minimal" style="margin-top: 8px;">
-                            <div class="control-group">
-                                <label>Size</label>
-                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'cikutra-col-1', 'val-ccol1-s')">
-                                <span id="val-ccol1-s">18px</span>
-                            </div>
-                        </div>
+                        <textarea id="cikutra-col-1" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; font-size: 32px;" rows="5">Navigating high-speed metropolitan corridors exposes stark economic divides, fueling radical urban art movements, underground subcultures, and counter-cultural expressions that challenge dominant narratives of modern progress.</textarea>
                     </div>
 
                     <!-- Kolom Kanan -->
                     <div class="column-box">
+                        <div class="controls-bar-minimal column-top-right-controls">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="32" step="1" oninput="updateColumnSize(this, 'cikutra-col-2', 'val-ccol2-s')">
+                                <span id="val-ccol2-s">32px</span>
+                            </div>
+                        </div>
+
                         <select class="style-select" onchange="changeColumnStyle(this, 'cikutra-col-2')">
                             <option value="100">Thin</option>
                             <option value="200">Extra Light</option>
@@ -1110,15 +1126,7 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="cikutra-col-2" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Subversive public interventions transform grey concrete walls into communicative canvases for social commentary, anti-fascist messaging, and political resistance across the sprawling cityscape.</textarea>
-                        
-                        <div class="controls-bar-minimal" style="margin-top: 8px;">
-                            <div class="control-group">
-                                <label>Size</label>
-                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'cikutra-col-2', 'val-ccol2-s')">
-                                <span id="val-ccol2-s">18px</span>
-                            </div>
-                        </div>
+                        <textarea id="cikutra-col-2" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700; font-size: 32px;" rows="5">Subversive public interventions transform grey concrete walls into communicative canvases for social commentary, anti-fascist messaging, and political resistance across the sprawling cityscape.</textarea>
                     </div>
                 </div>
             </div>
@@ -1187,11 +1195,19 @@
                 </div>
             </div>
 
-            <!-- Dual-Column Preview -->
+            <!-- Dual-Column Preview (Slider Size di Kanan Atas, Default Size 32px) -->
             <div class="font-item-clean">
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
                     <div class="column-box">
+                        <div class="controls-bar-minimal column-top-right-controls">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="32" step="1" oninput="updateColumnSize(this, 'alofon-col-1', 'val-acol1-s')">
+                                <span id="val-acol1-s">32px</span>
+                            </div>
+                        </div>
+
                         <select class="style-select" onchange="changeColumnStyle(this, 'alofon-col-1')">
                             <option value="100">Thin</option>
                             <option value="200">Extra Light</option>
@@ -1203,19 +1219,19 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="alofon-col-1" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Retro typography captures the enduring spirit of vintage posters and counter-cultural manifestos from decades past, blending nostalgic charm with contemporary typographic precision.</textarea>
-                        
-                        <div class="controls-bar-minimal" style="margin-top: 8px;">
-                            <div class="control-group">
-                                <label>Size</label>
-                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'alofon-col-1', 'val-acol1-s')">
-                                <span id="val-acol1-s">18px</span>
-                            </div>
-                        </div>
+                        <textarea id="alofon-col-1" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; font-size: 32px;" rows="5">Retro typography captures the enduring spirit of vintage posters and counter-cultural manifestos from decades past, blending nostalgic charm with contemporary typographic precision.</textarea>
                     </div>
 
                     <!-- Kolom Kanan -->
                     <div class="column-box">
+                        <div class="controls-bar-minimal column-top-right-controls">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="32" step="1" oninput="updateColumnSize(this, 'alofon-col-2', 'val-acol2-s')">
+                                <span id="val-acol2-s">32px</span>
+                            </div>
+                        </div>
+
                         <select class="style-select" onchange="changeColumnStyle(this, 'alofon-col-2')">
                             <option value="100">Thin</option>
                             <option value="200">Extra Light</option>
@@ -1227,15 +1243,7 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="alofon-col-2" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Compact proportions allow designers to pack punchy editorial statements into tight spaces with immense visual clarity and artistic sophistication.</textarea>
-                        
-                        <div class="controls-bar-minimal" style="margin-top: 8px;">
-                            <div class="control-group">
-                                <label>Size</label>
-                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'alofon-col-2', 'val-acol2-s')">
-                                <span id="val-acol2-s">18px</span>
-                            </div>
-                        </div>
+                        <textarea id="alofon-col-2" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700; font-size: 32px;" rows="5">Compact proportions allow designers to pack punchy editorial statements into tight spaces with immense visual clarity and artistic sophistication.</textarea>
                     </div>
                 </div>
             </div>
@@ -1304,11 +1312,19 @@
                 </div>
             </div>
 
-            <!-- Dual-Column Preview -->
+            <!-- Dual-Column Preview (Slider Size di Kanan Atas, Default Size 32px) -->
             <div class="font-item-clean">
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
                     <div class="column-box">
+                        <div class="controls-bar-minimal column-top-right-controls">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="32" step="1" oninput="updateColumnSize(this, 'amara-col-1', 'val-amcol1-s')">
+                                <span id="val-amcol1-s">32px</span>
+                            </div>
+                        </div>
+
                         <select class="style-select" onchange="changeColumnStyle(this, 'amara-col-1')">
                             <option value="100">Thin</option>
                             <option value="200">Extra Light</option>
@@ -1320,19 +1336,19 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="amara-col-1" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">High-contrast serifs bring a sense of classical refinement and dramatic elegance to modern editorial publications, literary journals, and luxury branding ventures.</textarea>
-                        
-                        <div class="controls-bar-minimal" style="margin-top: 8px;">
-                            <div class="control-group">
-                                <label>Size</label>
-                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'amara-col-1', 'val-amcol1-s')">
-                                <span id="val-amcol1-s">18px</span>
-                            </div>
-                        </div>
+                        <textarea id="amara-col-1" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400; font-size: 32px;" rows="5">High-contrast serifs bring a sense of classical refinement and dramatic elegance to modern editorial publications, literary journals, and luxury branding ventures.</textarea>
                     </div>
 
                     <!-- Kolom Kanan -->
                     <div class="column-box">
+                        <div class="controls-bar-minimal column-top-right-controls">
+                            <div class="control-group">
+                                <label>Size</label>
+                                <input type="range" min="12" max="120" value="32" step="1" oninput="updateColumnSize(this, 'amara-col-2', 'val-amcol2-s')">
+                                <span id="val-amcol2-s">32px</span>
+                            </div>
+                        </div>
+
                         <select class="style-select" onchange="changeColumnStyle(this, 'amara-col-2')">
                             <option value="100">Thin</option>
                             <option value="200">Extra Light</option>
@@ -1344,15 +1360,7 @@
                             <option value="800">Extra Bold</option>
                             <option value="900">Black</option>
                         </select>
-                        <textarea id="amara-col-2" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Exaggerated weight transitions create an unforgettable visual rhythm across striking book covers, artistic posters, and sophisticated identity systems.</textarea>
-                        
-                        <div class="controls-bar-minimal" style="margin-top: 8px;">
-                            <div class="control-group">
-                                <label>Size</label>
-                                <input type="range" min="12" max="120" value="18" step="1" oninput="updateColumnSize(this, 'amara-col-2', 'val-amcol2-s')">
-                                <span id="val-amcol2-s">18px</span>
-                            </div>
-                        </div>
+                        <textarea id="amara-col-2" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700; font-size: 32px;" rows="5">Exaggerated weight transitions create an unforgettable visual rhythm across striking book covers, artistic posters, and sophisticated identity systems.</textarea>
                     </div>
                 </div>
             </div>
