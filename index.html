@@ -85,7 +85,7 @@
             overflow-x: hidden;
         }
 
-        /* HEADER TETAP SAMA */
+        /* HEADER */
         header {
             position: fixed;
             top: 0;
@@ -101,10 +101,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 40px;
-            max-width: 100%;
+            padding: 24px 60px;
             width: 100%;
-            margin: 0 auto;
         }
 
         header.scrolled {
@@ -182,11 +180,11 @@
         [data-theme="dark"] .icon-moon { display: block; }
         [data-theme="dark"] .icon-sun { display: none; }
 
-        /* KONTEN UTAMA FULL PAGE */
+        /* KONTEN UTAMA */
         main {
             margin-top: 140px;
             flex: 1;
-            padding: 40px 40px 60px 40px;
+            padding: 40px 0 60px 0; /* Padding horizontal dihapus dari main agar headline bisa mentok */
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -194,18 +192,25 @@
         }
 
         .hero-section {
-            margin-bottom: 60px;
-            max-width: 1200px;
+            margin-bottom: 40px;
+            width: 100%;
         }
 
-        /* Headline Besar Menyesuaikan Layar */
+        /* Headline Open-Force Full Lebar Layar Tanpa Uppercase */
         .massive-headline {
-            font-size: clamp(4rem, 12vw, 11rem);
+            font-size: clamp(4rem, 14vw, 17rem); /* Ukuran dibuat masif agar benar-benar memenuhi lebar layar */
             font-weight: 800;
-            line-height: 0.95;
+            line-height: 0.85;
             letter-spacing: -0.04em;
-            text-transform: uppercase;
+            width: 100%;
+            white-space: nowrap; /* Mencegah turun ke baris baru agar pas memenuhi lebar */
+            padding: 0 20px; /* Sedikit jarak aman dari tepi layar monitor */
             margin-bottom: 30px;
+        }
+
+        .hero-desc-container {
+            padding: 0 60px;
+            width: 100%;
         }
 
         .hero-desc {
@@ -214,16 +219,29 @@
             line-height: 1.6;
             color: var(--text-color);
             letter-spacing: -0.01em;
-            max-width: 900px;
+            max-width: 1000px;
         }
 
-        /* Container Slider Kartu Full Page */
+        /* Divider diantara deskripsi dan card */
+        .content-divider {
+            width: 100%;
+            padding: 0 60px;
+            margin: 40px 0;
+        }
+
+        .content-divider hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        /* Container Slider Kartu Full Width */
         .cards-slider-container {
             width: 100%;
             overflow-x: auto;
             display: flex;
             gap: 40px;
-            padding: 10px 0 30px 0;
+            padding: 10px 60px 30px 60px; /* Padding kiri-kanan agar sejajar dengan elemen lain */
             scroll-snap-type: x mandatory;
             scrollbar-width: thin;
             scrollbar-color: var(--gray-color) transparent;
@@ -242,10 +260,10 @@
             border-radius: 10px;
         }
 
-        /* Kartu Minimalis (Tanpa Border & Tanpa Background Fill) */
+        /* Kartu Minimalis */
         .font-card {
-            min-width: 420px;
-            max-width: 480px;
+            min-width: 440px;
+            flex: 1;
             height: 480px;
             background: transparent;
             border: none;
@@ -335,12 +353,10 @@
             transform: translateX(4px);
         }
 
-        /* FOOTER TETAP SAMA */
+        /* FOOTER */
         .footer-divider {
             width: 100%;
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 60px;
         }
 
         .footer-divider hr {
@@ -350,15 +366,13 @@
         }
 
         footer {
-            padding: 30px 40px;
+            padding: 30px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.9rem;
             color: var(--gray-color);
-            max-width: 100%;
             width: 100%;
-            margin: 0 auto;
         }
 
         .footer-links {
@@ -378,9 +392,13 @@
         }
 
         @media (max-width: 768px) {
-            .header-container, main, .footer-divider, footer {
+            .header-container, .hero-desc-container, .content-divider, .cards-slider-container, .footer-divider, footer {
                 padding-left: 20px;
                 padding-right: 20px;
+            }
+            .massive-headline {
+                font-size: 19vw;
+                white-space: normal;
             }
             .font-card {
                 min-width: 300px;
@@ -399,7 +417,7 @@
 </head>
 <body>
 
-    <!-- Header tetap sama seperti sebelumnya -->
+    <!-- Header -->
     <header id="site-header">
         <div class="header-container">
             <a href="/" class="logotype">
@@ -431,12 +449,18 @@
         </div>
     </header>
 
-    <!-- Konten Utama Full Page -->
+    <!-- Konten Utama -->
     <main>
         <div class="hero-section">
+            <!-- Headline Open-Force Full Lebar & Non-Uppercase -->
             <h1 class="massive-headline">Open-Force</h1>
-            <p class="hero-desc">A digital collective forging raw, uncompromised, and anti-institutional typefaces. We destroy the gatekeeping of traditional typography by releasing high-quality, experimental open-source fonts for the cultural frontline. No licenses, no masters, no corporate sterile designs—just pure typographic chaos for the public domain.</p>
+            <div class="hero-desc-container">
+                <p class="hero-desc">A digital collective forging raw, uncompromised, and anti-institutional typefaces. We destroy the gatekeeping of traditional typography by releasing high-quality, experimental open-source fonts for the cultural frontline. No licenses, no masters, no corporate sterile designs—just pure typographic chaos for the public domain.</p>
+            </div>
         </div>
+
+        <!-- Divider di antara deskripsi dan card -->
+        <div class="content-divider"><hr></div>
 
         <div class="cards-slider-container">
             <!-- Kartu 1: Grafem -->
@@ -506,7 +530,7 @@
         </div>
     </main>
 
-    <!-- Footer tetap sama seperti sebelumnya -->
+    <!-- Footer -->
     <div class="footer-divider"><hr></div>
     <footer>
         <div>&copy; 2026 Gliftype Foundry. All rights reserved.</div>
