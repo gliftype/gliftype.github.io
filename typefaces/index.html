@@ -1,41 +1,41 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Typefaces — Gliftype</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 
     <!-- opentype.js untuk membaca file font di character map -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
     <style>
         @font-face {
             font-family: 'GLF Grafem';
-            src: url('fonts/GLF-Grafem-VF.woff2') format('woff2-variations');
+            src: url('../fonts/GLF-Grafem-VF.woff2') format('woff2');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Fonem';
-            src: url('fonts/GLF-Fonem-VF.woff2') format('woff2-variations');
+            src: url('../fonts/GLF-Fonem-VF.woff2') format('woff2');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Cikutra';
-            src: url('fonts/GLF-Cikutra-VF.woff2') format('woff2-variations');
+            src: url('../fonts/GLF-Cikutra-VF.woff2') format('woff2');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Alofon';
-            src: url('fonts/GLF-Alofon-VF.woff2') format('woff2-variations');
+            src: url('../fonts/GLF-Alofon-VF.woff2') format('woff2');
             font-weight: 100 900;
             font-style: normal;
         }
         @font-face {
             font-family: 'GLF Amara';
-            src: url('fonts/GLF-Amara-VF.woff2') format('woff2-variations');
+            src: url('../fonts/GLF-Amara-VF.woff2') format('woff2');
             font-weight: 100 900;
             font-style: normal;
         }
@@ -523,7 +523,7 @@
     <header id="site-header">
         <div class="header-container">
             <a href="/" class="logotype">
-                <img src="images/logo.svg" alt="Gliftype Logo">
+                <img src="../images/logo.svg" alt="Gliftype Logo">
             </a>
             <div class="nav-right">
                 <nav>
@@ -1092,13 +1092,13 @@
             input.style.width = '100%';
         }
 
-        // Mapping file font konsisten dengan tanda hubung (-)
+        // Mapping file font konsisten dengan tanda hubung (-) dan path ke folder root ../fonts/
         const loadedFontsData = {
-            'grafem': { ttfUrl: 'fonts/GLF-Grafem-VF.ttf', fallbackUrl: 'fonts/GLF-Grafem-VF.woff2', fontObj: null, glyphs: [] },
-            'fonem': { ttfUrl: 'fonts/GLF-Fonem-VF.ttf', fallbackUrl: 'fonts/GLF-Fonem-VF.woff2', fontObj: null, glyphs: [] },
-            'cikutra': { ttfUrl: 'fonts/GLF-Cikutra-VF.ttf', fallbackUrl: 'fonts/GLF-Cikutra-VF.woff2', fontObj: null, glyphs: [] },
-            'alofon': { ttfUrl: 'fonts/GLF-Alofon-VF.ttf', fallbackUrl: 'fonts/GLF-Alofon-VF.woff2', fontObj: null, glyphs: [] },
-            'amara': { ttfUrl: 'fonts/GLF-Amara-VF.ttf', fallbackUrl: 'fonts/GLF-Amara-VF.woff2', fontObj: null, glyphs: [] }
+            'grafem': { ttfUrl: '../fonts/GLF-Grafem-VF.ttf', fallbackUrl: '../fonts/GLF-Grafem-VF.woff2', fontObj: null, glyphs: [] },
+            'fonem': { ttfUrl: '../fonts/GLF-Fonem-VF.ttf', fallbackUrl: '../fonts/GLF-Fonem-VF.woff2', fontObj: null, glyphs: [] },
+            'cikutra': { ttfUrl: '../fonts/GLF-Cikutra-VF.ttf', fallbackUrl: '../fonts/GLF-Cikutra-VF.woff2', fontObj: null, glyphs: [] },
+            'alofon': { ttfUrl: '../fonts/GLF-Alofon-VF.ttf', fallbackUrl: '../fonts/GLF-Alofon-VF.woff2', fontObj: null, glyphs: [] },
+            'amara': { ttfUrl: '../fonts/GLF-Amara-VF.ttf', fallbackUrl: '../fonts/GLF-Amara-VF.woff2', fontObj: null, glyphs: [] }
         };
 
         function switchSection(sectionId, event) {
