@@ -52,8 +52,10 @@
             flex-direction: column;
             min-height: 100vh;
             transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
         }
 
+        /* HEADER TETAP SAMA */
         header {
             position: fixed;
             top: 0;
@@ -150,30 +152,31 @@
         [data-theme="dark"] .icon-moon { display: block; }
         [data-theme="dark"] .icon-sun { display: none; }
 
-        /* Main Content diatur bergaya Link-in-Bio (Terpusat & Ramping) */
+        /* KONTEN UTAMA: Horizontal Scrollable Cards (Gaya Link-Kit) */
         main {
             margin-top: 140px;
             flex: 1;
-            padding: 40px 20px;
-            max-width: 560px;
+            padding: 40px 20px 60px 20px;
+            max-width: 1200px;
             width: 100%;
             margin-left: auto;
             margin-right: auto;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            justify-content: center;
         }
 
         .hero-section {
-            margin-bottom: 40px;
+            margin-bottom: 32px;
+            text-align: left;
+            padding-left: 10px;
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             letter-spacing: -0.03em;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .hero-desc {
@@ -181,44 +184,115 @@
             color: var(--gray-color);
         }
 
-        /* Daftar Tautan ala Link-in-Bio */
-        .bio-links-list {
+        /* Container Slider Kartu */
+        .cards-slider-container {
             width: 100%;
+            overflow-x: auto;
             display: flex;
-            flex-direction: column;
-            gap: 14px;
+            gap: 20px;
+            padding: 10px 10px 30px 10px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gray-color) transparent;
         }
 
-        .bio-card {
+        .cards-slider-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .cards-slider-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .cards-slider-container::-webkit-scrollbar-thumb {
+            background-color: var(--border-color);
+            border-radius: 10px;
+        }
+
+        /* Kartu Individual Font */
+        .font-card {
+            min-width: 340px;
+            max-width: 380px;
+            height: 420px;
             background: var(--light-gray);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px 24px;
+            border-radius: 16px;
+            padding: 28px;
             text-decoration: none;
             color: var(--text-color);
             display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .font-card:hover {
+            border-color: var(--gray-color);
+            transform: translateY(-4px);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .font-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .font-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 4px 8px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            color: var(--gray-color);
+        }
+
+        /* Area Pangram / Preview Huruf */
+        .pangram-preview {
+            font-size: 1.4rem;
+            line-height: 1.3;
+            font-weight: 400;
+            color: var(--text-color);
+            margin: 20px 0;
+            word-break: break-word;
+        }
+
+        /* Simulasi gaya font unik per kartu */
+        .card-grafem .pangram-preview { font-family: monospace; letter-spacing: -0.05em; }
+        .card-fonem .pangram-preview { font-style: italic; }
+        .card-cikutra .pangram-preview { font-weight: 800; text-transform: uppercase; }
+        .card-alofon .pangram-preview { letter-spacing: 0.08em; }
+        .card-amara .pangram-preview { font-family: serif; }
+
+        .card-bottom {
+            display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 0.9rem;
             font-weight: 600;
-            font-size: 0.95rem;
+            color: var(--gray-color);
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
             transition: var(--transition);
         }
 
-        .bio-card:hover {
-            border-color: var(--gray-color);
-            transform: translateY(-2px);
+        .font-card:hover .card-bottom {
+            color: var(--text-color);
         }
 
-        .bio-card span {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .bio-card svg {
+        .card-bottom svg {
             width: 16px;
             height: 16px;
-            stroke: var(--gray-color);
+            stroke: currentColor;
             stroke-width: 2;
             fill: none;
             stroke-linecap: round;
@@ -226,11 +300,11 @@
             transition: var(--transition);
         }
 
-        .bio-card:hover svg {
-            stroke: var(--text-color);
-            transform: translateX(2px);
+        .font-card:hover .card-bottom svg {
+            transform: translateX(3px);
         }
 
+        /* FOOTER TETAP SAMA */
         .footer-divider {
             width: 100%;
             max-width: 1750px;
@@ -285,6 +359,10 @@
                 align-items: flex-start;
                 gap: 16px;
             }
+            .font-card {
+                min-width: 290px;
+                height: 380px;
+            }
         }
     </style>
 </head>
@@ -322,35 +400,89 @@
         </div>
     </header>
 
-    <!-- Bagian Tengah diubah menjadi layout Link-in-Bio -->
+    <!-- Bagian Tengah dengan Horizontal Scroll Cards & Pangram -->
     <main>
-        <section class="hero-section">
+        <div class="hero-section">
             <h1>Retail fonts are just for beginners</h1>
-            <p class="hero-desc">Yep, we're broke and somehow got the wild idea to make open-source typefaces instead.</p>
-        </section>
+            <p class="hero-desc">Geser ke samping untuk mengeksplorasi koleksi font open-source kami.</p>
+        </div>
 
-        <section class="bio-links-list">
-            <a href="typefaces.html#font-grafem" class="bio-card">
-                <span>GLF Grafem (Variable)</span>
-                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <div class="cards-slider-container">
+            <!-- Kartu 1: Grafem -->
+            <a href="typefaces.html#font-grafem" class="font-card card-grafem">
+                <div class="card-top">
+                    <span class="font-title">GLF Grafem</span>
+                    <span class="font-badge">Variable</span>
+                </div>
+                <div class="pangram-preview">
+                    "The quick brown fox jumps over the lazy dog."
+                </div>
+                <div class="card-bottom">
+                    <span>Lihat Detail Font</span>
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
             </a>
-            <a href="typefaces.html#font-fonem" class="bio-card">
-                <span>GLF Fonem (Variable)</span>
-                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+
+            <!-- Kartu 2: Fonem -->
+            <a href="typefaces.html#font-fonem" class="font-card card-fonem">
+                <div class="card-top">
+                    <span class="font-title">GLF Fonem</span>
+                    <span class="font-badge">Variable</span>
+                </div>
+                <div class="pangram-preview">
+                    "Pack my box with five dozen liquor jugs."
+                </div>
+                <div class="card-bottom">
+                    <span>Lihat Detail Font</span>
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
             </a>
-            <a href="typefaces.html#font-cikutra" class="bio-card">
-                <span>GLF Cikutra (Variable)</span>
-                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+
+            <!-- Kartu 3: Cikutra -->
+            <a href="typefaces.html#font-cikutra" class="font-card card-cikutra">
+                <div class="card-top">
+                    <span class="font-title">GLF Cikutra</span>
+                    <span class="font-badge">Variable</span>
+                </div>
+                <div class="pangram-preview">
+                    "Sphinx of black quartz, judge my vow."
+                </div>
+                <div class="card-bottom">
+                    <span>Lihat Detail Font</span>
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
             </a>
-            <a href="typefaces.html#font-alofon" class="bio-card">
-                <span>GLF Alofon (Variable)</span>
-                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+
+            <!-- Kartu 4: Alofon -->
+            <a href="typefaces.html#font-alofon" class="font-card card-alofon">
+                <div class="card-top">
+                    <span class="font-title">GLF Alofon</span>
+                    <span class="font-badge">Variable</span>
+                </div>
+                <div class="pangram-preview">
+                    "Waltz, bad nymph, for quick jigs vex."
+                </div>
+                <div class="card-bottom">
+                    <span>Lihat Detail Font</span>
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
             </a>
-            <a href="typefaces.html#font-amara" class="bio-card">
-                <span>GLF Amara (Variable)</span>
-                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+
+            <!-- Kartu 5: Amara -->
+            <a href="typefaces.html#font-amara" class="font-card card-amara">
+                <div class="card-top">
+                    <span class="font-title">GLF Amara</span>
+                    <span class="font-badge">Variable</span>
+                </div>
+                <div class="pangram-preview">
+                    "Jinxed wizards pluck ivy from the big quilt."
+                </div>
+                <div class="card-bottom">
+                    <span>Lihat Detail Font</span>
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
             </a>
-        </section>
+        </div>
     </main>
 
     <!-- Footer tetap sama seperti sebelumnya -->
