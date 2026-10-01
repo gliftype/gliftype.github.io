@@ -292,9 +292,9 @@
             transition: transform 0.1s ease;
         }
 
-        /* Styling Dropdown Kustom untuk Dual Column */
+        /* Styling Dropdown Kustom untuk Dual Column (Tanpa Box Abu) */
         .style-select {
-            background: var(--light-gray);
+            background: transparent;
             color: var(--text-color);
             border: 1px solid var(--border-color);
             padding: 6px 12px;
@@ -304,23 +304,32 @@
             outline: none;
             cursor: pointer;
             transition: var(--transition);
+            width: fit-content;
         }
         .style-select:hover {
             border-color: var(--gray-color);
         }
+        .style-select option {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
 
-        /* Layout 2 Kolom untuk Pratinjau Baru */
+        /* Layout 2 Kolom untuk Pratinjau Baru (Tanpa Box Kontainer) */
         .dual-column-preview {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             margin-top: 15px;
+            background: transparent;
         }
 
         .column-box {
             display: flex;
             flex-direction: column;
             gap: 12px;
+            background: transparent;
+            padding: 0;
+            border: none;
         }
 
         .column-box textarea {
@@ -819,39 +828,36 @@
                 </div>
             </div>
 
-            <!-- Bagian Baru: Dual-Column Preview dengan Dropdown Variable Style -->
+            <!-- Dual-Column Preview (Tanpa Judul & Tanpa Box Abu) -->
             <div class="font-item-clean">
-                <div class="font-header-info">
-                    <div style="font-weight: 600; font-size: 1.15rem;">Dual-Column Editorial Preview</div>
-                </div>
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'grafem-col-1')">
-                            <option value="100">Thin (100)</option>
-                            <option value="200">Extra Light (200)</option>
-                            <option value="300">Light (300)</option>
-                            <option value="400" selected>Regular (400)</option>
-                            <option value="500">Medium (500)</option>
-                            <option value="600">Semi Bold (600)</option>
-                            <option value="700">Bold (700)</option>
-                            <option value="800">Extra Bold (800)</option>
-                            <option value="900">Black (900)</option>
+                            <option value="100">Thin</option>
+                            <option value="200">Extra Light</option>
+                            <option value="300">Light</option>
+                            <option value="400" selected>Regular</option>
+                            <option value="500">Medium</option>
+                            <option value="600">Semi Bold</option>
+                            <option value="700">Bold</option>
+                            <option value="800">Extra Bold</option>
+                            <option value="900">Black</option>
                         </select>
                         <textarea id="grafem-col-1" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Counter-hegemonic culture thrives in urban alleyways and damp rehearsal studios where independent punk records are pressed by hand. Music becomes an unfiltered medium to document systemic failure, police brutality, and housing displacement.</textarea>
                     </div>
                     <!-- Kolom Kanan -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'grafem-col-2')">
-                            <option value="100">Thin (100)</option>
-                            <option value="200">Extra Light (200)</option>
-                            <option value="300">Light (300)</option>
-                            <option value="400">Regular (400)</option>
-                            <option value="500">Medium (500)</option>
-                            <option value="600">Semi Bold (600)</option>
-                            <option value="700" selected>Bold (700)</option>
-                            <option value="800">Extra Bold (800)</option>
-                            <option value="900">Black (900)</option>
+                            <option value="100">Thin</option>
+                            <option value="200">Extra Light</option>
+                            <option value="300">Light</option>
+                            <option value="400">Regular</option>
+                            <option value="500">Medium</option>
+                            <option value="600">Semi Bold</option>
+                            <option value="700" selected>Bold</option>
+                            <option value="800">Extra Bold</option>
+                            <option value="900">Black</option>
                         </select>
                         <textarea id="grafem-col-2" class="paragraph-text-node" style="font-family: 'GLF Grafem', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">The struggle for spatial justice requires sustained collective action rather than fleeting aesthetic trends. Autonomous collectives continue to build counter-institutions that prioritize communal care over market-driven extraction.</textarea>
                     </div>
@@ -922,39 +928,36 @@
                 </div>
             </div>
 
-            <!-- Bagian Baru: Dual-Column Preview dengan Dropdown Variable Style -->
+            <!-- Dual-Column Preview (Tanpa Judul & Tanpa Box Abu) -->
             <div class="font-item-clean">
-                <div class="font-header-info">
-                    <div style="font-weight: 600; font-size: 1.15rem;">Dual-Column Editorial Preview</div>
-                </div>
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'fonem-col-1')">
-                            <option value="100">Thin (100)</option>
-                            <option value="200">Extra Light (200)</option>
-                            <option value="300">Light (300)</option>
-                            <option value="400" selected>Regular (400)</option>
-                            <option value="500">Medium (500)</option>
-                            <option value="600">Semi Bold (600)</option>
-                            <option value="700">Bold (700)</option>
-                            <option value="800">Extra Bold (800)</option>
-                            <option value="900">Black (900)</option>
+                            <option value="100">Thin</option>
+                            <option value="200">Extra Light</option>
+                            <option value="300">Light</option>
+                            <option value="400" selected>Regular</option>
+                            <option value="500">Medium</option>
+                            <option value="600">Semi Bold</option>
+                            <option value="700">Bold</option>
+                            <option value="800">Extra Bold</option>
+                            <option value="900">Black</option>
                         </select>
                         <textarea id="fonem-col-1" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Agrarian defense networks organize local communities to safeguard shared natural resources from corporate exploitation and bureaucratic takeover.</textarea>
                     </div>
                     <!-- Kolom Kanan -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'fonem-col-2')">
-                            <option value="100">Thin (100)</option>
-                            <option value="200">Extra Light (200)</option>
-                            <option value="300">Light (300)</option>
-                            <option value="400">Regular (400)</option>
-                            <option value="500">Medium (500)</option>
-                            <option value="600">Semi Bold (600)</option>
-                            <option value="700" selected>Bold (700)</option>
-                            <option value="800">Extra Bold (800)</option>
-                            <option value="900">Black (900)</option>
+                            <option value="100">Thin</option>
+                            <option value="200">Extra Light</option>
+                            <option value="300">Light</option>
+                            <option value="400">Regular</option>
+                            <option value="500">Medium</option>
+                            <option value="600">Semi Bold</option>
+                            <option value="700" selected>Bold</option>
+                            <option value="800">Extra Bold</option>
+                            <option value="900">Black</option>
                         </select>
                         <textarea id="fonem-col-2" class="paragraph-text-node" style="font-family: 'GLF Fonem', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Solidarity across regions proves that grassroots resistance can effectively challenge structural power imbalances and reclaim communal sovereignty.</textarea>
                     </div>
@@ -1025,39 +1028,36 @@
                 </div>
             </div>
 
-            <!-- Bagian Baru: Dual-Column Preview dengan Dropdown Variable Style -->
+            <!-- Dual-Column Preview (Tanpa Judul & Tanpa Box Abu) -->
             <div class="font-item-clean">
-                <div class="font-header-info">
-                    <div style="font-weight: 600; font-size: 1.15rem;">Dual-Column Editorial Preview</div>
-                </div>
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'cikutra-col-1')">
-                            <option value="100">Thin (100)</option>
-                            <option value="200">Extra Light (200)</option>
-                            <option value="300">Light (300)</option>
-                            <option value="400" selected>Regular (400)</option>
-                            <option value="500">Medium (500)</option>
-                            <option value="600">Semi Bold (600)</option>
-                            <option value="700">Bold (700)</option>
-                            <option value="800">Extra Bold (800)</option>
-                            <option value="900">Black (900)</option>
+                            <option value="100">Thin</option>
+                            <option value="200">Extra Light</option>
+                            <option value="300">Light</option>
+                            <option value="400" selected>Regular</option>
+                            <option value="500">Medium</option>
+                            <option value="600">Semi Bold</option>
+                            <option value="700">Bold</option>
+                            <option value="800">Extra Bold</option>
+                            <option value="900">Black</option>
                         </select>
                         <textarea id="cikutra-col-1" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Navigating high-speed metropolitan corridors exposes stark economic divides, fueling radical urban art movements and counter-cultural expressions.</textarea>
                     </div>
                     <!-- Kolom Kanan -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'cikutra-col-2')">
-                            <option value="100">Thin (100)</option>
-                            <option value="200">Extra Light (200)</option>
-                            <option value="300">Light (300)</option>
-                            <option value="400">Regular (400)</option>
-                            <option value="500">Medium (500)</option>
-                            <option value="600">Semi Bold (600)</option>
-                            <option value="700" selected>Bold (700)</option>
-                            <option value="800">Extra Bold (800)</option>
-                            <option value="900">Black (900)</option>
+                            <option value="100">Thin</option>
+                            <option value="200">Extra Light</option>
+                            <option value="300">Light</option>
+                            <option value="400">Regular</option>
+                            <option value="500">Medium</option>
+                            <option value="600">Semi Bold</option>
+                            <option value="700" selected>Bold</option>
+                            <option value="800">Extra Bold</option>
+                            <option value="900">Black</option>
                         </select>
                         <textarea id="cikutra-col-2" class="paragraph-text-node" style="font-family: 'GLF Cikutra', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Subversive public interventions transform grey concrete walls into communicative canvases for social commentary and political resistance.</textarea>
                     </div>
@@ -1128,39 +1128,36 @@
                 </div>
             </div>
 
-            <!-- Bagian Baru: Dual-Column Preview dengan Dropdown Variable Style -->
+            <!-- Dual-Column Preview (Tanpa Judul & Tanpa Box Abu) -->
             <div class="font-item-clean">
-                <div class="font-header-info">
-                    <div style="font-weight: 600; font-size: 1.15rem;">Dual-Column Editorial Preview</div>
-                </div>
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'alofon-col-1')">
-                            <option value="100">Thin (100)</option>
-                            <option value="200">Extra Light (200)</option>
-                            <option value="300">Light (300)</option>
-                            <option value="400" selected>Regular (400)</option>
-                            <option value="500">Medium (500)</option>
-                            <option value="600">Semi Bold (600)</option>
-                            <option value="700">Bold (700)</option>
-                            <option value="800">Extra Bold (800)</option>
-                            <option value="900">Black (900)</option>
+                            <option value="100">Thin</option>
+                            <option value="200">Extra Light</option>
+                            <option value="300">Light</option>
+                            <option value="400" selected>Regular</option>
+                            <option value="500">Medium</option>
+                            <option value="600">Semi Bold</option>
+                            <option value="700">Bold</option>
+                            <option value="800">Extra Bold</option>
+                            <option value="900">Black</option>
                         </select>
                         <textarea id="alofon-col-1" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">Retro typography captures the enduring spirit of vintage posters and counter-cultural manifestos from decades past.</textarea>
                     </div>
                     <!-- Kolom Kanan -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'alofon-col-2')">
-                            <option value="100">Thin (100)</option>
-                            <option value="200">Extra Light (200)</option>
-                            <option value="300">Light (300)</option>
-                            <option value="400">Regular (400)</option>
-                            <option value="500">Medium (500)</option>
-                            <option value="600">Semi Bold (600)</option>
-                            <option value="700" selected>Bold (700)</option>
-                            <option value="800">Extra Bold (800)</option>
-                            <option value="900">Black (900)</option>
+                            <option value="100">Thin</option>
+                            <option value="200">Extra Light</option>
+                            <option value="300">Light</option>
+                            <option value="400">Regular</option>
+                            <option value="500">Medium</option>
+                            <option value="600">Semi Bold</option>
+                            <option value="700" selected>Bold</option>
+                            <option value="800">Extra Bold</option>
+                            <option value="900">Black</option>
                         </select>
                         <textarea id="alofon-col-2" class="paragraph-text-node" style="font-family: 'GLF Alofon', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Compact proportions allow designers to pack punchy editorial statements into tight spaces with immense visual clarity.</textarea>
                     </div>
@@ -1231,39 +1228,36 @@
                 </div>
             </div>
 
-            <!-- Bagian Baru: Dual-Column Preview dengan Dropdown Variable Style -->
+            <!-- Dual-Column Preview (Tanpa Judul & Tanpa Box Abu) -->
             <div class="font-item-clean">
-                <div class="font-header-info">
-                    <div style="font-weight: 600; font-size: 1.15rem;">Dual-Column Editorial Preview</div>
-                </div>
                 <div class="dual-column-preview">
                     <!-- Kolom Kiri -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'amara-col-1')">
-                            <option value="100">Thin (100)</option>
-                            <option value="200">Extra Light (200)</option>
-                            <option value="300">Light (300)</option>
-                            <option value="400" selected>Regular (400)</option>
-                            <option value="500">Medium (500)</option>
-                            <option value="600">Semi Bold (600)</option>
-                            <option value="700">Bold (700)</option>
-                            <option value="800">Extra Bold (800)</option>
-                            <option value="900">Black (900)</option>
+                            <option value="100">Thin</option>
+                            <option value="200">Extra Light</option>
+                            <option value="300">Light</option>
+                            <option value="400" selected>Regular</option>
+                            <option value="500">Medium</option>
+                            <option value="600">Semi Bold</option>
+                            <option value="700">Bold</option>
+                            <option value="800">Extra Bold</option>
+                            <option value="900">Black</option>
                         </select>
                         <textarea id="amara-col-1" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 400; font-variation-settings: 'wght' 400;" rows="5">High-contrast serifs bring a sense of classical refinement and dramatic elegance to modern editorial publications and literary journals.</textarea>
                     </div>
                     <!-- Kolom Kanan -->
                     <div class="column-box">
                         <select class="style-select" onchange="changeColumnStyle(this, 'amara-col-2')">
-                            <option value="100">Thin (100)</option>
-                            <option value="200">Extra Light (200)</option>
-                            <option value="300">Light (300)</option>
-                            <option value="400">Regular (400)</option>
-                            <option value="500">Medium (500)</option>
-                            <option value="600">Semi Bold (600)</option>
-                            <option value="700" selected>Bold (700)</option>
-                            <option value="800">Extra Bold (800)</option>
-                            <option value="900">Black (900)</option>
+                            <option value="100">Thin</option>
+                            <option value="200">Extra Light</option>
+                            <option value="300">Light</option>
+                            <option value="400">Regular</option>
+                            <option value="500">Medium</option>
+                            <option value="600">Semi Bold</option>
+                            <option value="700" selected>Bold</option>
+                            <option value="800">Extra Bold</option>
+                            <option value="900">Black</option>
                         </select>
                         <textarea id="amara-col-2" class="paragraph-text-node" style="font-family: 'GLF Amara', sans-serif; font-weight: 700; font-variation-settings: 'wght' 700;" rows="5">Exaggerated weight transitions create an unforgettable visual rhythm across book covers and sophisticated branding systems.</textarea>
                     </div>
@@ -1317,7 +1311,6 @@
             spanElement.focus();
         }
 
-        // Fungsi pengendali perubahan style dari dropdown kolom
         function changeColumnStyle(selectElement, targetTextAreaId) {
             const val = selectElement.value;
             const target = document.getElementById(targetTextAreaId);
@@ -1415,7 +1408,6 @@
             const height = ascender - descender;
             const viewBox = `0 ${-ascender} ${unitsPerEm} ${height}`;
             
-            // Atur weight statis untuk character map di sini
             let targetWeight = 400;
 
             let html = `<div class="glyph-table">`;
