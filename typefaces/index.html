@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
@@ -302,10 +302,11 @@
 
         .marquee-track {
             display: inline-flex;
-            gap: 1.5rem;
-            white-space: nowrap;
+            gap: 0px;
+            white-space: pre;
             will-change: transform;
-            animation: marqueeLeft 150s linear infinite;
+            animation: marqueeLeft 120s linear infinite;
+            width: max-content;
         }
 
         .preview-wrapper:hover .marquee-track {
@@ -1071,7 +1072,10 @@
                 tempSpan.style.whiteSpace = 'pre';
                 tempSpan.style.font = window.getComputedStyle(input).font;
                 tempSpan.style.letterSpacing = window.getComputedStyle(input).letterSpacing;
-                tempSpan.textContent = input.value;
+                
+                // Tambahkan ruang ekstra agar teks berjalan mulus tanpa terpotong
+                tempSpan.textContent = input.value + "     ";
+                
                 document.body.appendChild(tempSpan);
                 const textWidth = Math.ceil(tempSpan.getBoundingClientRect().width);
                 document.body.removeChild(tempSpan);
@@ -1079,7 +1083,7 @@
                 input.style.width = textWidth + 'px';
                 const clone = input.parentElement.querySelector('.clone-node');
                 if (clone) {
-                    clone.value = input.value;
+                    clone.value = input.value + "     ";
                     clone.style.width = textWidth + 'px';
                 }
             });
@@ -1092,7 +1096,6 @@
             input.style.width = '100%';
         }
 
-        // Mapping file font konsisten dengan tanda hubung (-) dan path ke folder root ../fonts/
         const loadedFontsData = {
             'grafem': { ttfUrl: '../fonts/GLF-Grafem-VF.ttf', fallbackUrl: '../fonts/GLF-Grafem-VF.woff2', fontObj: null, glyphs: [] },
             'fonem': { ttfUrl: '../fonts/GLF-Fonem-VF.ttf', fallbackUrl: '../fonts/GLF-Fonem-VF.woff2', fontObj: null, glyphs: [] },
